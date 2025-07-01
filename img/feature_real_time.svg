@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" fill="none">
+  <g fill="#0071e3" style="pointer-events:none">
+    <path fill="#0071e3" d="M24,48C37.2548,48,48,37.2548,48,24C48,10.7452,37.2548,0,24,0C10.7452,0,0,10.7452,0,24C0,37.2548,10.7452,48,24,48z"/>
+  </g>
+  <g transform="translate(8.615, 10.3128)">
+    <g transform="translate(-1146, -744)">
+      <g>
+        <g>
+          <g>
+            <g>
+              <path fill="#ffffff" d="M1158.57,744L1170.15,744C1170.45,744,1170.69,744.238,1170.69,744.532C1170.69,744.64,1170.65,744.745,1170.59,744.834L1164.12,754.215C1163.95,754.457,1164.01,754.788,1164.25,754.955C1164.34,755.016,1164.45,755.049,1164.55,755.049L1168.31,755.049C1168.6,755.049,1168.84,755.287,1168.84,755.581C1168.84,755.708,1168.8,755.83,1168.71,755.926L1155.63,771.188C1155.44,771.411,1155.1,771.438,1154.88,771.247C1154.72,771.112,1154.65,770.897,1154.71,770.697L1157.35,761.238C1157.42,760.955,1157.26,760.662,1156.98,760.583C1156.93,760.57,1156.88,760.564,1156.83,760.564L1152.61,760.564C1152.31,760.563,1152.08,760.325,1152.08,760.031C1152.08,759.966,1152.09,759.902,1152.11,759.841L1158.08,744.341C1158.16,744.136,1158.35,744,1158.57,744z"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

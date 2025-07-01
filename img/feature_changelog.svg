@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" fill="none">
+  <defs>
+    <clippath>
+      <rect x="1324" y="657" width="28" height="28"/>
+    </clippath>
+    <clippath>
+      <rect x="1324" y="657" width="28" height="28"/>
+    </clippath>
+    <clippath>
+      <rect x="1324" y="657" width="28" height="28"/>
+    </clippath>
+    <clippath>
+      <rect x="1324" y="656" width="28" height="29"/>
+    </clippath>
+    <clippath>
+      <rect x="1324" y="656" width="28" height="29"/>
+    </clippath>
+  </defs>
+  <g fill="#0071e3" style="pointer-events:none">
+    <path fill="#0071e3" d="M24,48C37.2548,48,48,37.2548,48,24C48,10.7452,37.2548,0,24,0C10.7452,0,0,10.7452,0,24C0,37.2548,10.7452,48,24,48z"/>
+  </g>
+  <g transform="translate(9.99, 9.4606)">
+    <g transform="translate(-1324, -656)">
+      <g>
+        <g>
+          <g>
+            <g>
+              <path fill="#ffffff" transform="translate(1324, 657.025)scale(1, 1.045)" d="M14.01,11.0946C12.4689,11.0946,11.208,12.3428,11.208,13.8686C11.208,15.3944,12.4689,16.6426,14.01,16.6426C15.551,16.6426,16.8119,15.3944,16.8119,13.8686C16.8119,12.3428,15.551,11.0933,14.01,11.0933L14.01,11.0946zM22.4159,13.8686C22.4159,9.2924,18.6332,5.5479,14.01,5.5479C9.3867,5.5479,5.604,9.2924,5.604,13.8686C5.604,16.9202,7.2852,19.6241,9.807,21.0799L11.208,18.6536C9.5268,17.6818,8.406,15.9484,8.406,13.8686C8.406,10.817,10.9278,8.3207,14.01,8.3207C17.0921,8.3207,19.6139,10.817,19.6139,13.8686C19.6139,15.9484,18.4931,17.6818,16.8119,18.6536L18.2129,21.0799C20.7347,19.6241,22.4159,16.9202,22.4159,13.8686zM14.01,0C6.3045,0,0,6.2408,0,13.8686C0,19,2.802,23.4374,7.005,25.8649L8.406,23.4374C5.0436,21.4963,2.802,17.9607,2.802,13.8686C2.802,7.7666,7.8456,2.774,14.01,2.774C20.1743,2.774,25.2179,7.7666,25.2179,13.8673C25.2247,17.8378,23.0799,21.5004,19.6139,23.4374L21.0149,25.8649C25.2179,23.4374,28.0199,19,28.0199,13.8673C28.0199,6.2408,21.7154,0,14.01,0z"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

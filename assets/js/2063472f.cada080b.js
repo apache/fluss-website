@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfluss_website=self.webpackChunkfluss_website||[]).push([[3215],{7646:e=>{e.exports=JSON.parse('{"tags":[{"label":"releases","permalink":"/blog/tags/releases","description":"Content related release announcement.","count":2}]}')}}]);

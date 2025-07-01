@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" fill="none">
+  <g fill="#0071e3" style="pointer-events:none">
+    <path fill="#0071e3" d="M24,48C37.2548,48,48,37.2548,48,24C48,10.7452,37.2548,0,24,0C10.7452,0,0,10.7452,0,24C0,37.2548,10.7452,48,24,48z"/>
+  </g>
+  <g transform="translate(9.5075, 8.1777)">
+    <g transform="translate(-1412, -590)">
+      <g>
+        <g>
+          <g>
+            <g>
+              <path fill="#ffffff" d="M1440.09,617.973L1434.5,612.383C1434.45,612.336,1434.39,612.317,1434.34,612.277C1436.46,610.015,1437.76,606.987,1437.76,603.648C1437.76,596.664,1432.1,591,1425.11,591C1418.13,591,1412.46,596.664,1412.46,603.648C1412.46,610.633,1418.13,616.297,1425.11,616.297C1427.56,616.298,1429.96,615.583,1432.01,614.24C1432.08,614.373,1432.15,614.509,1432.27,614.62L1437.86,620.209C1438.49,620.811,1439.49,620.786,1440.09,620.153C1440.67,619.542,1440.67,618.583,1440.09,617.973zM1414.04,603.648C1414.04,597.536,1419,592.581,1425.11,592.581C1431.22,592.581,1436.18,597.536,1436.18,603.648C1436.18,609.761,1431.22,614.715,1425.11,614.715C1419,614.715,1414.04,609.761,1414.04,603.648z"/>
+              <path fill="#ffffff" d="M1418.79,603.648L1421.95,603.648L1421.95,608.391L1418.79,608.391L1418.79,603.648zM1423.53,600.486L1426.69,600.486L1426.69,608.391L1423.53,608.391L1423.53,600.486zM1428.27,598.905L1431.44,598.905L1431.44,608.391L1428.27,608.391L1428.27,598.905z"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

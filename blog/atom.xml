@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom.xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://fluss.apache.org/blog/</id>
-    <title>Fluss Blog</title>
+    <title>Apache Fluss™ Blog</title>
     <updated>2025-06-18T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://fluss.apache.org/blog/"/>
-    <subtitle>Fluss Blog</subtitle>
+    <subtitle>Apache Fluss™ Blog</subtitle>
     <icon>https://fluss.apache.org/img/logo/fluss_favicon.svg</icon>
     <entry>
         <title type="html"><![CDATA[Announcing Fluss 0.7]]></title>

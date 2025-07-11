@@ -15,19 +15,29 @@
 #  specific language governing permissions and limitations
 #  under the License.
 
+# See: https://cwiki.apache.org/confluence/display/INFRA/git+-+.asf.yaml+features
+
 github:
   description: "Apache Fluss Website"
   homepage: https://fluss.apache.org/
   features:
-    issues: false
+    issues: true
     projects: false
+    discussions: false
     wiki: false
   labels:
     - fluss
+    - streaming
+    - real-time-analytics
+    - lakehouse
   enabled_merge_buttons:
     squash:  true
     merge:   false
-    rebase:  false
+    rebase:  true
 
-publish:
-  whoami: asf-site
+notifications:
+  commits:      commits@fluss.apache.org
+  issues:       issues@fluss.apache.org
+  pullrequests: issues@fluss.apache.org
+  jobs:         builds@fluss.apache.org
+  discussions:  issues@fluss.apache.org

@@ -46,7 +46,11 @@ jobs:
         run: |
           cp .asf.yaml .htaccess ./build/
       - name: Deploy website
+        env:
+          GIT_USER: gh-actions
+          GIT_PASS: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "gh-actions"
+          echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
           npm run deploy -- --skip-build

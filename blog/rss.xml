@@ -211,7 +211,7 @@ The execution plan is quite straight forward. It has a three operators: a <code>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="tieringsource">TieringSource<a href="https://fluss.apache.org/blog/tiering-service/#tieringsource" class="hash-link" aria-label="Direct link to TieringSource" title="Direct link to TieringSource">​</a></h2>
 <p><img decoding="async" loading="lazy" src="https://fluss.apache.org/assets/images/tiering-source-05383f4fdc58bd69e4a15c38bddf40b7.png" width="2078" height="1084" class="img_ev3q"></p>
 <p>The <strong>TieringSource</strong> operator reads records from the Fluss tiering table and writes them into your data lake.
-Built on Flink’s Source V2 API (<a href="https://cwiki.apache.org/confluence/display/FLINK/FLIP-238:+Introduce+FLIP-27-based+Data+Generator+Source" target="_blank" rel="noopener noreferrer">FLIP-27</a>), it breaks down into two core components: the <strong>TieringSourceEnumerator</strong> and the <strong>TieringSourceReader</strong>.
+Built on Flink’s Source V2 API (<a href="https://cwiki.apache.org/confluence/display/FLINK/FLIP-27%3A+Refactor+Source+Interface" target="_blank" rel="noopener noreferrer">FLIP-27</a>), it breaks down into two core components: the <strong>TieringSourceEnumerator</strong> and the <strong>TieringSourceReader</strong>.
 The high-level workflow is as follows:</p>
 <ol>
 <li>The <strong>Enumerator</strong> queries the <strong>CoordinatorService</strong> for current tiering table metadata.</li>
@@ -244,7 +244,7 @@ The high-level workflow is as follows:</p>
 <li><strong>Forwarding Metadata</strong>: It parses the returned <code>PbLakeTieringTableInfo</code> and the sync-status responses, then forwards the assembled <code>lakeTieringInfo</code> to the <code>TieringSplitGenerator</code> for split creation.</li>
 </ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="tieringsplitgenerator">TieringSplitGenerator<a href="https://fluss.apache.org/blog/tiering-service/#tieringsplitgenerator" class="hash-link" aria-label="Direct link to TieringSplitGenerator" title="Direct link to TieringSplitGenerator">​</a></h4>
-<p><img decoding="async" loading="lazy" src="https://fluss.apache.org/assets/images/tiering-split-generator-be078e6e03ec3424d75eac0edc7baff6.png" width="2020" height="1560" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://fluss.apache.org/assets/images/tiering-split-generator-55e3a17880edf61dcecf9ee9eb1b36be.png" width="2012" height="1566" class="img_ev3q"></p>
 <p>The <strong>TieringSplitGenerator</strong> is an important component that orchestrates efficient data synchronization between your real-time Fluss cluster and your lakehouse.
 It precisely calculates the data <code>"delta"</code>, i.e what's new or changed in Fluss but not yet committed to the lake and then generates <strong>TieringSplit</strong> tasks for each segment requiring synchronization.</p>
 <p>To achieve this, the <code>TieringSplitGenerator</code> leverages the <code>FlussAdminClient</code> to fetch three essential pieces of metadata:</p>

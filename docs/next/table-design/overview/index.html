@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.4e06651e.css">
-<script src="/assets/js/runtime~main.fd7251cb.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a2be54e5.js" defer="defer"></script>
 <script src="/assets/js/main.4f2ebb93.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -35,17 +35,17 @@
 <li>Support only INSERT operations.</li>
 </ul>
 </li>
-<li><strong>PrimaryKey Tables:</strong>
+<li><strong>Primary Key Tables:</strong>
 <ul>
 <li>Used for updating and managing data in business databases.</li>
 <li>Support INSERT, UPDATE, and DELETE operations based on the defined primary key.</li>
 </ul>
 </li>
 </ul>
-<p>A Table becomes a <a href="/docs/next/table-design/data-distribution/partitioning/">Partitioned Table</a> when a partition column is defined. Data with the same partition value is stored in the same partition. Partition columns can be applied to both Log Tables and PrimaryKey Tables, but with specific considerations:</p>
+<p>A Table becomes a <a href="/docs/next/table-design/data-distribution/partitioning/">Partitioned Table</a> when a partition column is defined. Data with the same partition value is stored in the same partition. Partition columns can be applied to both Log Tables and Primary Key Tables, but with specific considerations:</p>
 <ul>
 <li><strong>For Log Tables</strong>, partitioning is commonly used for log data, typically based on date columns, to facilitate data separation and cleaning.</li>
-<li><strong>For PrimaryKey Tables</strong>, the partition column must be a subset of the primary key to ensure uniqueness.</li>
+<li><strong>For Primary Key Tables</strong>, the partition column must be a subset of the primary key to ensure uniqueness.</li>
 </ul>
 <p>This design ensures efficient data organization, flexibility in handling different use cases, and adherence to data integrity constraints.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="table-data-organization">Table Data Organization<a href="#table-data-organization" class="hash-link" aria-label="Direct link to Table Data Organization" title="Direct link to Table Data Organization">​</a></h2>
@@ -58,16 +58,16 @@ Each unique value (or combination of values) in the partition column(s) defines 
 The number of buckets <code>N</code> can be configured per table. A bucket is the smallest unit of data migration and backup.
 The data of a bucket consists of a LogTablet and a (optional) KvTablet.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="logtablet">LogTablet<a href="#logtablet" class="hash-link" aria-label="Direct link to LogTablet" title="Direct link to LogTablet">​</a></h3>
-<p>A <strong>LogTablet</strong> needs to be generated for each bucket of Log and PrimaryKey tables.
-For Log Tables, the LogTablet is both the primary table data and the log data. For PrimaryKey tables, the LogTablet acts
+<p>A <strong>LogTablet</strong> needs to be generated for each bucket of Log and Primary Key Tables.
+For Log Tables, the LogTablet is both the primary table data and the log data. For Primary Key Tables, the LogTablet acts
 as the log data for the primary table data.</p>
 <ul>
 <li><strong>Segment:</strong> The smallest unit of log storage in the <strong>LogTablet</strong>. A segment consists of an <strong>.index</strong> file and a <strong>.log</strong> data file.</li>
-<li><strong>.index:</strong> An <code>offset sparse index</code> that stores the mappings between the physical byte address in the message relative offset -&gt; .log file.</li>
+<li><strong>.index:</strong> An <code>offset sparse index</code> that maps message relative offsets to their corresponding physical byte addresses in the .log file.</li>
 <li><strong>.log:</strong> Compact arrangement of log data.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="kvtablet">KvTablet<a href="#kvtablet" class="hash-link" aria-label="Direct link to KvTablet" title="Direct link to KvTablet">​</a></h3>
-<p>Each bucket of the PrimaryKey table needs to generate a KvTablet. Underlying, each KvTablet corresponds to an embedded RocksDB instance. RocksDB is an LSM (log structured merge) engine which helps KvTablet supports high-performance updates and lookup query.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/apache/fluss/edit/main/website/docs/table-design/overview.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/next/install-deploy/deploying-with-docker/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Deploying with Docker</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/next/table-design/table-types/log-table/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Log Table</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#database" class="table-of-contents__link toc-highlight">Database</a></li><li><a href="#table" class="table-of-contents__link toc-highlight">Table</a></li><li><a href="#table-data-organization" class="table-of-contents__link toc-highlight">Table Data Organization</a><ul><li><a href="#partition" class="table-of-contents__link toc-highlight">Partition</a></li><li><a href="#bucket" class="table-of-contents__link toc-highlight">Bucket</a></li><li><a href="#logtablet" class="table-of-contents__link toc-highlight">LogTablet</a></li><li><a href="#kvtablet" class="table-of-contents__link toc-highlight">KvTablet</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 The Apache Software Foundation.
+<p>Each bucket of the Primary Key Table needs to generate a KvTablet. Underlying, each KvTablet corresponds to an embedded RocksDB instance. RocksDB is an LSM (log structured merge) engine which helps KvTablet support high-performance updates and lookup queries.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/apache/fluss/edit/main/website/docs/table-design/overview.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/next/install-deploy/deploying-with-docker/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Deploying with Docker</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/next/table-design/table-types/log-table/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Log Table</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#database" class="table-of-contents__link toc-highlight">Database</a></li><li><a href="#table" class="table-of-contents__link toc-highlight">Table</a></li><li><a href="#table-data-organization" class="table-of-contents__link toc-highlight">Table Data Organization</a><ul><li><a href="#partition" class="table-of-contents__link toc-highlight">Partition</a></li><li><a href="#bucket" class="table-of-contents__link toc-highlight">Bucket</a></li><li><a href="#logtablet" class="table-of-contents__link toc-highlight">LogTablet</a></li><li><a href="#kvtablet" class="table-of-contents__link toc-highlight">KvTablet</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 The Apache Software Foundation.
       Apache®, Apache Flink®, Flink®, Apache Kafka®, Kafka®, Spark® and associated open source project names and logos are trademarks of the Apache Software Foundation.</div></div></div></footer></div>
 </body>
 </html>

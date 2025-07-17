@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
                        xmlns:moz="http://www.mozilla.org/2006/browser/search/">
-  <ShortName>Apache Fluss™ (incubating)</ShortName>
-  <Description>Search Apache Fluss™ (incubating)</Description>
+  <ShortName>Apache Fluss™ (Incubating)</ShortName>
+  <Description>Search Apache Fluss™ (Incubating)</Description>
   <InputEncoding>UTF-8</InputEncoding>
   <Image width="16" height="16" type="image/x-icon">https://fluss.apache.org/img/logo/fluss_favicon.svg</Image>
   <Url type="text/html" method="get" template="https://fluss.apache.org/search?q={searchTerms}"/>

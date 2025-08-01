@@ -13,7 +13,7 @@
             <link>https://fluss.apache.org/blog/hands-on-fluss-lakehouse/</link>
             <guid>https://fluss.apache.org/blog/hands-on-fluss-lakehouse/</guid>
             <pubDate>Wed, 23 Jul 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<!--]]></description>
+            <description><![CDATA[Fluss stores historical data in a lakehouse storage layer while keeping real-time data in the Fluss server. Its built-in tiering service continuously moves fresh events into the lakehouse, allowing various query engines to analyze both hot and cold data. The real magic happens with Fluss's union-read capability, which lets Flink jobs seamlessly query both the Fluss cluster and the lakehouse for truly integrated real-time processing.]]></description>
             <content:encoded><![CDATA[<p>Fluss stores historical data in a lakehouse storage layer while keeping real-time data in the Fluss server. Its built-in tiering service continuously moves fresh events into the lakehouse, allowing various query engines to analyze both hot and cold data. The real magic happens with Fluss's union-read capability, which lets Flink jobs seamlessly query both the Fluss cluster and the lakehouse for truly integrated real-time processing.</p>
 <p><img decoding="async" loading="lazy" src="https://fluss.apache.org/assets/images/streamhouse-7b7f1260fc996ca89b50dbb9454584ab.png" width="3057" height="1237" class="img_ev3q"></p>
 <p>In this hands-on tutorial, we'll walk you through setting up a local Fluss lakehouse environment, running some practical data operations, and getting first-hand experience with the complete Fluss lakehouse architecture. By the end, you'll have a working environment for experimenting with Fluss's powerful data processing capabilities.</p>
@@ -167,7 +167,7 @@
             <link>https://fluss.apache.org/blog/fluss-joins-asf/</link>
             <guid>https://fluss.apache.org/blog/fluss-joins-asf/</guid>
             <pubDate>Thu, 10 Jul 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<!--]]></description>
+            <description><![CDATA[On June 5th, Fluss, the next-generation streaming storage project open-sourced and donated by Alibaba, successfully passed the vote and officially became an incubator project of the Apache Software Foundation (ASF). This marks a significant milestone in the development of the Fluss community, symbolizing that the project has entered a new phase that is more open,]]></description>
             <content:encoded><![CDATA[<p>On June 5th, Fluss, the next-generation streaming storage project open-sourced and donated by Alibaba, successfully passed the <a href="https://lists.apache.org/thread/mnol4wxovpz6klt196d3x239t4mp6z5o" target="_blank" rel="noopener noreferrer">vote</a> and officially became an incubator project of the Apache Software Foundation (ASF). This marks a significant milestone in the development of the Fluss community, symbolizing that the project has entered a new phase that is more open,
 neutral, and standardized. Moving forward, Fluss will leverage the ASF ecosystem to accelerate the building of a global developer community, continuously driving innovation and adoption of next-generation real-time data infrastructure.</p>
 <p><img decoding="async" loading="lazy" alt="ASF" src="https://fluss.apache.org/assets/images/asf-0621eab6f6aadbdfebfc5e24a36667c1.png" width="1231" height="631" class="img_ev3q"></p>
@@ -222,7 +222,7 @@ In key business scenarios such as log collection and analysis, search recommenda
             <link>https://fluss.apache.org/blog/fluss-java-client/</link>
             <guid>https://fluss.apache.org/blog/fluss-java-client/</guid>
             <pubDate>Mon, 07 Jul 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<!--]]></description>
+            <description><![CDATA[Banner]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-9b4e9683efcde75c4961249525c8f269.png" width="1477" height="975" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="introduction">Introduction<a href="https://fluss.apache.org/blog/fluss-java-client/#introduction" class="hash-link" aria-label="Direct link to Introduction" title="Direct link to Introduction">​</a></h2>
 <p>Apache Fluss is a streaming data storage system built for real-time analytics, serving as a low-latency data layer in modern data Lakehouses.
@@ -346,7 +346,7 @@ With this foundation, you can explore more advanced features of Fluss to build r
             <link>https://fluss.apache.org/blog/tiering-service/</link>
             <guid>https://fluss.apache.org/blog/tiering-service/</guid>
             <pubDate>Tue, 01 Jul 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<!--]]></description>
+            <description><![CDATA[Background]]></description>
             <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="background">Background<a href="https://fluss.apache.org/blog/tiering-service/#background" class="hash-link" aria-label="Direct link to Background" title="Direct link to Background">​</a></h2>
 <p><img decoding="async" loading="lazy" src="https://fluss.apache.org/assets/images/background-8a1ebc79c438a3deabba060edf8eaa0b.png" width="2036" height="924" class="img_ev3q"></p>
 <p>At the core of Fluss’s Lakehouse architecture sits the <strong>Tiering Service:</strong> a smart,
@@ -500,7 +500,7 @@ We began by dissecting the <strong>TieringSource</strong>, understanding the cri
             <link>https://fluss.apache.org/blog/releases/0.7/</link>
             <guid>https://fluss.apache.org/blog/releases/0.7/</guid>
             <pubDate>Wed, 18 Jun 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<!--]]></description>
+            <description><![CDATA[Banner]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-8cc4ea9295caf8358e14adf7a69beb01.png" width="1322" height="632" class="img_ev3q"></p>
 <p>🌊 We are excited to announce the official release of <strong>Fluss 0.7</strong>!</p>
 <p>This version has undergone extensive improvements in <strong>stability</strong>, <strong>architecture</strong>, <strong>performance optimization</strong>, and <strong>security</strong>, further enhancing its readiness for <strong>production environments</strong>. Over the past three months, we have completed more than <strong>250 commits</strong>, making this release a significant milestone toward becoming a mature, production-grade streaming storage platform.</p>
@@ -625,7 +625,7 @@ don’t forget to give it some ❤️ via ⭐ on <a href="https://github.com/ali
             <link>https://fluss.apache.org/blog/partial-updates/</link>
             <guid>https://fluss.apache.org/blog/partial-updates/</guid>
             <pubDate>Sun, 01 Jun 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<!--]]></description>
+            <description><![CDATA[Banner]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-a09e6bac14dc2bee3dbc698347cb2d7f.png" width="1348" height="958" class="img_ev3q"></p>
 <p>Traditional streaming data pipelines often need to join many tables or streams on a primary key to create a wide view.
 For example, imagine you’re building a real-time recommendation engine for an e-commerce platform.
@@ -717,7 +717,7 @@ With Fluss handling the merge logic, achieving a single, up-to-date view from mu
             <link>https://fluss.apache.org/blog/unveil-fluss-logo/</link>
             <guid>https://fluss.apache.org/blog/unveil-fluss-logo/</guid>
             <pubDate>Wed, 28 May 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<!--]]></description>
+            <description><![CDATA[Introducing the Little Otter]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" src="https://fluss.apache.org/assets/images/colored_logo-570a85568f48c50f3ce9cdcfc57c8670.png" width="1614" height="686" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="introducing-the-little-otter">Introducing the Little Otter<a href="https://fluss.apache.org/blog/unveil-fluss-logo/#introducing-the-little-otter" class="hash-link" aria-label="Direct link to Introducing the Little Otter" title="Direct link to Introducing the Little Otter">​</a></h2>
 <p>Today is <a href="https://www.otter.org/world-otter-day" target="_blank" rel="noopener noreferrer">World Otter Day</a>, and we are thrilled to introduce the little otter to the Fluss community! 🎉</p>
@@ -761,7 +761,7 @@ With Fluss handling the merge logic, achieving a single, up-to-date view from mu
             <link>https://fluss.apache.org/blog/releases/0.6/</link>
             <guid>https://fluss.apache.org/blog/releases/0.6/</guid>
             <pubDate>Mon, 10 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<!--]]></description>
+            <description><![CDATA[The Fluss community is pleased to announce the official release of Fluss 0.6.0. This version has undergone over]]></description>
             <content:encoded><![CDATA[<p>The Fluss community is pleased to announce the official release of <strong>Fluss 0.6.0</strong>. This version has undergone over
 three months of intensive development, bringing together the expertise and efforts of 45 contributors worldwide,
 with more than 200 code commits completed. Our heartfelt thanks go out to every contributor for their invaluable support!</p>
@@ -893,7 +893,7 @@ Compatibility with the Kafka network protocol, enabling seamless integration wit
             <link>https://fluss.apache.org/blog/unified-streaming-lakehouse/</link>
             <guid>https://fluss.apache.org/blog/unified-streaming-lakehouse/</guid>
             <pubDate>Tue, 28 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<!--]]></description>
+            <description><![CDATA[The unification of Lakehouse and streaming storage represents a major trend in the future development of modern data lakes and streaming storage systems. Designed specifically for real-time analytics, Fluss has embraced a unified Streaming and Lakehouse architecture from its inception, enabling seamless integration into existing Lakehouse architectures.]]></description>
             <content:encoded><![CDATA[<p>The unification of Lakehouse and streaming storage represents a major trend in the future development of modern data lakes and streaming storage systems. Designed specifically for real-time analytics, Fluss has embraced a unified Streaming and Lakehouse architecture from its inception, enabling seamless integration into existing Lakehouse architectures.</p>
 <p>Fluss is designed to address the demands of real-time analytics with the following key capabilities:</p>
 <ul>
@@ -1072,7 +1072,7 @@ In the process of building a data warehouse, it is common to organize and manage
             <link>https://fluss.apache.org/blog/fluss-intro/</link>
             <guid>https://fluss.apache.org/blog/fluss-intro/</guid>
             <pubDate>Thu, 12 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<!--]]></description>
+            <description><![CDATA[We have discussed the challenges of using Kafka for real-time analytics in our previous blog post.]]></description>
             <content:encoded><![CDATA[<p>We have discussed the challenges of using Kafka for real-time analytics in our previous <a href="https://fluss.apache.org/blog/why-fluss/">blog post</a>.
 Today, we are excited to introduce Fluss, a cutting-edge streaming storage system designed to power real-time analytics.
 We are going to explore Fluss's architecture, design principles, key features, and how it addresses the challenges of using Kafka for real-time analytics.</p>
@@ -1147,7 +1147,7 @@ The future planning for Fluss involves three key aspects, each corresponding to 
             <link>https://fluss.apache.org/blog/why-fluss/</link>
             <guid>https://fluss.apache.org/blog/why-fluss/</guid>
             <pubDate>Wed, 11 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<!--]]></description>
+            <description><![CDATA[The industry is undergoing a clear and significant shift as big data computing transitions from offline to real-time processing.]]></description>
             <content:encoded><![CDATA[<p>The industry is undergoing a clear and significant shift as big data computing transitions from offline to real-time processing.
 This transition is revolutionizing various sectors, including the E-commerce, automotive networking, finance, and beyond,
 where real-time data applications are becoming integral to operations. This evolution enables organizations to unlock greater
@@ -1216,7 +1216,7 @@ The launch of Fluss coincides with Flink's 10th anniversary, making it a fitting
             <link>https://fluss.apache.org/blog/fluss-open-source/</link>
             <guid>https://fluss.apache.org/blog/fluss-open-source/</guid>
             <pubDate>Fri, 29 Nov 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<!--]]></description>
+            <description><![CDATA[Earlier this year at Flink Forward 2024 Berlin we announced Fluss and today we are thrilled to announce open-sourcing the project.]]></description>
             <content:encoded><![CDATA[<p>Earlier this year at Flink Forward 2024 Berlin we <a href="https://www.ververica.com/blog/introducing-fluss" target="_blank" rel="noopener noreferrer">announced Fluss</a> and today we are thrilled to announce open-sourcing the project.
 Fluss is a <strong>streaming storage system</strong> designed to power real-time analytics. It aspires to change how organizations approach real-time data by acting as the <strong>real-time data layer</strong> for the Lakehouse.
 Its cutting-edge design enables businesses to achieve <strong>sub-second latency</strong>, <strong>high throughput</strong>, and <strong>cost efficiency</strong> for data analytics, making it the ideal solution for modern data-driven applications.</p>

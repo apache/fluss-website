@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.53ed9f81.css">
-<script src="/assets/js/runtime~main.af626685.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.e66e349f.js" defer="defer"></script>
 <script src="/assets/js/main.c82d37d7.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -28,7 +28,7 @@
 <li><a href="#observability-with-prometheus-loki-and-grafana">Observability with Prometheus, Loki and Grafana</a></li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="observability-with-prometheus-loki-and-grafana">Observability with Prometheus, Loki and Grafana<a href="#observability-with-prometheus-loki-and-grafana" class="hash-link" aria-label="Direct link to Observability with Prometheus, Loki and Grafana" title="Direct link to Observability with Prometheus, Loki and Grafana">​</a></h2>
-<p>We provide a minimal quickstart configuration for application observability with Prometheus (metric aggregation system), Loki (log aggregation sytem) and Grafana (dashboard system).</p>
+<p>We provide a minimal quickstart configuration for application observability with Prometheus (metric aggregation system), Loki (log aggregation system) and Grafana (dashboard system).</p>
 <p>The quickstart configuration comes with 2 metric dashboards.</p>
 <ul>
 <li><code>Fluss – overview</code>: Selected metrics to observe the overall cluster status</li>
@@ -51,7 +51,7 @@ The container manifest below configures Fluss to use Logback and Loki4j. Save it
 </ol>
 <ul>
 <li>add containers for Prometheus, Loki and Grafana and mount the corresponding configuration directories.</li>
-<li>build and use the new Fluss image manifest (<code>fluss-sfl4j-logback.Dockerfile</code>).</li>
+<li>build and use the new Fluss image manifest (<code>fluss-slf4j-logback.Dockerfile</code>).</li>
 <li>configure Fluss to expose metrics via Prometheus.</li>
 <li>add the desired application name that should be used when displaying logs in Grafana as environment variable (<code>APP_NAME</code>).</li>
 <li>configure Flink to expose metrics via Prometheus.</li>

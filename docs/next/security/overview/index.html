@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.53ed9f81.css">
-<script src="/assets/js/runtime~main.af626685.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.e66e349f.js" defer="defer"></script>
 <script src="/assets/js/main.c82d37d7.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -68,15 +68,15 @@ This flexibility enables operators to apply different security protocols per lis
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="fluss-principal--the-bridge-between-authentication-and-authorization">Fluss Principal – The Bridge Between Authentication and Authorization<a href="#fluss-principal--the-bridge-between-authentication-and-authorization" class="hash-link" aria-label="Direct link to Fluss Principal – The Bridge Between Authentication and Authorization" title="Direct link to Fluss Principal – The Bridge Between Authentication and Authorization">​</a></h3>
 <p>Once a client successfully authenticates, Fluss creates a <strong>Fluss Principal</strong>, which represents the authenticated identity. This  <strong>Fluss Principal</strong> is used throughout the system during authorization checks.</p>
-<p>The principal type indicates the category of the principal (e. g., &quot;User&quot;, &quot;Group&quot;, &quot;Role&quot;), while the name identifies the specific entity within that category. By default, the simple authorizer uses &quot;User&quot; as the principal type, but custom authorizers can extend this to support role-based or group-based access control lists (ACLs).
+<p>The principal type indicates the category of the principal (e.g., &quot;User&quot;, &quot;Group&quot;, &quot;Role&quot;), while the name identifies the specific entity within that category. By default, the simple authorizer uses &quot;User&quot; as the principal type, but custom authorizers can extend this to support role-based or group-based access control lists (ACLs).
 Example usage:</p>
 <ul>
 <li><code>new FlussPrincipal(&quot;admin&quot;, &quot;User&quot;)</code> – A standard user principal.</li>
 <li><code>new FlussPrincipal(&quot;admins&quot;, &quot;Group&quot;)</code> – A group-based principal for authorization.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="enable-authorization-and-assign-super-users">Enable Authorization and Assign Super Users<a href="#enable-authorization-and-assign-super-users" class="hash-link" aria-label="Direct link to Enable Authorization and Assign Super Users" title="Direct link to Enable Authorization and Assign Super Users">​</a></h3>
-<p>Fluss provides a pluggable authorization framework that uses Access Control Lists (ACLs) to determine whether a given FlussPrincipal is allowed to perform an operation on a specific resource.To enable authorization, you need to configure the following properties:</p>
-<table><thead><tr><th>Option</th><th>Type</th><th>Default Value</th><th>Description</th></tr></thead><tbody><tr><td>authorizer.enabled</td><td>Boolean</td><td>false</td><td>Specifies whether to enable the authorization feature.</td></tr><tr><td>authorizer.type</td><td>String</td><td>default</td><td>Specifies the type of authorizer to be used for access control. This value corresponds to the identifier of the authorization plugin. The default value is <code>default</code>, which indicates the built-in authorizer implementation. Custom authorizers can be implemented by providing a matching plugin identifier.</td></tr><tr><td>super.users</td><td>String</td><td>(None)</td><td>A semicolon-separated list of superusers who have unrestricted access to all operations and resources. Note that the delimiter is semicolon since SSL user names may contain comma, and each super user should be specified in the format <code>principal_type:principal_name</code>, e.g., <code>User:admin;User:bob</code>. This configuration is critical for defining administrative privileges in the system.</td></tr></tbody></table>
+<p>Fluss provides a pluggable authorization framework that uses Access Control Lists (ACLs) to determine whether a given Fluss Principal is allowed to perform an operation on a specific resource.To enable authorization, you need to configure the following properties:</p>
+<table><thead><tr><th>Option</th><th>Type</th><th>Default Value</th><th>Description</th></tr></thead><tbody><tr><td>authorizer.enabled</td><td>Boolean</td><td>false</td><td>Specifies whether to enable the authorization feature.</td></tr><tr><td>authorizer.type</td><td>String</td><td>default</td><td>Specifies the type of authorizer to be used for access control. This value corresponds to the identifier of the authorization plugin. The default value is <code>default</code>, which indicates the built-in authorizer implementation. Custom authorizers can be implemented by providing a matching plugin identifier.</td></tr><tr><td>super.users</td><td>String</td><td>(None)</td><td>A semicolon-separated list of  super users who have unrestricted access to all operations and resources. Note that the delimiter is semicolon since SSL user names may contain comma, and each super user should be specified in the format <code>principal_type:principal_name</code>, e.g., <code>User:admin;User:bob</code>. This configuration is critical for defining administrative privileges in the system.</td></tr></tbody></table>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="security-workflow-when-client-established-a-connection">Security Workflow When Client Established a Connection<a href="#security-workflow-when-client-established-a-connection" class="hash-link" aria-label="Direct link to Security Workflow When Client Established a Connection" title="Direct link to Security Workflow When Client Established a Connection">​</a></h2>
 <p>This section walks through the complete security workflow in Fluss from the moment a client establishes a connection, covering both authentication and authorization.</p>
 <ol>
@@ -99,12 +99,12 @@ For example:</p>
 <p>If the credentials are valid and the authentication is successful, and the client is allowed to proceed with further operations. Otherwise, the connection is rejected, and an authentication error is returned.</p>
 </li>
 <li>
-<p>Fluss Principal Is created</p>
+<p>Fluss Principal is created</p>
 <p>Upon successful authentication, Fluss creates a FlussPrincipal, representing the identity of the authenticated user</p>
 </li>
 <li>
 <p>Authorization check occur</p>
-<p>Before allowing any operation (like producing or consuming data), Fluss checks whether the FlussPrincipal has permission to perform that action based on configured ACL rules.</p>
+<p>Before allowing any operation (like producing or consuming data), Fluss checks whether the Fluss Principal has permission to perform that action based on configured ACL rules.</p>
 </li>
 <li>
 <p>Response to the client</p>

@@ -79,7 +79,7 @@
 <li>Download <code>paimon-flink-1.20-1.0.1.jar</code> and <code>paimon-s3-1.0.1.jar</code> from the <a href="https://paimon.apache.org/docs/1.0/project/download/" target="_blank" rel="noopener noreferrer">Paimon official site</a> and place them in <code>&lt;FLINK_HOME&gt;/lib</code>.</li>
 <li>Copy these Paimon plugin jars from Fluss into <code>&lt;FLINK_HOME&gt;/lib</code>:</li>
 </ul>
-<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">&lt;FLUSS_HOME&gt;/plugins/paimon/fluss-lake-paimon-0.7.0.jar</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">&lt;FLUSS_HOME&gt;/plugins/paimon/flink-shaded-hadoop-2-uber-2.8.3-10.0.jar</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">&lt;FLINK_HOME&gt;/lib/fluss-lake-paimon-0.7.0.jar</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">&lt;FLINK_HOME&gt;/lib/flink-shaded-hadoop-2-uber-2.8.3-10.0.jar</span><br></span></code></pre></div></div>
 </li>
 <li>
 <p>Increase Task Slots</p>

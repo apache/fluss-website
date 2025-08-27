@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.53ed9f81.css">
-<script src="/assets/js/runtime~main.e2cdfba7.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.de724816.js" defer="defer"></script>
 <script src="/assets/js/main.9636bb89.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -47,14 +47,14 @@ For example, for OSS filesystem support, you need to put <code>paimon-oss-&lt;pa
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="prerequisites">Prerequisites<a href="#prerequisites" class="hash-link" aria-label="Direct link to Prerequisites" title="Direct link to Prerequisites">​</a></h4>
 <ul>
 <li>A running Flink cluster (currently only Flink is supported as the tiering backend)</li>
-<li>Download <a href="https://repo1.maven.org/maven2/com/alibaba/fluss/fluss-flink-tiering/0.8-SNAPSHOT/fluss-flink-tiering-0.8-SNAPSHOT.jar" target="_blank" rel="noopener noreferrer">fluss-flink-tiering-0.8-SNAPSHOT.jar</a></li>
+<li>Download <a href="https://repo1.maven.org/maven2/org/apache/fluss/fluss-flink-tiering/0.8-SNAPSHOT/fluss-flink-tiering-0.8-SNAPSHOT.jar" target="_blank" rel="noopener noreferrer">fluss-flink-tiering-0.8-SNAPSHOT.jar</a></li>
 </ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="prepare-required-jars">Prepare required jars<a href="#prepare-required-jars" class="hash-link" aria-label="Direct link to Prepare required jars" title="Direct link to Prepare required jars">​</a></h4>
 <ul>
-<li>Put <a href="/downloads/">fluss-flink connector jar</a> into <code>${FLINK_HOME}/lib</code>, you should choose a connector version matching your Flink version. If you&#x27;re using Flink 1.20, please use <a href="https://repo1.maven.org/maven2/com/alibaba/fluss/fluss-flink-1.20/0.8-SNAPSHOT/fluss-flink-1.20-0.8-SNAPSHOT.jar" target="_blank" rel="noopener noreferrer">fluss-flink-1.20-0.8-SNAPSHOT.jar</a></li>
+<li>Put <a href="/downloads/">fluss-flink connector jar</a> into <code>${FLINK_HOME}/lib</code>, you should choose a connector version matching your Flink version. If you&#x27;re using Flink 1.20, please use <a href="https://repo1.maven.org/maven2/org/apache/fluss/fluss-flink-1.20/0.8-SNAPSHOT/fluss-flink-1.20-0.8-SNAPSHOT.jar" target="_blank" rel="noopener noreferrer">fluss-flink-1.20-0.8-SNAPSHOT.jar</a></li>
 <li>If you are using <a href="http://aws.amazon.com/s3/" target="_blank" rel="noopener noreferrer">Amazon S3</a>, <a href="https://www.aliyun.com/product/oss" target="_blank" rel="noopener noreferrer">Aliyun OSS</a> or <a href="https://hadoop.apache.org/docs/stable/" target="_blank" rel="noopener noreferrer">HDFS(Hadoop Distributed File System)</a> as Fluss&#x27;s <a href="/docs/next/maintenance/tiered-storage/remote-storage/">remote storage</a>,
 you should download the corresponding <a href="/downloads/#filesystem-jars">Fluss filesystem jar</a> and also put it into <code>${FLINK_HOME}/lib</code></li>
-<li>Put <a href="https://repo1.maven.org/maven2/com/alibaba/fluss/fluss-lake-paimon/0.8-SNAPSHOT/fluss-lake-paimon-0.8-SNAPSHOT.jar" target="_blank" rel="noopener noreferrer">fluss-lake-paimon jar</a> into <code>${FLINK_HOME}/lib</code>, currently only paimon is supported, so you can only choose <code>fluss-lake-paimon</code></li>
+<li>Put <a href="https://repo1.maven.org/maven2/org/apache/fluss/fluss-lake-paimon/0.8-SNAPSHOT/fluss-lake-paimon-0.8-SNAPSHOT.jar" target="_blank" rel="noopener noreferrer">fluss-lake-paimon jar</a> into <code>${FLINK_HOME}/lib</code>, currently only paimon is supported, so you can only choose <code>fluss-lake-paimon</code></li>
 <li><a href="https://flink.apache.org/downloads/" target="_blank" rel="noopener noreferrer">Download</a> pre-bundled Hadoop jar <code>flink-shaded-hadoop-2-uber-*.jar</code> and put into <code>${FLINK_HOME}/lib</code></li>
 <li>Put Paimon&#x27;s <a href="https://paimon.apache.org/docs/1.1/project/download/" target="_blank" rel="noopener noreferrer">filesystem jar</a> into <code>${FLINK_HOME}/lib</code>, if you use s3 to store paimon data, please put <code>paimon-s3</code> jar into <code>${FLINK_HOME}/lib</code></li>
 <li>The other jars that Paimon may require, for example, if you use HiveCatalog, you will need to put hive related jars</li>

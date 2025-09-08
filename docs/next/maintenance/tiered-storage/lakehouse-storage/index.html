@@ -15,8 +15,8 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.53ed9f81.css">
-<script src="/assets/js/runtime~main.6d1f0d62.js" defer="defer"></script>
-<script src="/assets/js/main.131e7ef1.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.23176c26.js" defer="defer"></script>
+<script src="/assets/js/main.1e45ec30.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
@@ -32,6 +32,8 @@ by external systems such as Flink, Spark, StarRocks and others. With data tiered
 can gain much storage cost reduction and analytics performance improvement.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="enable-lakehouse-storage">Enable Lakehouse Storage<a href="#enable-lakehouse-storage" class="hash-link" aria-label="Direct link to Enable Lakehouse Storage" title="Direct link to Enable Lakehouse Storage">​</a></h2>
 <p>Lakehouse Storage is disabled by default, you must enable it manually.</p>
+<p>The following example uses Paimon for demonstration—other data lake formats follow similar steps, but require different configuration settings and JAR files.
+You can refer to the documentation of the corresponding data lake format integration for required configurations and JAR files.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="lakehouse-storage-cluster-configurations">Lakehouse Storage Cluster Configurations<a href="#lakehouse-storage-cluster-configurations" class="hash-link" aria-label="Direct link to Lakehouse Storage Cluster Configurations" title="Direct link to Lakehouse Storage Cluster Configurations">​</a></h3>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="modify-serveryaml">Modify <code>server.yaml</code><a href="#modify-serveryaml" class="hash-link" aria-label="Direct link to modify-serveryaml" title="Direct link to modify-serveryaml">​</a></h4>
 <p>First, you must configure the lakehouse storage in <code>server.yaml</code>. Take Paimon as an example, you must configure the following configurations:</p>
@@ -54,7 +56,7 @@ For example, for OSS filesystem support, you need to put <code>paimon-oss-&lt;pa
 <li>Put <a href="/downloads/">fluss-flink connector jar</a> into <code>${FLINK_HOME}/lib</code>, you should choose a connector version matching your Flink version. If you&#x27;re using Flink 1.20, please use <a href="https://repo1.maven.org/maven2/org/apache/fluss/fluss-flink-1.20/0.8-SNAPSHOT/fluss-flink-1.20-0.8-SNAPSHOT.jar" target="_blank" rel="noopener noreferrer">fluss-flink-1.20-0.8-SNAPSHOT.jar</a></li>
 <li>If you are using <a href="http://aws.amazon.com/s3/" target="_blank" rel="noopener noreferrer">Amazon S3</a>, <a href="https://www.aliyun.com/product/oss" target="_blank" rel="noopener noreferrer">Aliyun OSS</a> or <a href="https://hadoop.apache.org/docs/stable/" target="_blank" rel="noopener noreferrer">HDFS(Hadoop Distributed File System)</a> as Fluss&#x27;s <a href="/docs/next/maintenance/tiered-storage/remote-storage/">remote storage</a>,
 you should download the corresponding <a href="/downloads/#filesystem-jars">Fluss filesystem jar</a> and also put it into <code>${FLINK_HOME}/lib</code></li>
-<li>Put <a href="https://repo1.maven.org/maven2/org/apache/fluss/fluss-lake-paimon/0.8-SNAPSHOT/fluss-lake-paimon-0.8-SNAPSHOT.jar" target="_blank" rel="noopener noreferrer">fluss-lake-paimon jar</a> into <code>${FLINK_HOME}/lib</code>, currently only paimon is supported, so you can only choose <code>fluss-lake-paimon</code></li>
+<li>Put <a href="https://repo1.maven.org/maven2/org/apache/fluss/fluss-lake-paimon/0.8-SNAPSHOT/fluss-lake-paimon-0.8-SNAPSHOT.jar" target="_blank" rel="noopener noreferrer">fluss-lake-paimon jar</a> into <code>${FLINK_HOME}/lib</code></li>
 <li><a href="https://flink.apache.org/downloads/" target="_blank" rel="noopener noreferrer">Download</a> pre-bundled Hadoop jar <code>flink-shaded-hadoop-2-uber-*.jar</code> and put into <code>${FLINK_HOME}/lib</code></li>
 <li>Put Paimon&#x27;s <a href="https://paimon.apache.org/docs/1.1/project/download/" target="_blank" rel="noopener noreferrer">filesystem jar</a> into <code>${FLINK_HOME}/lib</code>, if you use s3 to store paimon data, please put <code>paimon-s3</code> jar into <code>${FLINK_HOME}/lib</code></li>
 <li>The other jars that Paimon may require, for example, if you use HiveCatalog, you will need to put hive related jars</li>

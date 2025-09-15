@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.668d1c08.css">
-<script src="/assets/js/runtime~main.799a1c36.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.e79b73cf.js" defer="defer"></script>
 <script src="/assets/js/main.00efb887.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -43,7 +43,7 @@
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="restrictions">Restrictions<a href="#restrictions" class="hash-link" aria-label="Direct link to Restrictions" title="Direct link to Restrictions">​</a></h2>
 <ul>
-<li>The type of the partition keys must be STRING.</li>
+<li>The partition key must be a Fluss native data type and cannot be contained in a map or list.</li>
 <li>For auto partition table, the partition keys can be one or more. If the table has only one partition key, it supports automatic creation and automatic expiration of partitions. Otherwise, only automatic expiration is allowed.</li>
 <li>If the table is a primary key table, the partition key must be a subset of the primary key.</li>
 <li>Auto-partitioning rules can only be configured at the time of creating the partitioned table; modifying the auto-partitioning rules after table creation is not supported.</li>

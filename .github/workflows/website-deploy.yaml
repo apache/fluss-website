@@ -45,6 +45,20 @@ jobs:
       - name: Copy ASF Files
         run: |
           cp .asf.yaml .htaccess ./build/
+      - name: Copy Javadocs
+        run: |
+          mkdir -p ./javadoc
+          git clone https://github.com/apache/fluss-website.git temp-website
+          cd temp-website
+          for branch in $(git branch -r | grep 'javadoc-' | sed 's/origin\///'); do
+          version=$(echo "$branch" | sed 's/javadoc-//')
+          echo "Copying javadocs for version: $version"
+          git checkout "$branch"
+          mkdir -p "../javadoc/$version"
+          cp -r * "../javadoc/$version/" 2>/dev/null || true
+          done
+          cd ..
+          rm -rf temp-website
       - name: Deploy website
         env:
           GIT_USER: gh-actions

@@ -1,0 +1,126 @@
+################################################################################
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+################################################################################
+name: Build Javadocs
+
+on:
+  workflow_dispatch:
+  # discuss with Jark
+
+jobs:
+  build-javadocs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fluss repository
+        uses: actions/checkout@v4
+        with:
+          repository: apache/fluss
+          fetch-depth: 0
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+
+      - name: Configure git
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions Bot"
+
+      - name: Checkout fluss-website repository
+        uses: actions/checkout@v4
+        with:
+          repository: apache/fluss-website
+          token: ${{ secrets.GH_TOKEN }}
+          path: website-repo
+          fetch-depth: 0
+
+      - name: Build javadocs for specific branches
+        run: |
+          # Get branches to process (exclude release-0.7 and earlier)
+          BRANCHES=$(git branch -r | grep -E "(origin/main|origin/release-[0-9]+\.[0-9]+)$" | sed 's|origin/||' | grep -v -E "release-0\.[0-7]$" | sort)
+
+          echo "Processing branches: $BRANCHES"
+
+          for branch in $BRANCHES; do
+            echo "=== Processing branch: $branch ==="
+
+            # Determine version
+            if [[ "$branch" == "main" ]]; then
+              VERSION="main"
+            elif [[ "$branch" =~ ^release-([0-9]+\.[0-9]+)$ ]]; then
+              VERSION="${BASH_REMATCH[1]}"
+            else
+              echo "Skipping unknown branch format: $branch"
+              continue
+            fi
+
+            echo "Version: $VERSION"
+
+            # Skip if no recent commits (last 7 days)
+            LAST_COMMIT=$(git log -1 --format="%ct" origin/$branch)
+            DAYS_AGO=$(( ($(date +%s) - LAST_COMMIT) / 86400 ))
+            if [[ $DAYS_AGO -gt 7 ]]; then
+              echo "Skipping $branch - no commits in last 7 days"
+              continue
+            fi
+
+            # Checkout branch and build javadocs
+            git checkout $branch
+            chmod +x ./website/build_javadocs.sh
+            ./website/build_javadocs.sh
+
+            # Verify javadocs were generated
+            if [[ ! -d "website/static/javadoc/$VERSION" ]]; then
+              echo "Error: Javadocs not generated for $VERSION"
+              continue
+            fi
+
+            # Copy to website repository
+            JAVADOC_BRANCH="javadoc-$VERSION"
+            cd website-repo
+
+            # Create or checkout javadoc branch
+            if git ls-remote --heads origin "$JAVADOC_BRANCH" | grep -q "$JAVADOC_BRANCH"; then
+              git checkout -B "$JAVADOC_BRANCH" "origin/$JAVADOC_BRANCH"
+            else
+              git checkout --orphan "$JAVADOC_BRANCH"
+              git rm -rf . 2>/dev/null || true
+            fi
+
+            # Copy javadocs directly to root of javadoc branch
+            cp -r "../website/static/javadoc/$VERSION"/* ./ 2>/dev/null || true
+
+            # Commit and push if there are changes
+            git add .
+            if ! git diff --staged --quiet; then
+              git commit -m "Update javadocs for $VERSION"
+              git push origin "$JAVADOC_BRANCH"
+              echo "Updated javadocs for $VERSION"
+            else
+              echo "No changes for $VERSION"
+            fi
+
+            cd ..
+          done

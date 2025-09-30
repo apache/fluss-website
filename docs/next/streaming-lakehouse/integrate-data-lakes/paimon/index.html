@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.91bf1b15.css">
-<script src="/assets/js/runtime~main.62fce53b.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.ec6e4411.js" defer="defer"></script>
 <script src="/assets/js/main.00efb887.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -71,9 +71,12 @@ The schema of the Paimon table matches that of the Fluss table, except for the a
 <p>In streaming mode</p>
 <p>Flink first reads the latest Paimon snapshot (tiered via tiering service), then switches to Fluss starting from the log offset aligned with that snapshot, ensuring exactly-once semantics.
 This design enables Fluss to store only a small portion of the dataset in the Fluss cluster, reducing costs, while Paimon serves as the source of complete historical data when needed.</p>
-<p>More precisely, if Fluss log data is removed due to TTL expiration—controlled by the <code>table.log.ttl</code> configuration—it can still be read by Flink through its Union Read capability, as long as the data has already been tiered to Paimon.
-For partitioned tables, if a partition is cleaned up—controlled by the <code>table.auto-partition.num-retention</code> configuration—the data in that partition remains accessible from Paimon, provided it has been tiered there beforehand.</p>
 </li>
+</ul>
+<p>Key behavior for data retention:</p>
+<ul>
+<li><strong>Expired Fluss log data</strong> (controlled by <code>table.log.ttl</code>) remains accessible via Iceberg if previously tiered</li>
+<li><strong>Cleaned-up partitions</strong> in partitioned tables (controlled by <code>table.auto-partition.num-retention</code>) remain accessible via Iceberg if previously tiered</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="reading-with-other-engines">Reading with other Engines<a href="#reading-with-other-engines" class="hash-link" aria-label="Direct link to Reading with other Engines" title="Direct link to Reading with other Engines">​</a></h3>
 <p>Since the data tiered to Paimon from Fluss is stored as a standard Paimon table, you can use any engine that supports Paimon to read it. Below is an example using <a href="https://paimon.apache.org/docs/master/engines/starrocks/" target="_blank" rel="noopener noreferrer">StarRocks</a>:</p>

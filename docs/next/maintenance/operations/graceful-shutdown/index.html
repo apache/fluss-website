@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.91bf1b15.css">
-<script src="/assets/js/runtime~main.d620f15f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.2e40f9e7.js" defer="defer"></script>
 <script src="/assets/js/main.8d3aadf8.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -81,10 +81,13 @@
 </ol>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token comment" style="color:rgb(106, 153, 85)"># Initiate controlled shutdown</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"></span><span class="token function" style="color:rgb(220, 220, 170)">kill</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(156, 220, 254)">-TERM</span><span class="token plain"> </span><span class="token operator" style="color:rgb(212, 212, 212)">&lt;</span><span class="token plain">tablet-server-pid</span><span class="token operator" style="color:rgb(212, 212, 212)">&gt;</span><br></span></code></pre></div></div>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="configuration-options">Configuration Options<a href="#configuration-options" class="hash-link" aria-label="Direct link to Configuration Options" title="Direct link to Configuration Options">​</a></h4>
+<p>The controlled shutdown process can be configured using the following options:</p>
 <ul>
-<li><strong>Controlled Shutdown Retries</strong>: Number of attempts to transfer leadership (<code>default:</code> 3 retries)</li>
-<li><strong>Retry Interval</strong>: Time between retry attempts (<code>default</code>: 1000L)</li>
+<li><strong><code>tablet-server.controlled-shutdown.max-retries</code></strong>: Maximum number of attempts to transfer leadership before proceeding with unclean shutdown (default: 3)</li>
+<li><strong><code>tablet-server.controlled-shutdown.retry-interval</code></strong>: Time interval between retry attempts (default: 1000ms)</li>
 </ul>
+<p><strong>Example Configuration:</strong></p>
+<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token comment" style="color:rgb(106, 153, 85)"># server.yaml</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"></span><span class="token key atrule">tablet-server</span><span class="token punctuation" style="color:rgb(212, 212, 212)">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  </span><span class="token key atrule">controlled-shutdown</span><span class="token punctuation" style="color:rgb(212, 212, 212)">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    </span><span class="token key atrule">max-retries</span><span class="token punctuation" style="color:rgb(212, 212, 212)">:</span><span class="token plain"> </span><span class="token number" style="color:rgb(181, 206, 168)">5</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    </span><span class="token key atrule">retry-interval</span><span class="token punctuation" style="color:rgb(212, 212, 212)">:</span><span class="token plain"> 2000ms</span><br></span></code></pre></div></div>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="monitoring-shutdown">Monitoring Shutdown<a href="#monitoring-shutdown" class="hash-link" aria-label="Direct link to Monitoring Shutdown" title="Direct link to Monitoring Shutdown">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="logging">Logging<a href="#logging" class="hash-link" aria-label="Direct link to Logging" title="Direct link to Logging">​</a></h3>
 <p>Fluss provides detailed logging during shutdown processes:</p>
@@ -111,7 +114,7 @@
 <li>Verify network connection states</li>
 </ol>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="configuration-reference">Configuration Reference<a href="#configuration-reference" class="hash-link" aria-label="Direct link to Configuration Reference" title="Direct link to Configuration Reference">​</a></h2>
-<table><thead><tr><th>Configuration</th><th>Description</th><th>Default</th></tr></thead><tbody><tr><td><code>controlled.shutdown.max.retries</code></td><td>Maximum retries for controlled shutdown</td><td>3</td></tr><tr><td><code>controlled.shutdown.retry.interval.ms</code></td><td>Interval between retry attempts</td><td>5000</td></tr><tr><td><code>shutdown.timeout.ms</code></td><td>General shutdown timeout</td><td>30000</td></tr></tbody></table>
+<table><thead><tr><th>Configuration</th><th>Description</th><th>Default</th></tr></thead><tbody><tr><td><code>tablet-server.controlled-shutdown.max-retries</code></td><td>Maximum retries for controlled shutdown</td><td>3</td></tr><tr><td><code>tablet-server.controlled-shutdown.retry-interval</code></td><td>Interval between retry attempts</td><td>1000ms</td></tr><tr><td><code>shutdown.timeout.ms</code></td><td>General shutdown timeout</td><td>30000</td></tr></tbody></table>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="see-also">See Also<a href="#see-also" class="hash-link" aria-label="Direct link to See Also" title="Direct link to See Also">​</a></h2>
 <ul>
 <li><a href="/docs/next/maintenance/configuration/">Configuration</a></li>

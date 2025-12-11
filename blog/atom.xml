@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://fluss.apache.org/blog/</id>
     <title>Apache Fluss™ (Incubating) Blog</title>
-    <updated>2025-12-08T00:00:00.000Z</updated>
+    <updated>2025-12-11T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://fluss.apache.org/blog/"/>
     <subtitle>Apache Fluss™ (Incubating) Blog</subtitle>
@@ -11,7 +11,7 @@
         <title type="html"><![CDATA[Fluss × Iceberg (Part 1): Why Your Lakehouse Isn’t a Streamhouse Yet]]></title>
         <id>https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/</id>
         <link href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/"/>
-        <updated>2025-12-08T00:00:00.000Z</updated>
+        <updated>2025-12-11T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[As software and data engineers, we've witnessed Apache Iceberg revolutionize analytical data lakes with ACID transactions, time travel, and schema evolution. Yet when we try to push Iceberg into real-time workloads such as sub-second streaming queries, high-frequency CDC updates, and primary key semantics, we hit fundamental architectural walls. This blog explores how Fluss × Iceberg integration works and delivers a true real-time lakehouse.]]></summary>
         <content type="html"><![CDATA[<p>As software and data engineers, we've witnessed Apache Iceberg revolutionize analytical data lakes with ACID transactions, time travel, and schema evolution. Yet when we try to push Iceberg into real-time workloads such as sub-second streaming queries, high-frequency CDC updates, and primary key semantics, we hit fundamental architectural walls. This blog explores how Fluss × Iceberg integration works and delivers a true real-time lakehouse.</p>
 <p>Apache Fluss represents a new architectural approach: the <strong>Streamhouse</strong> for real-time lakehouses. Instead of stitching together separate streaming and batch systems, the Streamhouse unifies them under a single architecture. In this model, Apache Iceberg continues to serve exactly the role it was designed for: a highly efficient, scalable cold storage layer for analytics, while Fluss fills the missing piece: a hot streaming storage layer with sub-second latency, columnar storage, and built-in primary-key semantics.</p>

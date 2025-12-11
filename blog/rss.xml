@@ -4,10 +4,259 @@
         <title>Apache Fluss™ (Incubating) Blog</title>
         <link>https://fluss.apache.org/blog/</link>
         <description>Apache Fluss™ (Incubating) Blog</description>
-        <lastBuildDate>Sun, 09 Nov 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 08 Dec 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Fluss × Iceberg (Part 1): Why Your Lakehouse Isn’t a Streamhouse Yet]]></title>
+            <link>https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/</link>
+            <guid>https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/</guid>
+            <pubDate>Mon, 08 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[As software and data engineers, we've witnessed Apache Iceberg revolutionize analytical data lakes with ACID transactions, time travel, and schema evolution. Yet when we try to push Iceberg into real-time workloads such as sub-second streaming queries, high-frequency CDC updates, and primary key semantics, we hit fundamental architectural walls. This blog explores how Fluss × Iceberg integration works and delivers a true real-time lakehouse.]]></description>
+            <content:encoded><![CDATA[<p>As software and data engineers, we've witnessed Apache Iceberg revolutionize analytical data lakes with ACID transactions, time travel, and schema evolution. Yet when we try to push Iceberg into real-time workloads such as sub-second streaming queries, high-frequency CDC updates, and primary key semantics, we hit fundamental architectural walls. This blog explores how Fluss × Iceberg integration works and delivers a true real-time lakehouse.</p>
+<p>Apache Fluss represents a new architectural approach: the <strong>Streamhouse</strong> for real-time lakehouses. Instead of stitching together separate streaming and batch systems, the Streamhouse unifies them under a single architecture. In this model, Apache Iceberg continues to serve exactly the role it was designed for: a highly efficient, scalable cold storage layer for analytics, while Fluss fills the missing piece: a hot streaming storage layer with sub-second latency, columnar storage, and built-in primary-key semantics.</p>
+<p>After working on Fluss–Iceberg lakehouse integration and deploying this architecture at a massive scale, including Alibaba's 3 PB production deployment processing 40 GB/s, we're ready to share the architectural lessons learned. Specifically, why existing systems fall short, how Fluss and Iceberg naturally complement each other, and what this means for finally building true real-time lakehouses.</p>
+<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/fluss-lakehouse-streaming_comp-62d4129ae29a5e1b5453892ae27cc212.png" width="768" height="336" class="img_ev3q"></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-real-time-lakehouse-imperative">The Real-Time Lakehouse Imperative<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#the-real-time-lakehouse-imperative" class="hash-link" aria-label="Direct link to The Real-Time Lakehouse Imperative" title="Direct link to The Real-Time Lakehouse Imperative" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-real-time-lakehouses-matter-now">Why Real-Time Lakehouses Matter Now<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#why-real-time-lakehouses-matter-now" class="hash-link" aria-label="Direct link to Why Real-Time Lakehouses Matter Now" title="Direct link to Why Real-Time Lakehouses Matter Now" translate="no">​</a></h3>
+<p>Four converging forces are driving the need for sub-second data infrastructure:</p>
+<p><strong>1. Business Demand for Speed:</strong> Modern businesses operate in real-time. Pricing decisions, inventory management, and fraud detection all require immediate response. Batch-oriented systems with T+1 day or even T+1 hour latency can't keep up with operational tempo.</p>
+<p><strong>2. Immediate Decision Making:</strong> Operational analytics demands split-second insights. Manufacturing lines, delivery logistics, financial trading, and customer service all need to react to events as they happen, not hours or days later.</p>
+<p><strong>3. AI/ML Needs Fresh Data:</strong> Here's the critical insight: <strong>You can't build the next TikTok recommender system on traditional lakehouses, which lack real-time streaming data for AI.</strong> Modern AI applications—personalized recommendations, real-time content ranking, and dynamic ad placement—require continuous model inference on fresh data.</p>
+<p><strong>4. Agentic AI Requires Real-Time Context:</strong> AI agents need immediate access to the current system state to make decisions. Whether it's autonomous trading systems, intelligent routing agents, or customer service bots, agents can't operate effectively on stale data.</p>
+<p><img decoding="async" loading="lazy" alt="Use Cases" src="https://fluss.apache.org/assets/images/lakehouse-usecases-e468957e3f77d3008209cf0232b3ba1a.png" width="1464" height="802" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-evolution-of-data-freshness">The Evolution of Data Freshness<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#the-evolution-of-data-freshness" class="hash-link" aria-label="Direct link to The Evolution of Data Freshness" title="Direct link to The Evolution of Data Freshness" translate="no">​</a></h3>
+<p><strong>Traditional Batch Era (T+1 day):</strong> Hive-based data warehouses, daily ETL jobs run overnight, next-day readiness acceptable for reporting.</p>
+<p><strong>Lakehouse Era (T+1 hour):</strong> Modern lakehouse formats (Iceberg, Delta Lake, Hudi), hourly micro-batch processing, better for near-real-time dashboards.</p>
+<p><strong>Streaming Lakehouse Era (T+1 minute):</strong> Streaming integration with lakehouses (Paimon), minute-level freshness through continuous ingestion, suitable for operational analytics.</p>
+<p><strong>The Critical Gap - Second-Level Latency:</strong> File-system-based lakehouses inherently face minute-level latency as their practical upper limit. This isn't a limitation of specific implementations; it's fundamental. File commits, metadata operations, and object storage consistency guarantees create unavoidable overhead.</p>
+<p>Yet critical use cases demand sub-second to second-level latency: search and recommendation systems with real-time personalization, advertisement attribution tracking, anomaly detection for fraud and security monitoring, operational intelligence for manufacturing/logistics/ride-sharing, and Gen AI model inference requiring up-to-the-second features. The industry needs a <strong>hot real-time layer</strong> sitting in front of the lakehouse.</p>
+<p><img decoding="async" loading="lazy" alt="Evolution Timeline" src="https://fluss.apache.org/assets/images/evolution_comp-f56db21895395b79316999b755510daa.png" width="1792" height="592" class="img_ev3q"></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-is-fluss--iceberg">What is Fluss × Iceberg?<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#what-is-fluss--iceberg" class="hash-link" aria-label="Direct link to What is Fluss × Iceberg?" title="Direct link to What is Fluss × Iceberg?" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-core-concept-hotcold-unified-storage">The Core Concept: Hot/Cold Unified Storage<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#the-core-concept-hotcold-unified-storage" class="hash-link" aria-label="Direct link to The Core Concept: Hot/Cold Unified Storage" title="Direct link to The Core Concept: Hot/Cold Unified Storage" translate="no">​</a></h3>
+<p>The Fluss architecture delivers millisecond-level end-to-end latency for real-time data writing and reading. Its <strong>Tiering Service</strong> continuously offloads data into standard lakehouse formats like Apache Iceberg, enabling external query engines to analyze data directly. This streaming/lakehouse unification simplifies the ecosystem, ensures data freshness for critical use cases, and combines real-time and historical data seamlessly for comprehensive analytics.</p>
+<p><strong>Unified Data Locality:</strong> Fluss aligns partitions and buckets across both streaming and lakehouse layers, ensuring consistent data layout. This alignment enables direct Arrow-to-Parquet conversion without network shuffling or repartitioning, dramatically reducing I/O overhead and improving pipeline performance.
+Think of your data as having two thermal zones:</p>
+<p><strong>Hot Tier (Fluss):</strong> Last 1 hour of data, NVMe/SSD storage, sub-second latency, primary key indexed (RocksDB), streaming APIs, Apache Arrow columnar format. High-velocity writes, frequent updates, sub-second query latency requirements.</p>
+<p><strong>Cold Tier (Iceberg):</strong> Historical data (hours to years), S3/HDFS object storage, minute-level latency, Parquet columnar format, ACID transactions, analytical query engines. Infrequent updates, optimized for analytical scans, stored cost-efficiently.</p>
+<p>Traditional architectures force you to maintain <strong>separate systems</strong> for these zones: Kafka/Kinesis for streaming (hot), Iceberg for analytics (cold), complex ETL pipelines to move data between them, and applications writing to both systems (dual-write problem).</p>
+<p><img decoding="async" loading="lazy" alt="Kappa vs Lambda Architecture" src="https://fluss.apache.org/assets/images/kappa-vs-lambda_comp-dbf5c3b6b3bafa92cca9dfb14069d04a.png" width="1088" height="627" class="img_ev3q"></p>
+<p><strong>Fluss × Iceberg unifies these as tiered storage with Kappa architecture:</strong> Applications write once to Fluss. A stateless Tiering Service (Flink job) automatically moves data from hot to cold storage based on configured freshness (e.g., 30 seconds, 5 minutes). Query engines see a single table that seamlessly spans both tiers—eliminating the dual-write complexity of Lambda architecture.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-this-architecture-matters">Why This Architecture Matters<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#why-this-architecture-matters" class="hash-link" aria-label="Direct link to Why This Architecture Matters" title="Direct link to Why This Architecture Matters" translate="no">​</a></h3>
+<p><strong>Single write path:</strong> Your application writes to Fluss. Period. No dual-write coordination, no consistency headaches across disconnected systems.</p>
+<p><strong>Automatic lifecycle management:</strong> Data naturally flows from hot → cold based on access patterns and configured retention. Freshness is configurable in minutes via table properties.</p>
+<p><strong>Auto Table creation:</strong> Support both append &amp; primary key table, with mapping schema and unified data locality via partitioning.</p>
+<p><strong>Auto Table Maintenance:</strong> Enable with a single flag (table.datalake.auto-maintenance=true). The tiering service automatically detects small files during writes, applies bin-packing compaction to merge them into optimal sizes.</p>
+<p><strong>Query flexibility:</strong> Run streaming queries on hot data (Fluss), analytical queries on cold data (Iceberg), or union queries that transparently span both tiers.</p>
+<p><img decoding="async" loading="lazy" alt="Tiering Service" src="https://fluss.apache.org/assets/images/fluss-tiering-lake-acbf286eaeec95d46d09b4610cbeb86e.png" width="1625" height="802" class="img_ev3q"></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-iceberg-misses-today">What Iceberg Misses Today<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#what-iceberg-misses-today" class="hash-link" aria-label="Direct link to What Iceberg Misses Today" title="Direct link to What Iceberg Misses Today" translate="no">​</a></h2>
+<p>Apache Iceberg was architected for batch-optimized analytics. While it supports streaming ingestion, fundamental design decisions create unavoidable limitations for real-time workloads.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="gap-1-metadata-overhead-limits-write-frequency">Gap 1: Metadata Overhead Limits Write Frequency<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#gap-1-metadata-overhead-limits-write-frequency" class="hash-link" aria-label="Direct link to Gap 1: Metadata Overhead Limits Write Frequency" title="Direct link to Gap 1: Metadata Overhead Limits Write Frequency" translate="no">​</a></h3>
+<p>Every Iceberg commit rewrites <code>metadata.json</code> and manifest list files. For analytics with commits every 5-15 minutes, this overhead is negligible. For streaming with high-frequency commits, it becomes a bottleneck.</p>
+<p><strong>The Math:</strong> Consider a streaming table with 100 events/second, committing every second:</p>
+<ul>
+<li class="">Each commit adds a manifest list entry</li>
+<li class="">After 1 hour: <strong>3,600 manifest lists</strong></li>
+<li class="">After 1 day: <strong>86,400 manifest lists</strong></li>
+<li class=""><code>metadata.json</code> grows to megabytes</li>
+<li class="">Individual commit latency stretches to multiple seconds</li>
+</ul>
+<p><strong>Compounding Factor:</strong> The problem compounds with partitioning. A 128-partition table with per-partition commits can generate thousands of metadata operations per second. <strong>Metadata becomes the bottleneck, not data throughput.</strong></p>
+<p><strong>Real-World Evidence - Snowflake's acknowledgment:</strong> Their Iceberg streaming documentation explicitly warns about this, setting <code>MAX_CLIENT_LAG</code> defaults to 30 seconds (versus 1 second for native tables). The metadata overhead makes sub-second latency impractical.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="gap-2-polling-based-reads-create-latency-multiplication">Gap 2: Polling-Based Reads Create Latency Multiplication<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#gap-2-polling-based-reads-create-latency-multiplication" class="hash-link" aria-label="Direct link to Gap 2: Polling-Based Reads Create Latency Multiplication" title="Direct link to Gap 2: Polling-Based Reads Create Latency Multiplication" translate="no">​</a></h3>
+<p>Iceberg doesn't have a push-based notification system. Streaming readers poll for new snapshots.</p>
+<p><strong>Latency Breakdown:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">1. Writer commits snapshot              → 0ms</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">2. Metadata hits S3 (eventual consistency) → 0-5,000ms</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">3. Reader polls (5-10s interval)        → 5,000-10,000ms</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">4. Reader discovers snapshot            → 5,000-15,000ms</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">5. Reader fetches data files from S3    → 5,100-15,500ms</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   ────────────────────────────────────────────────────</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   Total end-to-end latency: 5+ to 15+ seconds</span><br></span></code></pre></div></div>
+<p>Compare this to a push model where producers write and consumers immediately receive notifications. End-to-end latency drops to <strong>single-digit milliseconds</strong>.</p>
+<p>For real-time dashboards, fraud detection, or operational analytics requiring sub-second freshness, this polling latency is a non-starter.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="gap-3-primary-key-support-is-declarative-not-enforced">Gap 3: Primary Key Support Is Declarative, Not Enforced<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#gap-3-primary-key-support-is-declarative-not-enforced" class="hash-link" aria-label="Direct link to Gap 3: Primary Key Support Is Declarative, Not Enforced" title="Direct link to Gap 3: Primary Key Support Is Declarative, Not Enforced" translate="no">​</a></h3>
+<p>Iceberg V2 tables accept PRIMARY KEY declarations in DDL:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token keyword" style="color:rgb(86, 156, 214)">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(86, 156, 214)">TABLE</span><span class="token plain"> users </span><span class="token punctuation" style="color:rgb(212, 212, 212)">(</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  user_id </span><span class="token keyword" style="color:rgb(86, 156, 214)">BIGINT</span><span class="token punctuation" style="color:rgb(212, 212, 212)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  email STRING</span><span class="token punctuation" style="color:rgb(212, 212, 212)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  created_at </span><span class="token keyword" style="color:rgb(86, 156, 214)">TIMESTAMP</span><span class="token punctuation" style="color:rgb(212, 212, 212)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  </span><span class="token keyword" style="color:rgb(86, 156, 214)">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(86, 156, 214)">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(212, 212, 212)">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:rgb(212, 212, 212)">)</span><span class="token plain">  </span><span class="token comment" style="color:rgb(106, 153, 85)">-- This is a hint, not a constraint</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"></span><span class="token punctuation" style="color:rgb(212, 212, 212)">)</span><span class="token punctuation" style="color:rgb(212, 212, 212)">;</span><br></span></code></pre></div></div>
+<p>However, Iceberg <strong>does not enforce</strong> primary keys:</p>
+<ul>
+<li class="">❌ No uniqueness validation on write</li>
+<li class="">❌ No built-in deduplication</li>
+<li class="">❌ No indexed lookups (point queries scan entire table)</li>
+</ul>
+<p><strong>The Consequence:</strong> For CDC workloads, you must implement deduplication logic in your streaming application (typically using Flink state). For tables with billions of rows, this state becomes enormous—<strong>50-100+ TB in production scenarios</strong>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="gap-4-high-frequency-updates-create-write-amplification">Gap 4: High-Frequency Updates Create Write Amplification<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#gap-4-high-frequency-updates-create-write-amplification" class="hash-link" aria-label="Direct link to Gap 4: High-Frequency Updates Create Write Amplification" title="Direct link to Gap 4: High-Frequency Updates Create Write Amplification" translate="no">​</a></h3>
+<p>Iceberg supports updates via Merge-On-Read (MOR) with delete files:</p>
+<p><strong>Equality deletes:</strong> Store all column values for deleted rows. For CDC updates (<code>-U</code> records), this means writing full row content to delete files before writing the updated version. For wide tables (50+ columns), this <strong>doubles the write volume</strong>.</p>
+<p><strong>Position deletes:</strong> More efficient but require maintaining file-level position mappings. For streaming updates scattered across many files, position deletes proliferate rapidly.</p>
+<p><strong>The Small File Problem:</strong> Streaming workloads naturally create many small files. Production teams report cases where <strong>500 MB of CDC data exploded into 2 million small files</strong> before compaction, slowing queries by <strong>10-100x</strong>.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-fluss-fills-these-gaps">How Fluss Fills These Gaps<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#how-fluss-fills-these-gaps" class="hash-link" aria-label="Direct link to How Fluss Fills These Gaps" title="Direct link to How Fluss Fills These Gaps" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="solution-1-log-indexed-streaming-storage-with-push-based-reads">Solution 1: Log-Indexed Streaming Storage with Push-Based Reads<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#solution-1-log-indexed-streaming-storage-with-push-based-reads" class="hash-link" aria-label="Direct link to Solution 1: Log-Indexed Streaming Storage with Push-Based Reads" title="Direct link to Solution 1: Log-Indexed Streaming Storage with Push-Based Reads" translate="no">​</a></h3>
+<p><strong>Addresses:</strong> Gap 1 (Metadata Overhead) &amp; Gap 2 (Polling-Based Reads)</p>
+<p>Fluss reimagines streaming storage using <strong>Apache Arrow IPC columnar format</strong> with <strong>Apache Kafka's battle-tested replication protocol</strong>.</p>
+<p><strong>How it solves metadata overhead:</strong></p>
+<p>Iceberg's metadata bottleneck occurs when you commit frequently. Fluss sidesteps this entirely:</p>
+<ol>
+<li class=""><strong>High-frequency writes go to Fluss</strong>—append-only log segments with no global metadata coordination</li>
+<li class=""><strong>Iceberg receives batched commits</strong>—the tiering service aggregates minutes of data into single, well-formed Parquet files</li>
+<li class=""><strong>Configurable freshness</strong>—<code>table.datalake.freshness = '1min'</code> means Iceberg sees ~1 commit per minute, not thousands</li>
+</ol>
+<p><strong>Result:</strong> Iceberg operates exactly as designed: periodic batch commits with clean manifest evolution. The streaming complexity stays in Fluss.</p>
+<p><strong>How it solves polling latency:</strong></p>
+<ul>
+<li class=""><strong>Push-based real-time:</strong> Consumers receive millisecond-latency push notifications when new data arrives. No polling intervals.</li>
+<li class=""><strong>End-to-end latency:</strong> Sub-second, typically single-digit milliseconds</li>
+<li class="">Real-time queries hit Fluss directly; they don't wait for Iceberg snapshots</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="solution-2-primary-key-tables-with-native-upsert-support">Solution 2: Primary Key Tables with Native Upsert Support<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#solution-2-primary-key-tables-with-native-upsert-support" class="hash-link" aria-label="Direct link to Solution 2: Primary Key Tables with Native Upsert Support" title="Direct link to Solution 2: Primary Key Tables with Native Upsert Support" translate="no">​</a></h3>
+<p><strong>Addresses:</strong> Gap 3 (Primary Key Not Enforced) &amp; Gap 4 (Update Write Amplification)</p>
+<p>Fluss provides first-class primary key semantics using an LSM tree architecture:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">┌─────────────────────────────────────────────────┐</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ Primary Key Table (e.g., inventory)             │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">├─────────────────────────────────────────────────┤</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ KV Tablet (RocksDB - current state):            │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ ┌─────────────────────────────────────┐         │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ │ sku_id=101 → {quantity: 50, ...}    │         │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ │ sku_id=102 → {quantity: 23, ...}    │         │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ └─────────────────────────────────────┘         │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│                                                 │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ Log Tablet (changelog - replicated 3x):         │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ ┌─────────────────────────────────────┐         │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ │ +I[101, 100, ...]  // Insert        │         │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ │ -U[101, 100, ...] +U[101, 50, ...]  │ Update  │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ │ -D[102, 23, ...]   // Delete        │         │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ └─────────────────────────────────────┘         │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│                                                 │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ Features:                                       │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ - Enforced uniqueness (PK constraint)           │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ - 500K+ QPS point queries (RocksDB index)       │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ - Pre-deduplicated changelog (CDC)              │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ - Read-your-writes consistency                  │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ - Changelog Read for streaming consumers        │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">│ - Lookup Join for dimensional enrichment        │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">└─────────────────────────────────────────────────┘</span><br></span></code></pre></div></div>
+<p><strong>How it works:</strong></p>
+<p>When you write to a primary key table, Fluss:</p>
+<ol>
+<li class="">Reads current value from RocksDB (if exists)</li>
+<li class="">Determines change type: <code>+I</code> (insert), <code>-U/+U</code> (update), <code>-D</code> (delete)</li>
+<li class="">Appends changelog to replicated log tablet (WAL)</li>
+<li class="">Waits for log commit (high watermark)</li>
+<li class="">Flushes to RocksDB</li>
+<li class="">Acknowledges client</li>
+</ol>
+<p><strong>Guarantees:</strong> Read-your-writes consistency—if you see a change in the log, you can query it. If you see a record in the table, its change exists in the changelog.</p>
+<p><strong>Critical Capabilities:</strong></p>
+<ul>
+<li class=""><strong>Point queries by primary key</strong> use RocksDB index, achieving <strong>500,000+ QPS on single tables</strong> in production</li>
+<li class="">This replaces external KV stores (Redis, DynamoDB) for dimension table serving</li>
+<li class=""><strong>CDC without deduplication:</strong> The changelog is already deduplicated at write time</li>
+<li class="">Downstream Flink consumers read pre-processed CDC events with <strong>no additional state required</strong></li>
+</ul>
+<p><strong>Tiering Primary Key Tables to Iceberg:</strong></p>
+<p>When tiering PK tables, Fluss:</p>
+<ol>
+<li class="">First writes the snapshot (no delete files)</li>
+<li class="">Then writes changelog records</li>
+<li class="">For changelog entries (<code>-D</code> or <code>-U</code> records), Fluss writes equality-delete files containing all column values</li>
+</ol>
+<p>This design enables Iceberg data to serve as Fluss changelog—complete records can be reconstructed from equality-delete entries for downstream consumption.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="solution-3-unified-ingestion-with-automatic-tiering">Solution 3: Unified Ingestion with Automatic Tiering<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#solution-3-unified-ingestion-with-automatic-tiering" class="hash-link" aria-label="Direct link to Solution 3: Unified Ingestion with Automatic Tiering" title="Direct link to Solution 3: Unified Ingestion with Automatic Tiering" translate="no">​</a></h3>
+<p><strong>Addresses:</strong> All gaps by offloading real-time complexity from Iceberg</p>
+<p><strong>Architecture Flow:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">Application</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    ├─→ Fluss Table (single write)</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">         │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">         ├─→ Real-time consumers (Flink, StarRocks, etc.)</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">         │   - Sub-second latency</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">         │   - Column-projected streaming reads</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">         │   - Primary key lookups</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">         │</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">         └─→ Tiering Service (Flink job, automatic)</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">              └─→ Apache Iceberg</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">                  - Parquet files</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">                  - Atomic commits</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">                  - Historical analytics</span><br></span></code></pre></div></div>
+<p><strong>Tiering Service Architecture:</strong></p>
+<p>Stateless Flink jobs: Multiple jobs register with the Fluss Coordinator Server. The coordinator assigns tables to jobs via an in-memory queue. Each job processes one table at a time, commits results, and requests the next table.</p>
+<p><strong>Key Capabilities:</strong></p>
+<ul>
+<li class=""><strong>Auto-create lake table:</strong> Automatically provisions the corresponding Iceberg table</li>
+<li class=""><strong>Handles both table types seamlessly:</strong> append-only Log Tables for event streams and Primary Key Tables with full upsert/delete support</li>
+<li class=""><strong>Auto mapping schema:</strong> Translates Fluss schema to Iceberg schema with system columns</li>
+<li class=""><strong>Arrow → Parquet conversion:</strong> Transforms columnar Arrow batches to Parquet format</li>
+<li class=""><strong>Freshness in minutes:</strong> Configurable via <code>table.datalake.freshness</code> property</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li class=""><strong>Elastic scaling:</strong> Deploy 3 jobs for 3x throughput, stop idle jobs to reclaim resources</li>
+<li class=""><strong>No single point of failure:</strong> Job failure doesn't block all tables</li>
+<li class=""><strong>Load balancing:</strong> Automatic distribution based on sync lag</li>
+</ul>
+<p><strong>Integrated Compaction:</strong></p>
+<p>While tiering data, the service optionally performs bin-packing compaction:</p>
+<ol>
+<li class="">Scans manifests to identify small files in the current bucket</li>
+<li class="">Schedules background rewrite (small files → large files)</li>
+<li class="">Waits for compaction before committing</li>
+<li class="">Produces atomic snapshot: new data files + compacted files</li>
+</ol>
+<p><strong>Configuration:</strong> <code>table.datalake.auto-maintenance=true</code></p>
+<p><strong>Result:</strong> Streaming workloads avoid small file proliferation without separate maintenance jobs.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="solution-4-union-read-for-seamless-query-across-tiers">Solution 4: Union Read for Seamless Query Across Tiers<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#solution-4-union-read-for-seamless-query-across-tiers" class="hash-link" aria-label="Direct link to Solution 4: Union Read for Seamless Query Across Tiers" title="Direct link to Solution 4: Union Read for Seamless Query Across Tiers" translate="no">​</a></h3>
+<p><strong>Enables:</strong> Querying hot + cold data as a single logical table</p>
+<p>The architectural breakthrough enabling a real-time lakehouse is <strong>client-side stitching with metadata coordination</strong>. This is what makes Fluss truly a <strong>Streaming Lakehouse</strong>—unlocking real-time data to the Lakehouse with union delta log (minutes) on Fluss.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-union-read-works">How Union Read Works<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#how-union-read-works" class="hash-link" aria-label="Direct link to How Union Read Works" title="Direct link to How Union Read Works" translate="no">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="Union Read Architecture" src="https://fluss.apache.org/assets/images/fluss-union-read-4ff8d8754ac002861e57cbb82186b24b.png" width="1705" height="689" class="img_ev3q"></p>
+<p>Union Read seamlessly combines hot and cold data through intelligent offset coordination, as illustrated above:</p>
+<p><strong>The Example:</strong> Consider a query that needs records for users Jark, Mehul, and Yuxia:</p>
+<ol>
+<li class="">
+<p><strong>Offset Coordination:</strong> Fluss CoordinatorServer provides Snapshot 06 as the Iceberg boundary. At this snapshot, Iceberg contains <code>{Jark: 30, Yuxia: 20}</code>.</p>
+</li>
+<li class="">
+<p><strong>Hot Data Supplement:</strong> Fluss's real-time layer holds the latest updates beyond the snapshot: <code>{Jark: 30, Mehul: 20, Yuxia: 20}</code> (including Mehul's new record).</p>
+</li>
+<li class="">
+<p><strong>Union Read in Action:</strong> The query engine performs a union read:</p>
+<ul>
+<li class="">Reads <code>{Jark: 30, Yuxia: 20}</code> from Iceberg (Snapshot 06)</li>
+<li class="">Supplements with <code>{Mehul: 20}</code> from Fluss (new data after the snapshot)</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Sort Merge:</strong> Results are merged and deduplicated, producing the final unified view: <code>{Jark: 30, Mehul: 20}</code> (Yuxia's update already in Iceberg).</p>
+</li>
+</ol>
+<p><strong>Key Benefit:</strong> The application queries a single logical table while the system intelligently routes between Iceberg (historical) and Fluss (real-time) with zero gaps or overlaps.</p>
+<p><strong>Union Read Capabilities:</strong></p>
+<ul>
+<li class=""><strong>Query both Historical &amp; Real-time Data:</strong> Seamlessly access cold and hot tiers</li>
+<li class=""><strong>Exchange using Arrow-native format:</strong> Efficient data transfer between tiers</li>
+<li class=""><strong>Efficient process/integration for query engines:</strong> Optimized for Flink, StarRocks, Spark</li>
+</ul>
+<p><strong>SQL Syntax (Apache Flink):</strong></p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token comment" style="color:rgb(106, 153, 85)">-- Automatic union read (default behavior)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"></span><span class="token keyword" style="color:rgb(86, 156, 214)">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:rgb(212, 212, 212)">*</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(86, 156, 214)">FROM</span><span class="token plain"> orders </span><span class="token keyword" style="color:rgb(86, 156, 214)">WHERE</span><span class="token plain"> event_time </span><span class="token operator" style="color:rgb(212, 212, 212)">&gt;</span><span class="token plain"> </span><span class="token function" style="color:rgb(220, 220, 170)">NOW</span><span class="token punctuation" style="color:rgb(212, 212, 212)">(</span><span class="token punctuation" style="color:rgb(212, 212, 212)">)</span><span class="token plain"> </span><span class="token operator" style="color:rgb(212, 212, 212)">-</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(86, 156, 214)">INTERVAL</span><span class="token plain"> </span><span class="token string" style="color:rgb(206, 145, 120)">'1'</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(86, 156, 214)">HOUR</span><span class="token punctuation" style="color:rgb(212, 212, 212)">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"></span><span class="token comment" style="color:rgb(106, 153, 85)">-- Seamlessly reads: Iceberg (historical) + Fluss (real-time)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"></span><span class="token comment" style="color:rgb(106, 153, 85)">-- Explicit cold-only read (Iceberg only)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"></span><span class="token keyword" style="color:rgb(86, 156, 214)">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:rgb(212, 212, 212)">*</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(86, 156, 214)">FROM</span><span class="token plain"> orders$lake </span><span class="token keyword" style="color:rgb(86, 156, 214)">WHERE</span><span class="token plain"> order_date </span><span class="token operator" style="color:rgb(212, 212, 212)">&lt;</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(86, 156, 214)">CURRENT_DATE</span><span class="token punctuation" style="color:rgb(212, 212, 212)">;</span><br></span></code></pre></div></div>
+<p><strong>Consistency Guarantees:</strong></p>
+<p>The tiering service embeds Fluss offset metadata in Iceberg snapshot summaries:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token punctuation" style="color:rgb(212, 212, 212)">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  </span><span class="token property">"commit-user"</span><span class="token operator" style="color:rgb(212, 212, 212)">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(206, 145, 120)">"__fluss_lake_tiering"</span><span class="token punctuation" style="color:rgb(212, 212, 212)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  </span><span class="token property">"fluss-bucket-offset"</span><span class="token operator" style="color:rgb(212, 212, 212)">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(206, 145, 120)">"[{0: 5000}, {1: 5123}, {2: 5087}, ...]"</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"></span><span class="token punctuation" style="color:rgb(212, 212, 212)">}</span><br></span></code></pre></div></div>
+<p>Fluss coordinator persists this mapping. When clients query, they receive the exact offset boundary. Union read logic ensures:</p>
+<ul>
+<li class=""><strong>No overlaps:</strong> Iceberg handles offsets ≤ boundary</li>
+<li class=""><strong>No gaps:</strong> Fluss handles offsets &gt; boundary</li>
+<li class=""><strong>Total ordering preserved</strong> per bucket</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="architecture-benefits">Architecture Benefits<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#architecture-benefits" class="hash-link" aria-label="Direct link to Architecture Benefits" title="Direct link to Architecture Benefits" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cost-efficient-historical-storage">Cost-Efficient Historical Storage<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#cost-efficient-historical-storage" class="hash-link" aria-label="Direct link to Cost-Efficient Historical Storage" title="Direct link to Cost-Efficient Historical Storage" translate="no">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="Historical Analysis" src="https://fluss.apache.org/assets/images/fluss-lakehouse-history-e552aa7d21c4870cf58dbaf9b8f5d5ff.png" width="1707" height="802" class="img_ev3q"></p>
+<p>Automatic tiering optimizes storage and analytics: efficient backfill, projection/filter pushdown, high Parquet compression, and S3 throughput.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="real-time-analytics">Real-Time Analytics<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#real-time-analytics" class="hash-link" aria-label="Direct link to Real-Time Analytics" title="Direct link to Real-Time Analytics" translate="no">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="Real-time Analytics" src="https://fluss.apache.org/assets/images/fluss-lakehouse-realtime-ee607fa9620435d919136446cf2553c5.png" width="1734" height="802" class="img_ev3q"></p>
+<p>Union Read delivers sub-second lakehouse freshness: union delta log on Fluss, Arrow-native exchange, and seamless integration with Flink, Spark *, Trino, and StarRocks.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="key-takeaways">Key Takeaways<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#key-takeaways" class="hash-link" aria-label="Direct link to Key Takeaways" title="Direct link to Key Takeaways" translate="no">​</a></h3>
+<p><strong>Single write, two read modes:</strong> Write once to Fluss. Query two ways: $lake suffix for cost-efficient historical batch analysis, or default (no suffix) for unified view with second-level freshness.</p>
+<p><strong>Automatic data movement:</strong> Data automatically tiers from Fluss → Iceberg after configured time (e.g., 1 minute). No manual ETL jobs or data pipelines to maintain. Configurable freshness per table.</p>
+<p><strong>Unified table abstraction:</strong> Applications see a single logical table. Query engine transparently routes to appropriate tier(s). Offset-based coordination ensures no gaps or duplicates.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="getting-started">Getting Started<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#getting-started" class="hash-link" aria-label="Direct link to Getting Started" title="Direct link to Getting Started" translate="no">​</a></h2>
+<p>This gives you a working streaming lakehouse environment in minutes. Visit: <a href="https://fluss.apache.org/docs/quickstart/lakehouse/" target="_blank" rel="noopener noreferrer" class="">https://fluss.apache.org/docs/quickstart/lakehouse/</a></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="conclusion-the-path-forward">Conclusion: The Path Forward<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#conclusion-the-path-forward" class="hash-link" aria-label="Direct link to Conclusion: The Path Forward" title="Direct link to Conclusion: The Path Forward" translate="no">​</a></h2>
+<p>Apache Fluss and Apache Iceberg represent a fundamental rethinking of real-time lakehouse architecture. Instead of forcing Iceberg to become a streaming platform (which it was never designed to be), Fluss embraces Iceberg for its strengths—cost-efficient analytical storage with ACID guarantees—while adding the missing hot streaming layer.</p>
+<p>The result is a Streamhouse that delivers:</p>
+<ul>
+<li class=""><strong>Sub-second query latency</strong> for real-time workloads</li>
+<li class=""><strong>Second-level freshness</strong> for analytical queries (versus T+1 hour)</li>
+<li class=""><strong>80% cost reduction</strong> by eliminating data duplication and system complexity</li>
+<li class=""><strong>Single write path</strong> ending dual-write consistency problems</li>
+<li class=""><strong>Automatic lifecycle management</strong> from hot to cold tiers</li>
+</ul>
+<p>For software/data engineers building real-time analytics platforms, the question isn't whether to use Fluss or Iceberg—it's recognizing they solve complementary problems. Fluss handles what happens in the last hour (streaming, updates, real-time queries). Iceberg handles everything before that (historical analytics, ML training, compliance).</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-to-adopt">When to Adopt<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#when-to-adopt" class="hash-link" aria-label="Direct link to When to Adopt" title="Direct link to When to Adopt" translate="no">​</a></h3>
+<p><strong>Strong signals you need Fluss:</strong></p>
+<ul>
+<li class="">Requirement for sub-second query latency on streaming data</li>
+<li class="">High-frequency CDC workloads (100+ updates/second per key)</li>
+<li class="">Need for primary key semantics with indexed lookups</li>
+<li class="">Large Flink stateful jobs (10TB+ state) that could be externalized</li>
+<li class="">Desire to unify real-time and historical queries</li>
+<li class="">Tired of maintaining dual infrastructure one for batch, another for real-time</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-steps">Next Steps<a href="https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/#next-steps" class="hash-link" aria-label="Direct link to Next Steps" title="Direct link to Next Steps" translate="no">​</a></h3>
+<ol>
+<li class=""><strong>Explore the documentation:</strong> <a href="https://fluss.apache.org/" target="_blank" rel="noopener noreferrer" class="">fluss.apache.org</a></li>
+<li class=""><strong>Review FIP-3:</strong> Detailed Iceberg integration specification</li>
+<li class=""><strong>Try the quickstart:</strong> Deploy locally with Docker Compose</li>
+<li class=""><strong>Join the community:</strong> Apache Fluss mailing lists, Slack, and GitHub</li>
+<li class=""><strong>Evaluate Iceberg integration:</strong> Production-ready today, same architectural patterns</li>
+</ol>
+<hr>
+<p>We've covered <strong>what</strong> Fluss × Iceberg is and <strong>how</strong> it works the architecture eliminates dual-write complexity, delivers sub-second freshness, and unifies streaming and batch under a single table abstraction.</p>
+<p>But here's the elephant in the room: <strong>Apache Kafka dominates event streaming. Tableflow handles Kafka-to-Iceberg materialization. Why introduce another system?</strong></p>
+<p><strong>Stay tuned for Part 2 as it tackles this question head-on</strong> by comparing Fluss with existing technologies.</p>]]></content:encoded>
+            <category>streaming-lakehouse</category>
+            <category>apache-iceberg</category>
+            <category>real-time-analytics</category>
+            <category>apache-fluss</category>
+        </item>
         <item>
             <title><![CDATA[Announcing Apache Fluss (Incubating) 0.8: Streaming Lakehouse for Data + AI]]></title>
             <link>https://fluss.apache.org/blog/releases/0.8/</link>

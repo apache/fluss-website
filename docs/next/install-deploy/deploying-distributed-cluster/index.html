@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.68e503e7.css">
-<script src="/assets/js/runtime~main.b16f7a35.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a1c2cb6c.js" defer="defer"></script>
 <script src="/assets/js/main.e0545ed6.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -30,8 +30,9 @@
 To build a distributed cluster, you need to have at least two nodes.
 This doc provides a simple example of how to deploy a distributed cluster on four nodes.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="software-requirements">Software Requirements<a href="#software-requirements" class="hash-link" aria-label="Direct link to Software Requirements" title="Direct link to Software Requirements" translate="no">​</a></h3>
-<p>Before you start to set up the system, make sure you have installed <strong>Java 17</strong> or higher <strong>on each node</strong> in your cluster.
-Java 8 and Java 11 are not recommended.</p>
+<p>Before you start to set up the system, make sure you have installed <strong>Java 11</strong> or higher <strong>on each node</strong> in your cluster.
+Java 8 is not supported as the released binary is compiled with Java 11.
+While Fluss can run on Java 11, <strong>Java 17 or higher is strongly recommended</strong> for better performance.</p>
 <p>Additionally, you need a running <strong>ZooKeeper</strong> cluster with version 3.6.0 or higher.
 We do not recommend to use ZooKeeper versions below 3.6.0.
 For further information how to deploy a distributed ZooKeeper cluster, see <a href="https://zookeeper.apache.org/doc/r3.6.0/zookeeperStarted.html#sc_RunningReplicatedZooKeeper" target="_blank" rel="noopener noreferrer" class="">Running Replicated ZooKeeper</a>.</p>
@@ -75,7 +76,7 @@ Adapt the <code>server.yaml</code> on each node as follows.</p>
 <li class=""><code>tablet-server.id</code> is the unique id of the TabletServer. If you have multiple TabletServers, you should set a different id for each TabletServer.</li>
 <li class="">In this example, we only set the mandatory properties. For additional properties, you can refer to <a class="" href="/docs/next/maintenance/configuration/">Configuration</a> for more details.</li>
 </ul></div></div>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="starting-fluss">Starting Fluss<a href="#starting-fluss" class="hash-link" aria-label="Direct link to Starting Fluss" title="Direct link to Starting Fluss" translate="no"> ​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="starting-fluss">Starting Fluss<a href="#starting-fluss" class="hash-link" aria-label="Direct link to Starting Fluss" title="Direct link to Starting Fluss" translate="no">​</a></h3>
 <p>To deploy a distributed Fluss cluster, you should first start a CoordinatorServer instance on <strong>Node0</strong>.
 Then, start a TabletServer instance on <strong>Node1</strong>, <strong>Node2</strong>, and <strong>Node3</strong>, respectively.</p>
 <p><strong>CoordinatorServer</strong></p>

@@ -15,8 +15,8 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.2dee7c64.css">
-<script src="/assets/js/runtime~main.e4d856da.js" defer="defer"></script>
-<script src="/assets/js/main.faeafaf1.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.3268c9af.js" defer="defer"></script>
+<script src="/assets/js/main.efc396a8.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -61,7 +61,7 @@ Compared to traditional streaming joins, the delta join operator significantly r
 <li class="">Full primary key: <code>(city_id, order_id)</code></li>
 <li class="">Bucket key: <code>city_id</code></li>
 </ul>
-<p>This yields an <strong>index</strong> on the prefix key <code>city_id</code>, so that you can perform <a class="" href="/docs/engine-flink/lookups/#prefix-lookup">Prefix Key Lookup</a> by the <code>city_id</code>.</p>
+<p>This yields an <strong>index</strong> on the prefix key <code>city_id</code>, so that you can perform <a class="" href="/docs/next/engine-flink/lookups/#prefix-lookup">Prefix Key Lookup</a> by the <code>city_id</code>.</p>
 <p>In this setup:</p>
 <ul>
 <li class="">The delta join operator uses the prefix key (<code>city_id</code>) to retrieve only relevant right-side records matching each left-side event.</li>

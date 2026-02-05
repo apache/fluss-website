@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.2448c64f.css">
-<script src="/assets/js/runtime~main.5f069ff7.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.c8f21c2a.js" defer="defer"></script>
 <script src="/assets/js/main.33df2a1c.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -97,22 +97,23 @@ Compared to traditional streaming joins, the delta join operator significantly r
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="flink-22">Flink 2.2<a href="#flink-22" class="hash-link" aria-label="Direct link to Flink 2.2" title="Direct link to Flink 2.2" translate="no">​</a></h3>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="supported-features-1">Supported Features<a href="#supported-features-1" class="hash-link" aria-label="Direct link to Supported Features" title="Direct link to Supported Features" translate="no">​</a></h4>
 <ul>
-<li class="">Support for optimizing a dual-stream join from CDC sources that do not include delete messages into a delta join.<!-- -->
+<li class="">CDC sources are now supported in delta join, provided they do not produce DELETE messages.<!-- -->
 <ul>
-<li class="">Disable delete on the source table to guarantee there is no delete message in the table, by adding the option <code>&#x27;table.delete.behavior&#x27; = &#x27;IGNORE&#x27;</code> or <code>&#x27;DISABLE&#x27;</code> on the table.</li>
-<li class="">The source table is no more required to be a <code>first_row</code> merge engine table since this version.</li>
+<li class="">Set <code>&#x27;table.delete.behavior&#x27; = &#x27;IGNORE&#x27;</code> or <code>&#x27;DISABLE&#x27;</code> on the source table to suppress deletes.</li>
+<li class="">The <code>&#x27;table.merge-engine&#x27; = &#x27;first_row&#x27;</code> option is no longer required.</li>
 </ul>
 </li>
-<li class="">Support <code>Project</code> and <code>Filter</code> between source and delta join.</li>
-<li class="">Support cache in delta join.</li>
+<li class="">Projection and filter operations are now supported between source and delta join.</li>
+<li class="">Lookup cache is now supported in delta join.</li>
 </ul>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="limitations-1">Limitations<a href="#limitations-1" class="hash-link" aria-label="Direct link to Limitations" title="Direct link to Limitations" translate="no">​</a></h4>
 <ul>
 <li class="">The primary key or the prefix key of the tables must be included as part of the equivalence conditions in the join.</li>
-<li class="">The join must be a INNER join.</li>
+<li class="">The join must be an INNER join. LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN are not supported.</li>
+<li class="">Cascade joins (e.g., <code>A JOIN B JOIN C</code>) are not supported. Each join input must come directly from a table source.</li>
 <li class="">The downstream node of the join must support idempotent updates, typically it&#x27;s an upsert sink and should not have a <code>SinkUpsertMaterializer</code> node before it.<!-- -->
 <ul>
-<li class="">Flink planner automatically inserts a <code>SinkUpsertMaterializer</code> when the sink’s primary key does not fully cover the upstream update key.</li>
+<li class="">Flink planner automatically inserts a <code>SinkUpsertMaterializer</code> when the sink&#x27;s primary key does not fully cover the upstream update key.</li>
 <li class="">You can learn more details about <code>SinkUpsertMaterializer</code> by reading this <a href="https://www.ververica.com/blog/flink-sql-secrets-mastering-the-art-of-changelog-events" target="_blank" rel="noopener noreferrer" class="">blog</a>.</li>
 </ul>
 </li>
@@ -120,10 +121,10 @@ Compared to traditional streaming joins, the delta join operator significantly r
 <ul>
 <li class="">The join key used in the delta join must be part of the primary key.</li>
 <li class="">The sink&#x27;s primary key must be the same as the upstream update key.</li>
-<li class="">All filters must be applied on the upsert key.</li>
+<li class="">All filters (including non-equi join conditions) must be applied on the upsert key.</li>
 </ul>
 </li>
-<li class="">Neither filters nor projections should contain non-deterministic functions.</li>
+<li class="">Filters, projections, and non-equi join conditions must not contain non-deterministic functions.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="future-plan">Future Plan<a href="#future-plan" class="hash-link" aria-label="Direct link to Future Plan" title="Direct link to Future Plan" translate="no">​</a></h2>
 <p>The Fluss and Flink community are actively working together on enhancing delta join. Planned improvements include:</p>

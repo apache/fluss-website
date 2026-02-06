@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.2448c64f.css">
-<script src="/assets/js/runtime~main.47f53626.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.1a05fc6a.js" defer="defer"></script>
 <script src="/assets/js/main.21146c6e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -36,13 +36,13 @@ the rolling upgrade method. Specifically, upgrade the <code>TabletServers</code>
 <li class="">During the server upgrade process, read and write operations in the cluster will not be affected.</li>
 <li class="">Currently, the Fluss <code>CoordinatorServer</code> does not yet support high availability (HA). During the <code>CoordinatorServer</code> upgrade stage, the <code>CoordinatorServer</code> will be in an unavailable state, which will affect admin operations such as table creation.</li>
 </ol></div></div>
-<p>The following is an example of upgrading the Fluss server from 0.6 to $FLUSS_VERSION$ on
+<p>The following is an example of upgrading the Fluss server from 0.6 to 0.9.0-incubating on
 a <a class="" href="/docs/next/install-deploy/deploying-distributed-cluster/">Distributed Cluster</a>:</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="download-and-configure-fluss">Download And Configure Fluss<a href="#download-and-configure-fluss" class="hash-link" aria-label="Direct link to Download And Configure Fluss" title="Direct link to Download And Configure Fluss" translate="no">​</a></h3>
 <ol>
-<li class="">First, download Fluss binary file for $FLUSS_VERSION$:</li>
+<li class="">First, download Fluss binary file for 0.9.0-incubating:</li>
 </ol>
-<div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token function" style="color:rgb(220, 220, 170)">tar</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(156, 220, 254)">-xzf</span><span class="token plain"> fluss-</span><span class="token variable" style="color:rgb(156, 220, 254)">$FLUSS_VERSION</span><span class="token plain">$-bin.tgz</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(78, 201, 176)">cd</span><span class="token plain"> fluss-</span><span class="token variable" style="color:rgb(156, 220, 254)">$FLUSS_VERSION</span><span class="token plain">$/</span><br></span></code></pre></div></div>
+<div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token function" style="color:rgb(220, 220, 170)">tar</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(156, 220, 254)">-xzf</span><span class="token plain"> fluss-0.9.0-incubating-bin.tgz</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(78, 201, 176)">cd</span><span class="token plain"> fluss-0.9.0-incubating/</span><br></span></code></pre></div></div>
 <ol start="2">
 <li class="">
 <p>If you want to enable <a class="" href="/docs/next/maintenance/tiered-storage/lakehouse-storage/">Lakehouse Storage</a>, you need to prepare the required JAR files for the datalake first. For more details,
@@ -50,7 +50,7 @@ see <a class="" href="/docs/next/maintenance/tiered-storage/lakehouse-storage/#a
 </li>
 <li class="">
 <p>Next, copy the configuration options from 0.6 (<code>fluss-0.6/conf/server.yaml</code>) to the new configuration
-file (<code>fluss-$FLUSS_VERSION$/conf/server.yaml</code>). Adding any new options introduced in version $FLUSS_VERSION$ as
+file (<code>fluss-0.9.0-incubating/conf/server.yaml</code>). Adding any new options introduced in version 0.9.0-incubating as
 needed to experience the new features.</p>
 </li>
 </ol>
@@ -59,17 +59,17 @@ needed to experience the new features.</p>
 <p><strong>Stop a TabletServer</strong></p>
 <div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">./fluss-0.6/bin/tablet-server.sh stop</span><br></span></code></pre></div></div>
 <p><strong>Restart the new TabletServer</strong></p>
-<div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">./fluss-</span><span class="token variable" style="color:rgb(156, 220, 254)">$FLUSS_VERSION</span><span class="token plain">$/bin/tablet-server.sh start</span><br></span></code></pre></div></div>
+<div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">./fluss-0.9.0-incubating/bin/tablet-server.sh start</span><br></span></code></pre></div></div>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="upgrade-the-coordinatorserver">Upgrade the CoordinatorServer<a href="#upgrade-the-coordinatorserver" class="hash-link" aria-label="Direct link to Upgrade the CoordinatorServer" title="Direct link to Upgrade the CoordinatorServer" translate="no">​</a></h3>
 <p>After all <code>TabletServers</code> have been upgraded, you can proceed to upgrade the <code>CoordinatorServer</code> by following these steps:</p>
 <p><strong>Stop the CoordinatorServer</strong></p>
 <div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">./fluss-0.6/bin/coordinator-server.sh stop</span><br></span></code></pre></div></div>
 <p><strong>Restart the new CoordinatorServer</strong></p>
-<div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">./fluss-</span><span class="token variable" style="color:rgb(156, 220, 254)">$FLUSS_VERSION</span><span class="token plain">$/bin/coordinator-server.sh start</span><br></span></code></pre></div></div>
+<div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">./fluss-0.9.0-incubating/bin/coordinator-server.sh start</span><br></span></code></pre></div></div>
 <p>Once this process is complete, the server upgrade will be finished.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="compatibility-between-fluss-client-and-fluss-server">Compatibility between Fluss Client and Fluss Server<a href="#compatibility-between-fluss-client-and-fluss-server" class="hash-link" aria-label="Direct link to Compatibility between Fluss Client and Fluss Server" title="Direct link to Compatibility between Fluss Client and Fluss Server" translate="no">​</a></h2>
 <p>The compatibility between the Fluss client and the Fluss server is described in the following table:</p>
-<table><thead><tr><th></th><th>Server 0.7</th><th>Server 0.8</th><th>Limitations</th></tr></thead><tbody><tr><td>Client 0.7</td><td>✔️</td><td>✔️</td><td></td></tr><tr><td>Client 0.8</td><td>  ✔️</td><td>✔️</td><td></td></tr></tbody></table>
+<table><thead><tr><th></th><th>Server 0.7</th><th>Server 0.8</th><th>Limitations</th></tr></thead><tbody><tr><td>Client 0.7</td><td>✔️</td><td>✔️</td><td></td></tr><tr><td>Client 0.8</td><td>✔️</td><td>✔️</td><td></td></tr></tbody></table>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="upgrading-fluss-datalake-tiering-service">Upgrading Fluss datalake tiering service<a href="#upgrading-fluss-datalake-tiering-service" class="hash-link" aria-label="Direct link to Upgrading Fluss datalake tiering service" title="Direct link to Upgrading Fluss datalake tiering service" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="behavior-change">Behavior Change<a href="#behavior-change" class="hash-link" aria-label="Direct link to Behavior Change" title="Direct link to Behavior Change" translate="no">​</a></h3>
 <p>Since Fluss 0.8, the auto-compaction feature during datalake tiering is <strong>disabled</strong> by default. Compaction will no longer be triggered automatically as part of the tiering process.</p>

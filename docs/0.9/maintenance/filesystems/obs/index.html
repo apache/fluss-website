@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.2448c64f.css">
-<script src="/assets/js/runtime~main.47f53626.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.1a05fc6a.js" defer="defer"></script>
 <script src="/assets/js/main.21146c6e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -30,12 +30,12 @@
 <li class="">
 <p><strong>Prepare the plugin JAR</strong>:</p>
 <ul>
-<li class="">Download the <code>fluss-fs-obs-$FLUSS_VERSION$.jar</code> from the <a href="https://repo1.maven.org/maven2/org/apache/fluss/fluss-fs-obs/$FLUSS_VERSION$/fluss-fs-obs-$FLUSS_VERSION$.jar" target="_blank" rel="noopener noreferrer" class="">Maven Repository</a>.</li>
+<li class="">Download the <code>fluss-fs-obs-0.9.0-incubating.jar</code> from the <a href="https://repo1.maven.org/maven2/org/apache/fluss/fluss-fs-obs/0.9.0-incubating/fluss-fs-obs-0.9.0-incubating.jar" target="_blank" rel="noopener noreferrer" class="">Maven Repository</a>.</li>
 </ul>
 </li>
 <li class="">
 <p><strong>Place the plugin</strong>: Place the plugin JAR file in the <code>${FLUSS_HOME}/plugins/obs/</code> directory:</p>
-<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token function" style="color:rgb(220, 220, 170)">mkdir</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(156, 220, 254)">-p</span><span class="token plain"> </span><span class="token variable" style="color:rgb(156, 220, 254)">${FLUSS_HOME}</span><span class="token plain">/plugins/obs/</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"></span><span class="token function" style="color:rgb(220, 220, 170)">cp</span><span class="token plain"> fluss-fs-obs-</span><span class="token variable" style="color:rgb(156, 220, 254)">$FLUSS_VERSION</span><span class="token plain">$.jar </span><span class="token variable" style="color:rgb(156, 220, 254)">${FLUSS_HOME}</span><span class="token plain">/plugins/obs/</span><br></span></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token function" style="color:rgb(220, 220, 170)">mkdir</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(156, 220, 254)">-p</span><span class="token plain"> </span><span class="token variable" style="color:rgb(156, 220, 254)">${FLUSS_HOME}</span><span class="token plain">/plugins/obs/</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"></span><span class="token function" style="color:rgb(220, 220, 170)">cp</span><span class="token plain"> fluss-fs-obs-0.9.0-incubating.jar </span><span class="token variable" style="color:rgb(156, 220, 254)">${FLUSS_HOME}</span><span class="token plain">/plugins/obs/</span><br></span></code></pre></div></div>
 </li>
 <li class="">
 <p>Restart Fluss if the cluster is already running to ensure the new plugin is loaded.</p>

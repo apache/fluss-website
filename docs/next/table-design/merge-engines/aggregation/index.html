@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.2448c64f.css">
-<script src="/assets/js/runtime~main.5b042280.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.2a051b11.js" defer="defer"></script>
 <script src="/assets/js/main.21146c6e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -67,7 +67,7 @@
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="product">product<a href="#product" class="hash-link" aria-label="Direct link to product" title="Direct link to product" translate="no">​</a></h3>
 <p>Computes the product of values across multiple rows.</p>
 <ul>
-<li class=""><strong>Supported Data Types</strong>: TINYINT, SMALLINT, INT, BIGINT, FLOAT, DOUBLE, DECIMAL</li>
+<li class=""><strong>Supported Data Types</strong>: <code>TINYINT</code>, <code>SMALLINT</code>, <code>INT</code>, <code>BIGINT</code>, <code>FLOAT</code>, <code>DOUBLE</code>, <code>DECIMAL</code></li>
 <li class=""><strong>Behavior</strong>: Multiplies incoming values with the accumulator</li>
 <li class=""><strong>Null Handling</strong>: Null values are ignored</li>
 </ul>
@@ -76,7 +76,7 @@
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="max">max<a href="#max" class="hash-link" aria-label="Direct link to max" title="Direct link to max" translate="no">​</a></h3>
 <p>Identifies and retains the maximum value.</p>
 <ul>
-<li class=""><strong>Supported Data Types</strong>: CHAR, STRING, TINYINT, SMALLINT, INT, BIGINT, FLOAT, DOUBLE, DECIMAL, DATE, TIME, TIMESTAMP, TIMESTAMP_LTZ</li>
+<li class=""><strong>Supported Data Types</strong>: <code>CHAR</code>, <code>STRING</code>, <code>TINYINT</code>, <code>SMALLINT</code>, <code>INT</code>, <code>BIGINT</code>, <code>FLOAT</code>, <code>DOUBLE</code>, <code>DECIMAL</code>, <code>DATE</code>, <code>TIME</code>, <code>TIMESTAMP</code>, <code>TIMESTAMP_LTZ</code></li>
 <li class=""><strong>Behavior</strong>: Keeps the larger value between accumulator and incoming value</li>
 <li class=""><strong>Null Handling</strong>: Null values are ignored</li>
 </ul>
@@ -85,7 +85,7 @@
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="min">min<a href="#min" class="hash-link" aria-label="Direct link to min" title="Direct link to min" translate="no">​</a></h3>
 <p>Identifies and retains the minimum value.</p>
 <ul>
-<li class=""><strong>Supported Data Types</strong>: CHAR, STRING, TINYINT, SMALLINT, INT, BIGINT, FLOAT, DOUBLE, DECIMAL, DATE, TIME, TIMESTAMP, TIMESTAMP_LTZ</li>
+<li class=""><strong>Supported Data Types</strong>: <code>CHAR</code>, <code>STRING</code>, <code>TINYINT</code>, <code>SMALLINT</code>, <code>INT</code>, <code>BIGINT</code>, <code>FLOAT</code>, <code>DOUBLE</code>, <code>DECIMAL</code>, <code>DATE</code>, <code>TIME</code>, <code>TIMESTAMP</code>, <code>TIMESTAMP_LTZ</code></li>
 <li class=""><strong>Behavior</strong>: Keeps the smaller value between accumulator and incoming value</li>
 <li class=""><strong>Null Handling</strong>: Null values are ignored</li>
 </ul>
@@ -132,7 +132,7 @@
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="listagg">listagg<a href="#listagg" class="hash-link" aria-label="Direct link to listagg" title="Direct link to listagg" translate="no">​</a></h3>
 <p>Concatenates multiple string values into a single string with a delimiter.</p>
 <ul>
-<li class=""><strong>Supported Data Types</strong>: STRING, CHAR</li>
+<li class=""><strong>Supported Data Types</strong>: <code>STRING</code>, <code>CHAR</code></li>
 <li class=""><strong>Behavior</strong>: Concatenates values using the specified delimiter</li>
 <li class=""><strong>Null Handling</strong>: Null values are skipped</li>
 <li class=""><strong>Delimiter</strong>: Specify delimiter directly in the aggregation function (default is comma <code>,</code>)</li>
@@ -142,7 +142,7 @@
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="string_agg">string_agg<a href="#string_agg" class="hash-link" aria-label="Direct link to string_agg" title="Direct link to string_agg" translate="no">​</a></h3>
 <p>Alias for <code>listagg</code>. Concatenates multiple string values into a single string with a delimiter.</p>
 <ul>
-<li class=""><strong>Supported Data Types</strong>: STRING, CHAR</li>
+<li class=""><strong>Supported Data Types</strong>: <code>STRING</code>, <code>CHAR</code></li>
 <li class=""><strong>Behavior</strong>: Same as <code>listagg</code> - concatenates values using the specified delimiter</li>
 <li class=""><strong>Null Handling</strong>: Null values are skipped</li>
 <li class=""><strong>Delimiter</strong>: Specify delimiter directly in the aggregation function (default is comma <code>,</code>)</li>
@@ -152,7 +152,7 @@
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="rbm32">rbm32<a href="#rbm32" class="hash-link" aria-label="Direct link to rbm32" title="Direct link to rbm32" translate="no">​</a></h3>
 <p>Aggregates serialized 32-bit RoaringBitmap values by union.</p>
 <ul>
-<li class=""><strong>Supported Data Types</strong>: BYTES</li>
+<li class=""><strong>Supported Data Types</strong>: <code>BYTES</code></li>
 <li class=""><strong>Behavior</strong>: ORs incoming bitmaps with the accumulator</li>
 <li class=""><strong>Null Handling</strong>: Null values are ignored</li>
 </ul>
@@ -161,7 +161,7 @@
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="rbm64">rbm64<a href="#rbm64" class="hash-link" aria-label="Direct link to rbm64" title="Direct link to rbm64" translate="no">​</a></h3>
 <p>Aggregates serialized 64-bit RoaringBitmap values by union.</p>
 <ul>
-<li class=""><strong>Supported Data Types</strong>: BYTES</li>
+<li class=""><strong>Supported Data Types</strong>: <code>BYTES</code></li>
 <li class=""><strong>Behavior</strong>: ORs incoming bitmaps with the accumulator</li>
 <li class=""><strong>Null Handling</strong>: Null values are ignored</li>
 </ul>
@@ -170,7 +170,7 @@
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="bool_and">bool_and<a href="#bool_and" class="hash-link" aria-label="Direct link to bool_and" title="Direct link to bool_and" translate="no">​</a></h3>
 <p>Evaluates whether all boolean values in a set are true (logical AND).</p>
 <ul>
-<li class=""><strong>Supported Data Types</strong>: BOOLEAN</li>
+<li class=""><strong>Supported Data Types</strong>: <code>BOOLEAN</code></li>
 <li class=""><strong>Behavior</strong>: Returns true only if all values are true</li>
 <li class=""><strong>Null Handling</strong>: Null values are ignored</li>
 </ul>
@@ -179,7 +179,7 @@
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="bool_or">bool_or<a href="#bool_or" class="hash-link" aria-label="Direct link to bool_or" title="Direct link to bool_or" translate="no">​</a></h3>
 <p>Checks if at least one boolean value in a set is true (logical OR).</p>
 <ul>
-<li class=""><strong>Supported Data Types</strong>: BOOLEAN</li>
+<li class=""><strong>Supported Data Types</strong>: <code>BOOLEAN</code></li>
 <li class=""><strong>Behavior</strong>: Returns true if any value is true</li>
 <li class=""><strong>Null Handling</strong>: Null values are ignored</li>
 </ul>

@@ -15,8 +15,8 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.2448c64f.css">
-<script src="/assets/js/runtime~main.892517bd.js" defer="defer"></script>
-<script src="/assets/js/main.21146c6e.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.5cc7cbda.js" defer="defer"></script>
+<script src="/assets/js/main.ea4b2b30.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -26,7 +26,7 @@
 <p>Fluss provides stored procedures to perform administrative and management operations through Spark SQL. All procedures are located in the <code>sys</code> namespace and can be invoked using the <code>CALL</code> statement.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="configuration">Configuration<a href="#configuration" class="hash-link" aria-label="Direct link to Configuration" title="Direct link to Configuration" translate="no">​</a></h2>
 <p>To enable Fluss procedures in Spark, you need to configure the Spark session extensions:</p>
-<div class="language-scala codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-scala codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">spark.conf.set(&quot;spark.sql.extensions&quot;, &quot;org.apache.fluss.spark.FlussSparkSessionExtensions&quot;)</span><br></span></code></pre></div></div>
+<div class="language-scala codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-scala codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">spark</span><span class="token punctuation" style="color:rgb(212, 212, 212)">.</span><span class="token plain">conf</span><span class="token punctuation" style="color:rgb(212, 212, 212)">.</span><span class="token plain">set</span><span class="token punctuation" style="color:rgb(212, 212, 212)">(</span><span class="token string" style="color:rgb(206, 145, 120)">&quot;spark.sql.extensions&quot;</span><span class="token punctuation" style="color:rgb(212, 212, 212)">,</span><span class="token plain"> </span><span class="token string" style="color:rgb(206, 145, 120)">&quot;org.apache.fluss.spark.FlussSparkSessionExtensions&quot;</span><span class="token punctuation" style="color:rgb(212, 212, 212)">)</span><br></span></code></pre></div></div>
 <p>Or in <code>spark-defaults.conf</code>:</p>
 <div class="language-properties codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-properties codeBlock_bY9V thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">spark.sql.extensions=org.apache.fluss.spark.FlussSparkSessionExtensions</span><br></span></code></pre></div></div>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="syntax">Syntax<a href="#syntax" class="hash-link" aria-label="Direct link to Syntax" title="Direct link to Syntax" translate="no">​</a></h2>

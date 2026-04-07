@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.045f6fa8.css">
-<script src="/assets/js/runtime~main.574a4853.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.c58438d0.js" defer="defer"></script>
 <script src="/assets/js/main.fc909761.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -30,12 +30,12 @@
 <li class="">
 <p><strong>Prepare the plugin JAR</strong>:</p>
 <ul>
-<li class="">Download the <code>fluss-fs-azure-0.10-SNAPSHOT.jar</code> from the <a href="https://repo1.maven.org/maven2/org/apache/fluss/fluss-fs-azure/0.10-SNAPSHOT/fluss-fs-azure-0.10-SNAPSHOT.jar" target="_blank" rel="noopener noreferrer" class="">Maven Repository</a>.</li>
+<li class="">Download the <code>fluss-fs-azure-1.0-SNAPSHOT.jar</code> from the <a href="https://repo1.maven.org/maven2/org/apache/fluss/fluss-fs-azure/1.0-SNAPSHOT/fluss-fs-azure-1.0-SNAPSHOT.jar" target="_blank" rel="noopener noreferrer" class="">Maven Repository</a>.</li>
 </ul>
 </li>
 <li class="">
 <p><strong>Place the plugin</strong>: Place the plugin JAR file in the <code>${FLUSS_HOME}/plugins/azure/</code> directory:</p>
-<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#36464e;--prism-background-color:#f5f5f5"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#36464e;background-color:#f5f5f5"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#36464e"><span class="token function" style="color:#a846b9">mkdir</span><span class="token plain"> </span><span class="token parameter variable" style="color:#6e59d9">-p</span><span class="token plain"> </span><span class="token variable" style="color:#6e59d9">${FLUSS_HOME}</span><span class="token plain">/plugins/azure/</span><br></span><span class="token-line" style="color:#36464e"><span class="token plain"></span><span class="token function" style="color:#a846b9">cp</span><span class="token plain"> fluss-fs-azure-0.10-SNAPSHOT.jar </span><span class="token variable" style="color:#6e59d9">${FLUSS_HOME}</span><span class="token plain">/plugins/azure/</span><br></span></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#36464e;--prism-background-color:#f5f5f5"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#36464e;background-color:#f5f5f5"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#36464e"><span class="token function" style="color:#a846b9">mkdir</span><span class="token plain"> </span><span class="token parameter variable" style="color:#6e59d9">-p</span><span class="token plain"> </span><span class="token variable" style="color:#6e59d9">${FLUSS_HOME}</span><span class="token plain">/plugins/azure/</span><br></span><span class="token-line" style="color:#36464e"><span class="token plain"></span><span class="token function" style="color:#a846b9">cp</span><span class="token plain"> fluss-fs-azure-1.0-SNAPSHOT.jar </span><span class="token variable" style="color:#6e59d9">${FLUSS_HOME}</span><span class="token plain">/plugins/azure/</span><br></span></code></pre></div></div>
 </li>
 <li class="">
 <p>Restart Fluss if the cluster is already running to ensure the new plugin is loaded.</p>

@@ -8,7 +8,7 @@
     <subtitle>Apache Fluss™ (Incubating) Blog</subtitle>
     <icon>https://fluss.apache.org/img/logo/fluss_favicon.svg</icon>
     <entry>
-        <title type="html"><![CDATA[Real-Time Unique User Counting at Scale with Apache Fluss]]></title>
+        <title type="html"><![CDATA[Real-Time Multi-Dimensional Unique Visitor Deduplication in Practice]]></title>
         <id>https://fluss.apache.org/blog/roaringbitmap-uv-deduplication/</id>
         <link href="https://fluss.apache.org/blog/roaringbitmap-uv-deduplication/"/>
         <updated>2026-04-16T00:00:00.000Z</updated>

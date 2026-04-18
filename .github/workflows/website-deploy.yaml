@@ -35,6 +35,8 @@ jobs:
           fetch-depth: 0
       - name: Generate versioned docs
         run: ./build_versioned_docs.sh
+      - name: Setup blog content
+        run: ./setup_blog.sh
       - uses: actions/setup-node@v4
         with:
           node-version: 20

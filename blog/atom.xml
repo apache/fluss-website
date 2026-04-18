@@ -246,11 +246,11 @@ On the project side, the community is working toward moving fluss-rust into the 
             <name>Anton Borisov</name>
             <uri>https://github.com/fresh-borzoni</uri>
         </author>
-        <category label="fluss-rust" term="fluss-rust"/>
+        <category label="Fluss Rust" term="Fluss Rust"/>
         <category label="fluss-rs" term="fluss-rs"/>
-        <category label="pyfluss" term="pyfluss"/>
-        <category label="fluss-cpp" term="fluss-cpp"/>
-        <category label="arrow" term="arrow"/>
+        <category label="PyFluss" term="PyFluss"/>
+        <category label="Fluss C++" term="Fluss C++"/>
+        <category label="Arrow" term="Arrow"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Announcing Apache Fluss (Incubating) Rust, Python, and C++ Client 0.1.0 Release]]></title>
@@ -319,11 +319,11 @@ See the <a href="https://clients.fluss.apache.org/user-guide/rust/example/partit
             <uri>https://github.com/fresh-borzoni</uri>
         </author>
         <category label="releases" term="releases"/>
-        <category label="fluss-rust" term="fluss-rust"/>
+        <category label="Fluss Rust" term="Fluss Rust"/>
         <category label="fluss-rs" term="fluss-rs"/>
-        <category label="pyfluss" term="pyfluss"/>
-        <category label="fluss-cpp" term="fluss-cpp"/>
-        <category label="arrow" term="arrow"/>
+        <category label="PyFluss" term="PyFluss"/>
+        <category label="Fluss C++" term="Fluss C++"/>
+        <category label="Arrow" term="Arrow"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[What does Apache Fluss mean in the context of AI?]]></title>

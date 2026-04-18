@@ -231,11 +231,11 @@ On the project side, the community is working toward moving fluss-rust into the 
 <p>If any of this is interesting to you, we welcome contributions, bug reports, and feedback.</p>
 <hr>
 <p>And before you go 😊 don't forget to give some ❤️ via ⭐ on GitHub: <a href="https://github.com/apache/fluss" target="_blank" rel="noopener noreferrer" class="">Apache Fluss</a> and <a href="https://github.com/apache/fluss-rust" target="_blank" rel="noopener noreferrer" class="">Fluss Rust SDK</a></p>]]></content:encoded>
-            <category>fluss-rust</category>
+            <category>Fluss Rust</category>
             <category>fluss-rs</category>
-            <category>pyfluss</category>
-            <category>fluss-cpp</category>
-            <category>arrow</category>
+            <category>PyFluss</category>
+            <category>Fluss C++</category>
+            <category>Arrow</category>
         </item>
         <item>
             <title><![CDATA[Announcing Apache Fluss (Incubating) Rust, Python, and C++ Client 0.1.0 Release]]></title>
@@ -292,11 +292,11 @@ See the <a href="https://clients.fluss.apache.org/user-guide/rust/example/partit
 <li class="">Slack: <a href="https://apache-fluss.slack.com/" target="_blank" rel="noopener noreferrer" class="">https://apache-fluss.slack.com</a></li>
 </ul>]]></content:encoded>
             <category>releases</category>
-            <category>fluss-rust</category>
+            <category>Fluss Rust</category>
             <category>fluss-rs</category>
-            <category>pyfluss</category>
-            <category>fluss-cpp</category>
-            <category>arrow</category>
+            <category>PyFluss</category>
+            <category>Fluss C++</category>
+            <category>Arrow</category>
         </item>
         <item>
             <title><![CDATA[What does Apache Fluss mean in the context of AI?]]></title>

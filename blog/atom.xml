@@ -8,7 +8,7 @@
     <subtitle>Apache Fluss™ (Incubating) Blog</subtitle>
     <icon>https://fluss.apache.org/img/logo/fluss_favicon.svg</icon>
     <entry>
-        <title type="html"><![CDATA[Taobao Real-Time Decisions at Scale with Fluss]]></title>
+        <title type="html"><![CDATA[Taobao Instant Commerce: Real-Time Decisions at Scale with Fluss]]></title>
         <id>https://fluss.apache.org/blog/taobao-instant-commerce-real-time-decision/</id>
         <link href="https://fluss.apache.org/blog/taobao-instant-commerce-real-time-decision/"/>
         <updated>2026-04-20T00:00:00.000Z</updated>

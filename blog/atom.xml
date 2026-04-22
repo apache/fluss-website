@@ -13,7 +13,7 @@
         <link href="https://fluss.apache.org/blog/column-pruning-streaming-storage/"/>
         <updated>2026-04-22T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Banner]]></summary>
-        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="data:image/png;base64," class="img_ev3q"></p>
+        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-e29da45a50e48f984bd05e9ad72f4a67.png" width="1099" height="623" class="img_ev3q"></p>
 <p><strong>TL;DR:</strong></p>
 <blockquote>
 <p>Apache Kafka's "column pruning" is actually pseudo-pruning. All fields still cross the network, and clients discard unwanted ones after the fact.

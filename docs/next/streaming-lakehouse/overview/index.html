@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.5187a663.css">
-<script src="/assets/js/runtime~main.4e9bd63d.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.aca03ba5.js" defer="defer"></script>
 <script src="/assets/js/main.755ae2e5.js" defer="defer"></script>
 </head>
 <body>
@@ -49,7 +49,7 @@ The data in the Fluss cluster serves as a real-time data layer, retaining days o
 Some powerful features it provides are:</p>
 <ul>
 <li class=""><strong>Unified Metadata</strong>: Fluss provides unified table metadata for both data in Stream and Lakehouse. Users only need to manage one table and can access real-time streaming data, historical data, or both combined.</li>
-<li class=""><strong>Union Reads</strong>: Compute engines that perform queries on the table will read the union of the real-time streaming data and Lakehouse data. Currently, only Flink supports union reads, but more engines are on the roadmap.</li>
+<li class=""><strong>Union Reads</strong>: Compute engines that perform queries on the table will read the union of the real-time streaming data and Lakehouse data. Currently, Flink and Spark support union reads, with more engines on the roadmap.</li>
 <li class=""><strong>Real-Time Lakehouse</strong>: The union reads help Lakehouse evolving from near-real-time analytics to truly real-time analytics. This empowers businesses to gain more valuable insights from real-time data.</li>
 <li class=""><strong>Analytical Streams</strong>: The union reads help data streams to have the powerful analytics capabilities. This reduces complexity when developing streaming applications, simplifies debugging, and allows for immediate access to live data insights.</li>
 <li class=""><strong>Connect to Lakehouse Ecosystem</strong>: Fluss keeps the table metadata in sync with data lake catalogs while compacting data into Lakehouse. As a result, external engines like Spark, StarRocks, Flink, and Trino can read the data directly. They simply connect to the data lake catalog.</li>

@@ -17,7 +17,7 @@
 <meta name="theme-color" content="#0071e3">
 
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-modal-header-bg-color="#2563eb" data-modal-title-color="#ffffff" data-project-logo="https://fluss.apache.org/img/logo/svg/white_color_logo_notext.svg" data-button-text="Ask AI" data-button-hide="true" data-modal-override-open-class-ask-ai="navbar-ask-ai" data-modal-title="Ask Apache Fluss AI" data-modal-example-questions="What is Apache Fluss?,How do I create a Log &amp; PK table?,How do I use change data feed?,How do I configure streaming lakehouse?" data-modal-disclaimer="This is an AI assistant trained on Apache Fluss documentation, codebase. Answers are AI-generated and may be inaccurate, verify against the official docs."></script><link rel="stylesheet" href="/assets/css/styles.f5d11191.css">
-<script src="/assets/js/runtime~main.0368a07b.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.abd07db3.js" defer="defer"></script>
 <script src="/assets/js/main.870ff299.js" defer="defer"></script>
 </head>
 <body>
@@ -32,12 +32,12 @@
 <li class="">
 <p><strong>Prepare the plugin JAR</strong>:</p>
 <ul>
-<li class="">Download the <code>fluss-fs-obs-0.9.0-incubating.jar</code> from the <a href="https://repo1.maven.org/maven2/org/apache/fluss/fluss-fs-obs/0.9.0-incubating/fluss-fs-obs-0.9.0-incubating.jar" target="_blank" rel="noopener noreferrer" class="">Maven Repository</a>.</li>
+<li class="">Download the <code>fluss-fs-obs-0.9.1-incubating.jar</code> from the <a href="https://repo1.maven.org/maven2/org/apache/fluss/fluss-fs-obs/0.9.1-incubating/fluss-fs-obs-0.9.1-incubating.jar" target="_blank" rel="noopener noreferrer" class="">Maven Repository</a>.</li>
 </ul>
 </li>
 <li class="">
 <p><strong>Place the plugin</strong>: Place the plugin JAR file in the <code>${FLUSS_HOME}/plugins/obs/</code> directory:</p>
-<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#36464e;--prism-background-color:#f5f5f5"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#36464e;background-color:#f5f5f5"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#36464e"><span class="token function" style="color:#a846b9">mkdir</span><span class="token plain"> </span><span class="token parameter variable" style="color:#6e59d9">-p</span><span class="token plain"> </span><span class="token variable" style="color:#6e59d9">${FLUSS_HOME}</span><span class="token plain">/plugins/obs/</span><br></div><div class="token-line" style="color:#36464e"><span class="token plain"></span><span class="token function" style="color:#a846b9">cp</span><span class="token plain"> fluss-fs-obs-0.9.0-incubating.jar </span><span class="token variable" style="color:#6e59d9">${FLUSS_HOME}</span><span class="token plain">/plugins/obs/</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#36464e;--prism-background-color:#f5f5f5"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#36464e;background-color:#f5f5f5"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#36464e"><span class="token function" style="color:#a846b9">mkdir</span><span class="token plain"> </span><span class="token parameter variable" style="color:#6e59d9">-p</span><span class="token plain"> </span><span class="token variable" style="color:#6e59d9">${FLUSS_HOME}</span><span class="token plain">/plugins/obs/</span><br></div><div class="token-line" style="color:#36464e"><span class="token plain"></span><span class="token function" style="color:#a846b9">cp</span><span class="token plain"> fluss-fs-obs-0.9.1-incubating.jar </span><span class="token variable" style="color:#6e59d9">${FLUSS_HOME}</span><span class="token plain">/plugins/obs/</span><br></div></code></pre></div></div>
 </li>
 <li class="">
 <p>Restart Fluss if the cluster is already running to ensure the new plugin is loaded.</p>

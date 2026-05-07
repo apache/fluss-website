@@ -132,7 +132,7 @@ The result: pruning 90% of columns yields a 10x read throughput improvement, wit
             <category>performance</category>
         </item>
         <item>
-            <title><![CDATA[Taobao Instant Commerce: Real-Time Decisions at Scale with Fluss]]></title>
+            <title><![CDATA[Taobao Instant Commerce: Real-Time Decisions at Scale with Apache Fluss]]></title>
             <link>https://fluss.apache.org/blog/taobao-instant-commerce-real-time-decision/</link>
             <guid>https://fluss.apache.org/blog/taobao-instant-commerce-real-time-decision/</guid>
             <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>

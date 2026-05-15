@@ -15,7 +15,7 @@
 <link rel="icon" href="/img/logo.svg">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0071e3"><link rel="stylesheet" href="/assets/css/styles.b12bc316.css">
-<script src="/assets/js/runtime~main.232978b9.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.eb40e765.js" defer="defer"></script>
 <script src="/assets/js/main.3fb7b05c.js" defer="defer"></script>
 </head>
 <body>
@@ -84,7 +84,7 @@ layer maintained its own storage and indexing strategy. Querying <strong>what’
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-aha-moment-real-time-feature-store-and-zero-drift">The “Aha” Moment: Real-Time Feature Store and Zero Drift<a href="#the-aha-moment-real-time-feature-store-and-zero-drift" class="hash-link" aria-label="Direct link to The “Aha” Moment: Real-Time Feature Store and Zero Drift" title="Direct link to The “Aha” Moment: Real-Time Feature Store and Zero Drift" translate="no">​</a></h3>
 <p>As these capabilities came together, we started noticing a recurring pattern: teams were increasingly asking for real-time feature store behavior, even when they weren’t explicitly building a “feature store.” The need kept emerging organically once streaming data, durable state, and low-latency access converged in a single system.</p>
 <p>At its core, a feature store exists to compute and serve features, the structured inputs consumed by machine learning models. These features might represent recent activity, aggregated behavior, derived metrics, or continuously updated scores that capture how an entity changes over time.</p>
-<p>The reason feature stores exist at all is a well-known failure mode in production ML systems. Trainin data is often computed offline using batch pipelines, while inference data is computed online using streaming or request-time logic. Over time, these two paths drift apart in logic, timing, or semantics.</p>
+<p>The reason feature stores exist at all is a well-known failure mode in production ML systems. Training data is often computed offline using batch pipelines, while inference data is computed online using streaming or request-time logic. Over time, these two paths drift apart in logic, timing, or semantics.</p>
 <p>This divergence is commonly referred to as <strong>training–serving skew</strong>. It’s subtle, hard to detect early, and is responsible for a large number of models underperforming in production despite looking correct during training and evaluation.</p>
 <p>Once you view the problem through a data foundation lens, the implication becomes clear: eliminating drift is less about adding more tooling and
 more about ensuring that <strong>training and serving are built on the same underlying data, with the same semantics</strong>.</p>

@@ -24,8 +24,8 @@
 <meta name="twitter:title" content="Apache Fluss · Streaming Storage for the Real-Time Lakehouse">
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856"><link rel="stylesheet" href="/assets/css/styles.2382eb89.css">
-<script src="/assets/js/runtime~main.46796751.js" defer="defer"></script>
-<script src="/assets/js/main.21d38f08.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.420c101f.js" defer="defer"></script>
+<script src="/assets/js/main.5ede5173.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -59,7 +59,7 @@ The following subsections will show you how to use Flink SQL Client to interact 
 <p>Using Flink SQL Client to interact with Fluss.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="preparation">Preparation<a href="#preparation" class="hash-link" aria-label="Direct link to Preparation" title="Direct link to Preparation" translate="no">​</a></h4>
 <p>You can start a Flink standalone cluster refer to <a class="" href="/docs/engine-flink/getting-started/#preparation-when-using-flink-sql-client">Flink Environment Preparation</a></p>
-<p><strong>Note</strong>: Make sure the <a class="" href="/downloads/">Fluss connector jar</a> already has copied to the <code>lib</code> directory of your Flink home.</p>
+<p><strong>Note</strong>: Make sure the <a class="" href="/docs/engine-flink/getting-started/#dependencies">Fluss Flink connector jar</a> has already been copied to the <code>lib</code> directory of your Flink home.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="add-catalog">Add catalog<a href="#add-catalog" class="hash-link" aria-label="Direct link to Add catalog" title="Direct link to Add catalog" translate="no">​</a></h4>
 <p>In Flink SQL client, a catalog is created and named by executing the following query:</p>
 <div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#0A0F1C;--prism-background-color:#F8FAFC"><div class="codeBlockTitle_OeMC">Flink SQL</div><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#0A0F1C;background-color:#F8FAFC"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#0A0F1C"><span class="token keyword" style="color:#194670">CREATE</span><span class="token plain"> CATALOG fluss_catalog </span><span class="token keyword" style="color:#194670">WITH</span><span class="token plain"> </span><span class="token punctuation" style="color:#475569">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#0A0F1C"><span class="token plain">  </span><span class="token string" style="color:#0E7C66">&#x27;type&#x27;</span><span class="token plain"> </span><span class="token operator" style="color:#475569">=</span><span class="token plain"> </span><span class="token string" style="color:#0E7C66">&#x27;fluss&#x27;</span><span class="token punctuation" style="color:#475569">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#0A0F1C"><span class="token plain">  </span><span class="token string" style="color:#0E7C66">&#x27;bootstrap.servers&#x27;</span><span class="token plain"> </span><span class="token operator" style="color:#475569">=</span><span class="token plain"> </span><span class="token string" style="color:#0E7C66">&#x27;localhost:9123&#x27;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#0A0F1C"><span class="token plain"></span><span class="token punctuation" style="color:#475569">)</span><span class="token punctuation" style="color:#475569">;</span><br></div></code></pre></div></div>

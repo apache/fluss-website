@@ -24,7 +24,7 @@
 <meta name="twitter:title" content="Apache Fluss · Streaming Storage for the Real-Time Lakehouse">
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856"><link rel="stylesheet" href="/assets/css/styles.2382eb89.css">
-<script src="/assets/js/runtime~main.af1f4914.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.5fc9e3db.js" defer="defer"></script>
 <script src="/assets/js/main.40c87326.js" defer="defer"></script>
 </head>
 <body>
@@ -78,6 +78,7 @@
 <li class=""><strong>COMPLETED</strong>: The rebalance has successfully completed</li>
 <li class=""><strong>FAILED</strong>: The rebalance has failed</li>
 <li class=""><strong>CANCELED</strong>: The rebalance has been canceled</li>
+<li class=""><strong>TIMEOUT</strong>: The rebalance task timed out (e.g., ISR could not converge within the timeout period)</li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-cancel-rebalance-if-needed">4. Cancel Rebalance (If Needed)<a href="#4-cancel-rebalance-if-needed" class="hash-link" aria-label="Direct link to 4. Cancel Rebalance (If Needed)" title="Direct link to 4. Cancel Rebalance (If Needed)" translate="no">​</a></h3>
 <p>Cancel an ongoing rebalance operation if necessary:</p>

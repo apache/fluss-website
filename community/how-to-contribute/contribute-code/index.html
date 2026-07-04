@@ -24,8 +24,8 @@
 <meta name="twitter:title" content="Apache Fluss · Streaming Storage for the Real-Time Lakehouse">
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856"><link rel="stylesheet" href="/assets/css/styles.2382eb89.css">
-<script src="/assets/js/runtime~main.4592e342.js" defer="defer"></script>
-<script src="/assets/js/main.e892f1cf.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.312845a6.js" defer="defer"></script>
+<script src="/assets/js/main.7578c9e1.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -49,6 +49,7 @@
 <ol>
 <li class="">Only start working on the implementation if there is consensus on the approach (e.g. you are assigned to the ticket)</li>
 <li class="">If you are newer, can refer to <a class="" href="/community/dev/ide-setup/">ide setup</a> to setup a Fluss dev environment.</li>
+<li class="">For Rust client changes (under <code>fluss-rust/</code>), see <a class="" href="/community/dev/building/">Building the Rust client</a> and the <a class="" href="/community/dev/ide-setup/">RustRover IDE setup</a>.</li>
 </ol>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="review">Review<a href="#review" class="hash-link" aria-label="Direct link to Review" title="Direct link to Review" translate="no">​</a></h3>
 <p>Create the pull request and work with the reviewer.</p>
@@ -72,7 +73,7 @@
 <p>Fill out the pull request template to describe the changes contributed by the pull request. Please describe it such that the reviewer understands the problem and solution from the description, not only from the code. That will give reviewers the context they need to do the review.</p>
 </li>
 <li class="">
-<p>Make sure that the change passes the automated tests, i.e., <code>mvn clean verify</code> passes.</p>
+<p>Make sure that the change passes the automated tests, i.e., <code>mvn clean verify</code> passes. For Rust client changes under <code>fluss-rust/</code>, make sure <code>cargo build</code>, <code>cargo test</code>, <code>cargo fmt --all -- --check</code>, and <code>cargo clippy --all-targets -- -D warnings</code> pass (see <a class="" href="/community/dev/building/">Building the Rust client</a>).</p>
 </li>
 <li class="">
 <p>Each pull request should address only one issue, not mix up code from multiple issues.</p>

@@ -23,9 +23,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Apache Fluss · Streaming Storage for the Real-Time Lakehouse">
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
-<meta name="theme-color" content="#102856"><link rel="stylesheet" href="/assets/css/styles.2382eb89.css">
-<script src="/assets/js/runtime~main.09043a63.js" defer="defer"></script>
-<script src="/assets/js/main.45bd05ed.js" defer="defer"></script>
+<meta name="theme-color" content="#102856"><link rel="stylesheet" href="/assets/css/styles.9b29639a.css">
+<script src="/assets/js/runtime~main.5bf934e1.js" defer="defer"></script>
+<script src="/assets/js/main.8d5f7cf9.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -43,7 +43,7 @@ Compared to traditional streaming joins, the delta join operator significantly r
 <p>Starting with <strong>Apache Fluss 0.8</strong>, streaming join jobs running on <strong>Flink 2.1 or later</strong> will be automatically optimized into <strong>delta joins</strong> whenever applicable. This optimization happens transparently at query planning time, requiring no manual configuration.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-delta-join-works">How Delta Join Works<a href="#how-delta-join-works" class="hash-link" aria-label="Direct link to How Delta Join Works" title="Direct link to How Delta Join Works" translate="no">​</a></h2>
 <p>Traditional streaming joins in Flink require maintaining both input sides entirely in state to match records across streams. Delta join, by contrast, uses a <strong>index-key lookup mechanism</strong> to transform the behavior of querying data from the state into querying data from the Fluss source table, thereby avoiding redundant storage of the same data in both the Fluss source table and the state. This drastically reduces state size and improves performance for many streaming analytics and enrichment workloads.</p>
-<p><img decoding="async" loading="lazy" src="/assets/images/delta_join-f26e077eb2ffc71ae71a3962586a1710.png" width="1448" height="1086" class="img_ev3q"></p>
+<img src="/assets/images/delta_join_light-37603b72e19f10ad7d733d585c26dc2b.png" alt="Delta Join" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/assets/images/delta_join-f26e077eb2ffc71ae71a3962586a1710.png" alt="Delta Join" class="themedComponent_mlkZ themedComponent--dark_xIcU">
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="example-delta-join-in-flink-21">Example: Delta Join in Flink 2.1<a href="#example-delta-join-in-flink-21" class="hash-link" aria-label="Direct link to Example: Delta Join in Flink 2.1" title="Direct link to Example: Delta Join in Flink 2.1" translate="no">​</a></h2>
 <p>Below is an example demonstrating a delta join query supported by Flink 2.1.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-source-and-sink-tables">Create Source and Sink Tables<a href="#create-source-and-sink-tables" class="hash-link" aria-label="Direct link to Create Source and Sink Tables" title="Direct link to Create Source and Sink Tables" translate="no">​</a></h4>

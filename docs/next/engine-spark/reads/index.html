@@ -24,8 +24,8 @@
 <meta name="twitter:title" content="Apache Fluss · Streaming Storage for the Real-Time Lakehouse">
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856"><link rel="stylesheet" href="/assets/css/styles.9b29639a.css">
-<script src="/assets/js/runtime~main.55325d9f.js" defer="defer"></script>
-<script src="/assets/js/main.6be30cd7.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.d376d006.js" defer="defer"></script>
+<script src="/assets/js/main.a47c9e0a.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -89,7 +89,7 @@
 <p>When a table has the configuration <code>table.datalake.enabled = &#x27;true&#x27;</code>, its data exists in two layers:</p>
 <ul>
 <li class=""><strong>Fresh data</strong> is retained in Fluss (real-time layer, sub-second freshness)</li>
-<li class=""><strong>Historical data</strong> is tiered to the lake storage (e.g., Paimon, Iceberg)</li>
+<li class=""><strong>Historical data</strong> is tiered to the lake storage (e.g., Paimon, Iceberg, Hudi)</li>
 </ul>
 <p>Fluss Spark connector supports <strong>union read</strong> that combines both layers to provide a complete, up-to-date view of the data. This allows Fluss to store only a small portion of the dataset in the cluster (reducing costs), while the lake serves as the source of complete historical data.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="union-read">Union Read<a href="#union-read" class="hash-link" aria-label="Direct link to Union Read" title="Direct link to Union Read" translate="no">​</a></h4>

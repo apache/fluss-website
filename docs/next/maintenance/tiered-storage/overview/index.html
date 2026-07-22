@@ -24,7 +24,7 @@
 <meta name="twitter:title" content="Apache Fluss · Streaming Storage for the Real-Time Lakehouse">
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856"><link rel="stylesheet" href="/assets/css/styles.9b29639a.css">
-<script src="/assets/js/runtime~main.62ad9eaa.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.55325d9f.js" defer="defer"></script>
 <script src="/assets/js/main.6be30cd7.js" defer="defer"></script>
 </head>
 <body>
@@ -35,6 +35,10 @@
 <p>With tiered storage, Fluss allows you to scale compute and storage resources independently, provides better client isolation, and
 allows faster maintenance.</p>
 <p>Fluss organizes data into different storage layers based on its access patterns, performance requirements, and cost considerations.</p>
+<p>For a deep dive into how Fluss organizes its storage layers, see the blog post:</p>
+<ul>
+<li class=""><a href="https://fluss.apache.org/blog/fluss-storage-hierarchy/" target="_blank" rel="noopener noreferrer" class="">Fluss Storage Hierarchy</a></li>
+</ul>
 <p>Fluss ensures the recent data is stored in local for higher write/read performance and the historical data is stored in <a class="" href="/docs/next/maintenance/tiered-storage/remote-storage/">remote storage</a> for lower cost.</p>
 <p>What&#x27;s more, since the native format of Fluss&#x27;s data is optimized for real-time write/read which is inevitable unfriendly to batch analytics, Fluss also introduces a <a class="" href="/docs/next/maintenance/tiered-storage/lakehouse-storage/">lakehouse storage</a> which stores the data
 in the well-known open data lake format for better analytics performance. Currently, supported formats are Paimon, Iceberg, and Lance. In the future, more kinds of data lake support are on the way. Keep eyes on us!</p>

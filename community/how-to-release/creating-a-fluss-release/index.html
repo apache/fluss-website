@@ -25,7 +25,7 @@
 <meta name="twitter:title" content="Apache Fluss · Streaming Storage for the Real-Time Lakehouse">
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856"><link rel="stylesheet" href="/assets/css/styles.cd04057a.css">
-<script src="/assets/js/runtime~main.7f50c7b3.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.4d4f0f8e.js" defer="defer"></script>
 <script src="/assets/js/main.857b4036.js" defer="defer"></script>
 </head>
 <body>
@@ -179,7 +179,7 @@ Run the <code>tree releasing/release/</code> command under the <code>tools</code
 <li class=""><a href="https://hub.docker.com/r/apache/fluss/tags" target="_blank" rel="noopener noreferrer" class="">https://hub.docker.com/r/apache/fluss/tags</a></li>
 <li class=""><a href="https://hub.docker.com/r/apache/fluss-quickstart-flink/tags" target="_blank" rel="noopener noreferrer" class="">https://hub.docker.com/r/apache/fluss-quickstart-flink/tags</a></li>
 </ul>
-<p>Then, update the <code>dockerVersion</code> field for the current release RC version in the <code>website/fluss-versions.json</code> file on the <code>main</code> branch to the value of <code>${RELEASE_VERSION}_RC${RC_NUM}</code> (which includes the RC suffix, e.g., <code>0.8.0-rc1</code>). This update should be committed and pushed to the <code>main</code> branch.</p>
+<p>Then, update the <code>dockerVersion</code> field for the current release RC version in the <code>website/fluss-versions.json</code> file on the <code>main</code> branch to the value of <code>${RELEASE_VERSION}_rc${RC_NUM}</code> (which includes the RC suffix, e.g., <code>0.8.0-rc1</code>). This update should be committed and pushed to the <code>main</code> branch.</p>
 <p>This ensures that the <strong>Quickstart guide</strong> in the documentation references the correct Docker image for the release candidate. This will help developers to easily test the new release candidate using the Quickstart guide.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="8-push-the-rc-tag">8. Push the RC tag<a href="#8-push-the-rc-tag" class="hash-link" aria-label="Direct link to 8. Push the RC tag" title="Direct link to 8. Push the RC tag" translate="no">​</a></h3>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#0A0F1C;--prism-background-color:#F8FAFC"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#0A0F1C;background-color:#F8FAFC"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#0A0F1C"><span class="token function" style="color:#7C3AED">git</span><span class="token plain"> push origin </span><span class="token variable" style="color:#12325C">$TAG</span><br></div></code></pre></div></div>

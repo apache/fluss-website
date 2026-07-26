@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkfluss_website||=[]).push([[47671],{47671(e,s,a){a.d(s,{createTreemapServices:()=>r.d});var r=a(14687);a(51400)}}]);

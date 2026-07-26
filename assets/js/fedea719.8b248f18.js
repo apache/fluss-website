@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkfluss_website||=[]).push([[39363],{43898(s){s.exports=JSON.parse('{"tag":{"label":"fluss","permalink":"/blog/tags/fluss","allTagsPath":"/blog/tags","count":1,"unlisted":false},"listMetadata":{"permalink":"/blog/tags/fluss","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);

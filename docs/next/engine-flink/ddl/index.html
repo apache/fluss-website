@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.a49e06c7.css">
-<script src="/assets/js/runtime~main.8e4e8695.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.fffdf22b.js" defer="defer"></script>
 <script src="/assets/js/main.e10212ec.js" defer="defer"></script>
 </head>
 <body>
@@ -119,6 +119,7 @@ But you can still use the <a class="" href="/docs/next/engine-flink/ddl/#add-par
 <li class="">The following <a class="" href="/docs/next/engine-flink/options/#storage-options">Storage Options</a>:<!-- -->
 <ul>
 <li class=""><code>table.datalake.enabled</code>: Enable or disable lakehouse storage for the table.</li>
+<li class=""><code>table.datalake.historical-partition.enabled</code>: Enable or disable historical partition lookup.</li>
 <li class=""><code>table.datalake.freshness</code>: Set the data freshness for lakehouse storage.</li>
 <li class=""><code>table.log.tiered.local-segments</code>: Set the number of log segments to retain locally when tiered storage is enabled.</li>
 <li class=""><code>table.auto-partition.num-retention</code>: Set the number of historical partitions to retain for auto partitioning.</li>
@@ -130,6 +131,7 @@ But you can still use the <a class="" href="/docs/next/engine-flink/ddl/#add-par
 <p><strong>Limits</strong></p>
 <ul>
 <li class="">If lakehouse storage (<code>table.datalake.enabled</code>) is already enabled for a table, options with lakehouse format prefixes (e.g., <code>paimon.*</code>) cannot be modified again.</li>
+<li class="">After changing <code>table.datalake.historical-partition.enabled</code>, restart existing lookup jobs that need to look up historical partition data so that their clients load the updated table configuration.</li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="reset-properties">RESET properties<a href="#reset-properties" class="hash-link" aria-label="Direct link to RESET properties" title="Direct link to RESET properties" translate="no">​</a></h3>
 <p>Reset one or more connector option including the <a class="" href="/docs/next/engine-flink/options/#storage-options">Storage Options</a> to its default value.</p>

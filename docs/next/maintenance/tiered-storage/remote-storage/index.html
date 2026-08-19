@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.a49e06c7.css">
-<script src="/assets/js/runtime~main.a0e571b5.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a953e83b.js" defer="defer"></script>
 <script src="/assets/js/main.f3cd8977.js" defer="defer"></script>
 </head>
 <body>
@@ -49,7 +49,11 @@ If you don&#x27;t want to copy log segments to remote storage, you can set <code
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="table-configurations-about-remote-log">Table configurations about remote log<a href="#table-configurations-about-remote-log" class="hash-link" aria-label="Direct link to Table configurations about remote log" title="Direct link to Table configurations about remote log" translate="no">​</a></h3>
 <p>When local log segments are copied to remote storage, the local log segments will be deleted to reduce local disk cost.
 But sometimes, we want to keep the several latest log segments retain in local, although they have been coped to remote storage for better read performance.
-You can control how many log segments to retain in local by setting the configuration <code>table.log.tiered.local-segments</code>(default is 2) per table.</p>
+You can control local retention per table with <code>table.log.tiered.local-segments</code> (default is 2)
+and <code>table.log.local-ttl</code>. When <code>table.log.local-ttl</code> is not configured, it falls back to
+<code>table.log.ttl</code>. A non-positive local TTL disables TTL-based local cleanup. When both TTLs are
+positive, the local TTL must be less than or equal to <code>table.log.ttl</code>. An expired local segment is
+deleted only after it has been copied to remote storage.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="remote-snapshot-of-primary-key-table">Remote snapshot of primary key table<a href="#remote-snapshot-of-primary-key-table" class="hash-link" aria-label="Direct link to Remote snapshot of primary key table" title="Direct link to Remote snapshot of primary key table" translate="no">​</a></h2>
 <p>In Fluss, one primary key table is distributed to multiple buckets. For each bucket of primary key table, Fluss will only always keep one replica in local disk without any follower replicas.</p>
 <p>So, for fault tolerance of local disk fail forever, Fluss will do snapshots to the replicas of primary key table periodically and upload the snapshots to remote storage.

@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.a49e06c7.css">
-<script src="/assets/js/runtime~main.d85c0202.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.ed836374.js" defer="defer"></script>
 <script src="/assets/js/main.7e846595.js" defer="defer"></script>
 </head>
 <body>
@@ -191,7 +191,7 @@ Run the <code>tree releasing/release/</code> command under the <code>tools</code
 <p>Pushing the <strong>RC tag</strong> (<code>v${RELEASE_VERSION}-rc${RC_NUM}</code>) triggers the client workflows:</p>
 <ul>
 <li class=""><code>python-release.yml</code> builds the wheels + sdist and publishes them to <strong>TestPyPI</strong>.</li>
-<li class=""><code>rust-release.yml</code> runs <code>cargo publish --dry-run</code> to validate the crate. The canonical proto is vendored into the crate automatically (<code>fluss-rust/scripts/vendor-proto.sh</code>), because <code>build.rs</code> reads it from the in-repo <code>fluss-rpc</code>.</li>
+<li class=""><code>rust-release.yml</code> runs <code>cargo publish --dry-run</code> to validate the crate. The generated protobuf code and the proto it came from are checked in under <code>fluss-rust/crates/fluss/</code>, so the crate publishes standalone with no extra preparation.</li>
 </ul>
 <p>The final publish to <strong>crates.io</strong> and <strong>PyPI</strong> happens when the release tag is pushed (see the <strong>Git tag</strong> step under <a href="#finalize-the-release" class="">Finalize the release</a>). Publishing uses the CI secrets <code>CARGO_REGISTRY_TOKEN</code>, <code>PYPI_API_TOKEN</code>, and <code>TEST_PYPI_API_TOKEN</code>.</p>
 <hr>

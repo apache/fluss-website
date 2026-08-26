@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.a49e06c7.css">
-<script src="/assets/js/runtime~main.821f9259.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.d594b144.js" defer="defer"></script>
 <script src="/assets/js/main.7e846595.js" defer="defer"></script>
 </head>
 <body>
@@ -92,9 +92,8 @@ Fluss strips the corresponding prefix before passing these options to Hudi.</p>
 <p>When a Fluss table is created with the option <code>&#x27;table.datalake.enabled&#x27; = &#x27;true&#x27;</code> and configured with Hudi as the datalake format, Fluss automatically creates a corresponding Hudi table with the same database and table name.</p>
 <p>For DFS catalog mode, the Hudi table path is <code>${catalog.path}/${database_name}/${table_name}</code> unless the Hudi table path is explicitly set by Hudi options.
 For Hive Metastore catalog mode, the table path follows Hudi Hive catalog path inference.</p>
-<p>The schema of the Hudi table matches the Fluss table schema, except for three system columns appended by Fluss:</p>
-<table><thead><tr><th>Column</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>__bucket</code></td><td>INT</td><td>Fluss bucket identifier for data distribution</td></tr><tr><td><code>__offset</code></td><td>BIGINT</td><td>Fluss log offset for ordering and seeking</td></tr><tr><td><code>__timestamp</code></td><td>TIMESTAMP(6)</td><td>Fluss log timestamp</td></tr></tbody></table>
-<p>Do not use user columns named <code>__bucket</code>, <code>__offset</code>, or <code>__timestamp</code>. Hudi metadata column names starting with <code>_hoodie_</code> are also reserved.</p>
+<p>The schema of the Hudi table matches the Fluss table schema, containing only the user-defined columns. Fluss does not add any system columns to the physical Hudi schema.</p>
+<p>The names <code>__bucket</code>, <code>__offset</code>, and <code>__timestamp</code> are reserved for Fluss internal use, so do not use user columns with these names. Hudi metadata column names starting with <code>_hoodie_</code> are also reserved.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="primary-key-tables">Primary Key Tables<a href="#primary-key-tables" class="hash-link" aria-label="Direct link to Primary Key Tables" title="Direct link to Primary Key Tables" translate="no">​</a></h3>
 <p>Primary-key Fluss tables are mapped to Hudi Merge-On-Read tables:</p>
 <ul>

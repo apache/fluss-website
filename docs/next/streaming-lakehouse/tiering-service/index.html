@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.a49e06c7.css">
-<script src="/assets/js/runtime~main.d1588cf6.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.0687a89f.js" defer="defer"></script>
 <script src="/assets/js/main.f4073cb8.js" defer="defer"></script>
 </head>
 <body>
@@ -43,6 +43,7 @@
 <li class="">Maintains exactly-once semantics between Fluss and the data lake</li>
 <li class="">Operates incrementally, syncing only missing data segments</li>
 </ul>
+<div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>warning</div><div class="admonitionContent_BuS1"><p>Never change the schema of a lake table managed by the Tiering Service through an external engine. The Tiering Service requires the lake table schema to stay in sync with the Fluss table schema, and a diverging schema makes the tiering job fail and restart in a loop until the schemas match again. For lake formats that support schema evolution through Fluss (Paimon and Iceberg), add columns with <code>ALTER TABLE</code> on the Fluss table instead. See <a class="" href="/docs/next/streaming-lakehouse/datalake-formats/paimon/#schema-evolution">Schema Evolution</a> for the symptoms and the recovery steps with Paimon.</p></div></div>
 <p>For an in-depth look at the Tiering Service internals, see the blog series:</p>
 <ul>
 <li class=""><a href="https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part1/" target="_blank" rel="noopener noreferrer" class="">Tiering Service Deep Dive — Part 1</a></li>

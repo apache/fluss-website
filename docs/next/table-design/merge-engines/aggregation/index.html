@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.a49e06c7.css">
-<script src="/assets/js/runtime~main.c7114950.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.0183c4db.js" defer="defer"></script>
 <script src="/assets/js/main.9d9b9a67.js" defer="defer"></script>
 </head>
 <body>
@@ -42,6 +42,7 @@
 <li class="">For <strong>Java clients</strong>, use the Schema API</li>
 </ul>
 <p>If no function is specified for a field, it will use <code>last_value_ignore_nulls</code> aggregation as the default behavior.</p>
+<p>When using <code>aggregation</code> merge engine, <code>UPDATE</code> and <code>DELETE</code> SQL statements are not supported.</p>
 <p>This merge engine is useful for real-time aggregation scenarios such as:</p>
 <ul>
 <li class="">Computing running totals and statistics</li>

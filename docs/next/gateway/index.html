@@ -26,8 +26,8 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.a49e06c7.css">
-<script src="/assets/js/runtime~main.fb0552c5.js" defer="defer"></script>
-<script src="/assets/js/main.facebed5.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.c81a51e1.js" defer="defer"></script>
+<script src="/assets/js/main.1e53cc60.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -39,7 +39,10 @@ configuration may change in later releases.</p></div></div>
 <p>Fluss Gateway is a stateless REST service for metadata, DDL, and schema-aware
 batch writes. Any Gateway instance can handle any request, so instances can be
 scaled behind a load balancer.</p>
-<p>To run the Gateway as a binary distribution or container, see
+<p>For an end-to-end walkthrough — ingesting events via the Gateway and querying
+them through a Paimon lakehouse — see
+<a class="" href="/docs/next/quickstart/gateway-lakehouse/">Ingest HTTP Events into a Real-Time Lakehouse</a>.
+To run the Gateway as a binary distribution or container, see
 <a class="" href="/docs/next/install-deploy/deploying-gateway/">Deploying Fluss Gateway</a>.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="capabilities-and-limitations">Capabilities and limitations<a href="#capabilities-and-limitations" class="hash-link" aria-label="Direct link to Capabilities and limitations" title="Direct link to Capabilities and limitations" translate="no">​</a></h2>
 <table><thead><tr><th>Area</th><th>Operations</th></tr></thead><tbody><tr><td>Service</td><td>Health, readiness, cluster discovery, and OpenAPI 3.1</td></tr><tr><td>Metadata</td><td>List databases, tables, and partitions; describe tables</td></tr><tr><td>Database DDL</td><td>Create and drop databases</td></tr><tr><td>Table DDL</td><td>Create, validate, alter, and drop tables</td></tr><tr><td>Partition DDL</td><td>Add and drop partitions</td></tr><tr><td>Records</td><td>Batch append, upsert, partial update, and delete</td></tr></tbody></table>

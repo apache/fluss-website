@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.a49e06c7.css">
-<script src="/assets/js/runtime~main.8c720c6f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.94ef8e9d.js" defer="defer"></script>
 <script src="/assets/js/main.164c9970.js" defer="defer"></script>
 </head>
 <body>
@@ -143,6 +143,7 @@ But you can still use the <a class="" href="/docs/next/engine-flink/ddl/#add-par
 <p><strong>Limits</strong></p>
 <ul>
 <li class="">If lakehouse storage (<code>table.datalake.enabled</code>) is already enabled for a table, options with lakehouse format prefixes (e.g., <code>paimon.*</code>) cannot be modified again.</li>
+<li class=""><code>table.datalake.historical-partition.lookup-mode</code> can only be configured when creating the table and cannot be modified with <code>ALTER TABLE SET</code> or <code>ALTER TABLE RESET</code>.</li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="reset-properties">RESET properties<a href="#reset-properties" class="hash-link" aria-label="Direct link to RESET properties" title="Direct link to RESET properties" translate="no">​</a></h3>
 <p>Reset one or more connector option including the <a class="" href="/docs/next/engine-flink/options/#storage-options">Storage Options</a> to its default value.</p>

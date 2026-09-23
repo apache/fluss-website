@@ -13,7 +13,7 @@
             <link>https://fluss.apache.org/blog/releases/1.0/</link>
             <guid>https://fluss.apache.org/blog/releases/1.0/</guid>
             <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[🌊 We are excited to announce the official release of Apache Fluss 1.0!]]></description>
+            <description><![CDATA[Fluss 1.0 strengthens the real-time data foundation for AI with Fluss Gateway, native clients, and deeper streaming and lakehouse integration.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Apache Fluss 1.0" src="https://fluss.apache.org/assets/images/banner-f5a906c89ee958765864392868ef4ff3.png" width="1536" height="1024" class="img_ev3q"></p>
 <p>🌊 We are excited to announce the official release of Apache Fluss 1.0!</p>
 <p>AI agents and applications need data that keeps up with the world around them: current user profiles, recent interactions, changing business state, and fresh features for inference. Training pipelines also need access to historical data and newly arriving events. Fluss 1.0 strengthens the data layer connecting these workloads, from straightforward HTTP access for agents and native Python integration to continuous processing with Flink and training data preparation with Spark.</p>
@@ -181,7 +181,7 @@
 <p>AlexZhao, Andrea Bozzo, Anton Borisov, Arnav-Panjla, Arnav_Panjla, Aryamaan Singh, Beetle brank, CaoZhen, Chase Naples, Daeuk Choi, Dream95, Evan, Femi, ForwardXu, Gabriel Baldez, George Stamatakis, Gezi-lzq, Giannis Polyzos, Giovanny Gutiérrez, GuoYu, Hemanth Savasere, Hongshun Wang, Howie Wang, JB Onofré, Jackeyzhe, Jared Yu, Jared Yu (余启正), Jark Wu, Junbo Wang, Junfan Zhang, Kaiqi Dong, Kaixuan Duan, Karan Pradhan, Keith Lee, Kelvin Wu, Leonard Xu, Liebing, Liurnly, Lorenzo Affetti, Madhur Chandran, Mahesh Sambaram, MehulBatra, Miao, Michael Koepf, Mitchell, Muhammet Orazov, NekoPunch, Nicoleta Lazar, Nikhil Negi, Pavlos-Petros Tournaris, Pei Yu, Pengcheng Huang, Prajwal Banakar, Prajwal banakar, Pranav Shukla, QuakeWang, Shawn Huang, SkylerLin, Thorne, Tom, Trevin Chow, Uğur Tafralı, Vaibhav, Vladyslav Banar, XiaoHongbo, Xiaobing Fang, Xuyang, Yang Guo, Yang Wang, Yang Zhang, Yann Byron, aicontentcreate2023-star, bryndenZh, charlesdong1991, dependabot[bot], duankaixuan, fhan, fluxo, hanliu0830, hemanthsavasere, ipolyzos, kaiwangleo, leon.jeon, litiliu, luoyuxia, naivedogger, nhuan.bc, nhuantho, pbanakar, seokjin0414, slfan1989, striver619, tison, vaibhavk1992, vamossagar12, vbhanuchander-lang, warmbupt, whenzhou.zc, xiaozhou, xx789, yunhong, yuxia, yuxia Luo, zhengyunhong.zyh, zhigang, 白鵺.</p>
 </blockquote>
 <p>Apache Fluss is under active development. Be sure to stay updated on the project, give it a try and if you like it, don’t forget to give it some ❤️ via ⭐ on <a href="https://github.com/apache/fluss" target="_blank" rel="noopener noreferrer" class="">GitHub</a>.</p>]]></content:encoded>
-            <category>releases</category>
+            <category>Announcement</category>
         </item>
         <item>
             <title><![CDATA[From Kafka to Fluss: How Rednote Migrated a Core Real-Time Indexing Pipeline]]></title>
@@ -244,16 +244,14 @@
 <p>Rednote's move from Kafka to Fluss was not a rejection of a mature technology, nor was it a component change made for a single headline benchmark. It addressed a connected set of scaling problems: wide tables being read in full by many services, historical replay consuming online resources, a disconnect between streaming and lake data, and a core pipeline that needed more throughput with lower cost and stronger isolation.</p>
 <p>Columnar stream storage, direct object-store reads, and lakehouse integration allowed those issues to be reorganized within one architecture. Just as importantly, Rednote used load testing, dual runs, phased migration, and platform engineering to show that Fluss could move beyond technical promise and carry the pressure of a core production indexing workload.</p>
 <p>For teams building real-time search, recommendation, advertising, or AI data infrastructure, the lesson is straightforward: when data volumes keep growing, scaling is not only about raising a throughput ceiling. It is also about changing how data is organized, how it is accessed, and how safely the platform can absorb the next order of magnitude.</p>]]></content:encoded>
-            <category>Apache Fluss</category>
-            <category>Real-time Analytics</category>
-            <category>Streaming Lakehouse</category>
+            <category>Case Study</category>
         </item>
         <item>
             <title><![CDATA[Apache Fluss Graduates to a Top Level Project]]></title>
             <link>https://fluss.apache.org/blog/apache-fluss-graduates-to-top-level-project/</link>
             <guid>https://fluss.apache.org/blog/apache-fluss-graduates-to-top-level-project/</guid>
             <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[As officially announced by the Apache Software Foundation, we are thrilled to share that Apache Fluss has graduated from the Apache Incubator to become a Top Level Project (TLP).]]></description>
+            <description><![CDATA[Apache Fluss graduates to a Top-Level Project, marking a milestone in community growth and the evolution of real-time Lakehouse infrastructure.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Apache Fluss Graduates to a Top Level Project" src="https://fluss.apache.org/assets/images/banner-fdd438e281137099b1f4fc9bf5e62543.png" width="3840" height="1440" class="img_ev3q"></p>
 <p>As <a href="https://news.apache.org/foundation/entry/the-apache-software-foundation-announces-new-top-level-projects-5" target="_blank" rel="noopener noreferrer" class="">officially announced by the Apache Software Foundation</a>, we are thrilled to share that <strong>Apache Fluss</strong> has graduated from the Apache Incubator to become a <strong>Top Level Project (TLP)</strong>.</p>
 <p>The project's <a href="https://lists.apache.org/thread/kltvfrklyoqm9dj6dgwdzf82sm097427" target="_blank" rel="noopener noreferrer" class="">graduation proposal</a> received unanimous approval from the Apache Incubator Project Management Committee (IPMC) and was subsequently approved by the ASF Board of Directors. This milestone not only marks a new stage in Fluss's journey, but also further advances the convergence of streaming storage, the real-time Lakehouse, and AI data infrastructure, opening a new chapter for real-time data infrastructure.</p>
@@ -299,16 +297,14 @@
 <li class="">Contribution guide: <a href="https://fluss.apache.org/community/how-to-contribute/overview/" target="_blank" rel="noopener noreferrer" class="">https://fluss.apache.org/community/how-to-contribute/overview/</a></li>
 </ul>
 <p>A new journey has begun. Let this open river of data keep flowing. 🌊</p>]]></content:encoded>
-            <category>Apache Fluss</category>
-            <category>lakestream</category>
-            <category>Real-time Analytics</category>
+            <category>Announcement</category>
         </item>
         <item>
             <title><![CDATA[Tiering Service Deep Dive Part 3: In Production]]></title>
             <link>https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part3/</link>
             <guid>https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part3/</guid>
             <pubDate>Wed, 10 Jun 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Part 1 and Part 2 built up everything you need to know about how tiering behaves which five numbers tell you whether tiering is healthy on a Tuesday afternoon, where each one comes from, and why two of them can only come from your Flink-side dashboards.]]></description>
+            <description><![CDATA[Run lake tiering in production: identify failure modes, avoid deployment pitfalls, and monitor the signals that reveal operational health.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-17c29e54cf3b1975445992b335cce286.png" width="1514" height="498" class="img_ev3q"></p>
 <p><a class="" href="https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part1/">Part 1</a> and <a class="" href="https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part2/">Part 2</a> built up everything you need to know about how tiering behaves: the mental model, the dials, the queue dynamics, the scale-out story. This part is about what to do with all of that. What breaks at runtime, and which of those failures self-heal versus need operator action. The design mistakes that look fine on day one but come back to bite you on day two. And the operator's daily view: which five numbers tell you whether tiering is healthy on a Tuesday afternoon, where each one comes from, and why two of them can only come from your Flink-side dashboards.</p>
 <p><strong>Tiering Service Deep Dive, 3-parts:</strong></p>
@@ -425,13 +421,14 @@ It's worth knowing which metrics matter.</p>
 <p><strong>Compaction on the lake side.</strong> Mentioned several times across this series as a downstream concern. The actual mechanics of Paimon's compaction (full vs minor, the role of the dedicated compaction job) and Iceberg's (rewrite manifests, expire snapshots) are their own topics. If you're going to operate tiering in production, you need to operate compaction alongside it; they're a pair.</p>
 <p><strong>Schema evolution.</strong> The tiering service handles schema changes by carrying the Fluss-side schema through to the lake on the next round. The lake-side catalog needs to accept the new schema; Paimon and Iceberg both support evolution, but with different rules. The interaction between Fluss schema changes (<code>ALTER TABLE</code> on the streaming side) and lake-side schema (the corresponding Paimon or Iceberg evolution) has its own corner cases and is worth a separate walkthrough.</p>
 <p>The tiering service is the kind of subsystem that's invisible when it works and confusing when it doesn't. The goal of this walkthrough was to give you the mental model that lets you reason about it without having to dig back through the source every time something looks off.</p>]]></content:encoded>
+            <category>Engineering</category>
         </item>
         <item>
             <title><![CDATA[Tiering Service Deep Dive Part 2: Tuning]]></title>
             <link>https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part2/</link>
             <guid>https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part2/</guid>
             <pubDate>Tue, 09 Jun 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Part 1 built the mental model. What tiering is, who does what, how the round runs end-to-end.]]></description>
+            <description><![CDATA[Tune lake tiering with a practical guide to parallelism, table types, freshness, multi-table scheduling, and scaling out tiering jobs.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-3e1640cd3dda615e4db8e4f78c20076e.png" width="1617" height="679" class="img_ev3q"></p>
 <p><a class="" href="https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part1/">Part 1</a> built the mental model. What tiering is, who does what, how the round runs end-to-end.</p>
 <p>This part adds the dials. Buckets and splits determine how a round parallelizes.
@@ -633,13 +630,14 @@ All registered jobs are undifferentiated workers reaching into the same queue, a
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="whats-next">What's Next?<a href="https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part2/#whats-next" class="hash-link" aria-label="Direct link to What's Next?" title="Direct link to What's Next?" translate="no">​</a></h2>
 <p>You now know all the dials, from per-table settings like bucket count and freshness, through the multi-table queue dynamics, to the deployment-shape choice between one tiering job and several.
 Everything you've read so far has been about how the system behaves. <a class="" href="https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part3/">Part 3</a> is about what you do with it.</p>]]></content:encoded>
+            <category>Engineering</category>
         </item>
         <item>
             <title><![CDATA[Tiering Service Deep Dive Part 1: The Mental Model]]></title>
             <link>https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part1/</link>
             <guid>https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part1/</guid>
             <pubDate>Thu, 04 Jun 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[If you're new to Fluss, the lake-tiering story is one of those topics where every explanation seems to assume you already know how it works. This three-part walkthrough aims to bring some clarity to the confusing parts of the system, and to help you understand how it works in practice.]]></description>
+            <description><![CDATA[Follow a lake-tiering round from its timer to the committed snapshot, and understand the processes and table states that make it work.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-98666bf14fe08041b4b05bd8eb130e11.png" width="1636" height="512" class="img_ev3q"></p>
 <p>If you're new to Fluss, the lake-tiering story is one of those topics where every explanation seems to assume you already know how it works.
 This three-part walkthrough aims to bring some clarity to the confusing parts of the system, and to help you understand how it works in practice.</p>
@@ -764,13 +762,14 @@ The coordinator validates the epoch (still 7, all good), records the completion 
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-up">Next Up<a href="https://fluss.apache.org/blog/fluss-tiering-service-deep-dive-part1/#next-up" class="hash-link" aria-label="Direct link to Next Up" title="Direct link to Next Up" translate="no">​</a></h2>
 <p>You've now got the mental model, the processes, the heartbeat conversation, the lifecycle, and what happens during one full round.
 The next part takes that round and shows what changes when you start tuning the dials, and then what changes again when you stop thinking about one table at a time.</p>]]></content:encoded>
+            <category>Engineering</category>
         </item>
         <item>
             <title><![CDATA[The Storage Hierarchy: Hot, Remote, and Lake]]></title>
             <link>https://fluss.apache.org/blog/fluss-storage-hierarchy/</link>
             <guid>https://fluss.apache.org/blog/fluss-storage-hierarchy/</guid>
             <pubDate>Tue, 02 Jun 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Apache Fluss stores data in three places: local disk on the tablet server, remote object storage like S3, and the lakehouse. Which place holds which data at any given moment, and what is responsible for moving it between them, is the foundation everything else rests on. Your capacity plan depends on it. Your latency targets depend on it. Your disaster-recovery story depends on it. So does your ability to predict, in advance, that a particular configuration change is going to fill up local disk a week later.]]></description>
+            <description><![CDATA[Understand the Fluss storage hierarchy: what lives on local disk, in remote object storage, and in the Lakehouse, and how recovery works.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-a5e97edbce82f646cbf1f9d118fd18d0.png" width="1673" height="770" class="img_ev3q"></p>
 <p><strong>Apache Fluss stores data in three places:</strong> local disk on the tablet server, remote object storage like S3, and the lakehouse. Which place holds which data at any given moment, and what is responsible for moving it between them, is the foundation everything else rests on. Your capacity plan depends on it. Your latency targets depend on it. Your disaster-recovery story depends on it. So does your ability to predict, in advance, that a particular configuration change is going to fill up local disk a week later.</p>
 <p>This post walks through that layering. We'll cover what each tier holds, the two background tasks that move data between them, what changes for primary-key tables, and how recovery actually works when a tablet server loses its disk.</p>
@@ -865,13 +864,14 @@ The next part takes that round and shows what changes when you start tuning the 
 <p>Each shortcut is wrong in a way that only becomes visible after you've configured something based on it.</p>
 <p>The model here is: three tiers with three different jobs, two background tasks that should be reasoned about independently, a small set of defaults deliberately tuned for production.</p>
 <p>Disabling those defaults is almost always the wrong move. Tuning them to your workload is almost always the right one. 🌊</p>]]></content:encoded>
+            <category>Engineering</category>
         </item>
         <item>
             <title><![CDATA[How Apache Fluss Achieves True Pruning in Streaming Storage]]></title>
             <link>https://fluss.apache.org/blog/column-pruning-streaming-storage/</link>
             <guid>https://fluss.apache.org/blog/column-pruning-streaming-storage/</guid>
             <pubDate>Wed, 22 Apr 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Apache Kafka's "column pruning" is actually pseudo-pruning. All fields still cross the network, and clients discard unwanted ones after the fact.  Apache Fluss redesigns the storage format, server-side read path, and write-side batching strategy from the ground up with Arrow IPC columnar storage, zero-copy server-side pruning, and client-side pre-shuffle batching.  The result: pruning 90% of columns yields a 10x read throughput improvement, with performance scaling linearly with the pruning ratio.]]></description>
+            <description><![CDATA[How Arrow IPC storage, server-side pruning, and client-side batching let Fluss read only the columns that streaming applications need.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-e29da45a50e48f984bd05e9ad72f4a67.png" width="1099" height="623" class="img_ev3q"></p>
 <p><strong>TL;DR:</strong></p>
 <blockquote>
@@ -982,19 +982,14 @@ The result: pruning 90% of columns yields a 10x read throughput improvement, wit
 </ul>
 <hr>
 <p>If you found this interesting, consider exploring the <a href="https://fluss.apache.org/" target="_blank" rel="noopener noreferrer" class="">Apache Fluss documentation</a> or giving the project a star on <a href="https://github.com/apache/fluss" target="_blank" rel="noopener noreferrer" class="">GitHub</a>. Community contributions, feedback, and bug reports are always welcome.</p>]]></content:encoded>
-            <category>fluss</category>
-            <category>column-pruning</category>
-            <category>Arrow</category>
-            <category>streaming</category>
-            <category>kafka</category>
-            <category>performance</category>
+            <category>Engineering</category>
         </item>
         <item>
             <title><![CDATA[Taobao Instant Commerce: Real-Time Decisions at Scale with Apache Fluss]]></title>
             <link>https://fluss.apache.org/blog/taobao-instant-commerce-real-time-decision/</link>
             <guid>https://fluss.apache.org/blog/taobao-instant-commerce-real-time-decision/</guid>
             <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Every autumn in China, social media floods with posts about "The First Cup of Milk Tea in Autumn." With a tap on their phone, consumers expect their order delivered within 30 minutes. That effortless experience is no accident: it is the result of Taobao Instant Commerce making thousands of data-driven decisions every second.]]></description>
+            <description><![CDATA[How Taobao Instant Commerce uses Fluss for real-time decisions, from Delta Join and partial updates to lakehouse integration and UV statistics.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" src="https://fluss.apache.org/assets/images/banner-8d98ad1a7ee1c477949be609a3f8ae97.jpg" width="1376" height="768" class="img_ev3q"></p>
 <p>Every autumn in China, social media floods with posts about "The First Cup of Milk Tea in Autumn." With a tap on their phone, consumers expect their order delivered within 30 minutes. That effortless experience is no accident: it is the result of Taobao Instant Commerce making thousands of data-driven decisions every second.</p>
 <p>Taobao Instant Commerce has scaled from a single-category food delivery service into a high-frequency platform spanning fresh produce, consumer electronics (3C), and beauty products. It operates under two very different modes: steady high-frequency daily transactions, and explosive traffic surges during promotional events where order volumes can multiply within minutes. Both demand the same thing: real-time responsiveness across hundreds of millions of SKUs.</p>
@@ -1260,13 +1255,14 @@ The pre-iteration architecture suffered from the following critical bottlenecks:
 <p>In the future, the overall data architecture will gradually unify computational logic through Flink SQL, evolve into a unified lake-stream storage foundation based on Fluss and Paimon, and build a unified query acceleration layer leveraging StarRocks.
 The ultimate goal is to achieve <strong>one codebase, one dataset, and one metric definition</strong>, serving both real-time applications and offline analytics simultaneously, thereby thoroughly resolving data inconsistencies and high maintenance costs caused by the separation of stream and batch processing.</p>
 <p><img decoding="async" loading="lazy" src="https://fluss.apache.org/assets/images/future2-6ade7f5fde156c28259354d068c2422c.png" width="840" height="1041" class="img_ev3q"></p>]]></content:encoded>
+            <category>Case Study</category>
         </item>
         <item>
             <title><![CDATA[Real-Time Multi-Dimensional Unique Visitor Deduplication in Practice]]></title>
             <link>https://fluss.apache.org/blog/roaringbitmap-uv-deduplication/</link>
             <guid>https://fluss.apache.org/blog/roaringbitmap-uv-deduplication/</guid>
             <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[UV (Unique Visitors) measures the count of distinct users who visited a page or triggered an event within a given time window — unlike PV (Page Views), which counts every request regardless of who made it. For any product or platform, accurate real-time UV statistics across dimensions like channel, city, date, and hour are a core analytical requirement. The full combination of four dimensions means 16 grouping methods; when the dimension count increases to seven, the number of possible groupings reaches 128.]]></description>
+            <description><![CDATA[Use Fluss aggregation tables and RoaringBitmap to count unique visitors across multiple dimensions with accurate, real-time deduplication.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" src="https://fluss.apache.org/assets/images/image-5c856ebe23a4c28f2e6ef5f74819cd2f.png" width="1792" height="1024" class="img_ev3q"></p>
 <p><strong>UV (Unique Visitors)</strong> measures the count of distinct users who visited a page or triggered an event within a given time window — unlike <strong>PV (Page Views)</strong>, which counts every request regardless of who made it. For any product or platform, accurate real-time UV statistics across dimensions like channel, city, date, and hour are a core analytical requirement.
 The full combination of four dimensions means <strong>16 grouping methods</strong>; when the dimension count increases to seven, the number of possible groupings reaches <strong>128</strong>.</p>
@@ -1403,13 +1399,14 @@ The full combination of four dimensions means <strong>16 grouping methods</stron
 <li class="">GitHub: <a href="https://github.com/apache/fluss" target="_blank" rel="noopener noreferrer" class="">github.com/apache/fluss</a></li>
 <li class="">Documentation: <a href="https://fluss.apache.org/" target="_blank" rel="noopener noreferrer" class="">fluss.apache.org</a></li>
 </ul>]]></content:encoded>
+            <category>Guides</category>
         </item>
         <item>
             <title><![CDATA[Why Apache Fluss Chose Rust for Its Multi-Language SDK]]></title>
             <link>https://fluss.apache.org/blog/why-fluss-chose-rust-for-multi-language-sdk/</link>
             <guid>https://fluss.apache.org/blog/why-fluss-chose-rust-for-multi-language-sdk/</guid>
             <pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[If you maintain a data system that only speaks Java, you will eventually hear from someone who doesn't. A Python team building a feature store. A C++ service that needs sub-millisecond writes. An AI agent that wants to call your system through a tool binding. They all need the same capabilities (writes, reads, lookups) and none of them want to spin up a JVM to get them.]]></description>
+            <description><![CDATA[Why Fluss chose a shared Rust core for its multi-language SDK, and how thin bindings bring consistent capabilities to Python and C++.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-ff73743992ef46d54308fdd53126d3db.jpg" width="1828" height="1850" class="img_ev3q"></p>
 <p>If you maintain a data system that only speaks Java, you will eventually hear from someone who doesn't. A Python team building a feature store. A C++ service that needs sub-millisecond writes. An AI agent that wants to call your system through a tool binding. They all need the same capabilities (writes, reads, lookups) and none of them want to spin up a JVM to get them.</p>
 <p>Apache Fluss, streaming storage for real-time analytics and AI, hit this exact inflection point. The <a class="" href="https://fluss.apache.org/blog/fluss-java-client/">Java client</a> works well for Flink-based compute, where the JVM is already the world you live in. But outside that world, asking consumers to run a JVM sidecar just to write a record or look up a key creates friction that compounds across every service, every pipeline, every agent in the stack.</p>
@@ -1485,18 +1482,14 @@ On the project side, the community is working toward moving fluss-rust into the 
 <p>If any of this is interesting to you, we welcome contributions, bug reports, and feedback.</p>
 <hr>
 <p>And before you go 😊 don't forget to give some ❤️ via ⭐ on GitHub: <a href="https://github.com/apache/fluss" target="_blank" rel="noopener noreferrer" class="">Apache Fluss</a> and <a href="https://github.com/apache/fluss-rust" target="_blank" rel="noopener noreferrer" class="">Fluss Rust SDK</a></p>]]></content:encoded>
-            <category>Fluss Rust</category>
-            <category>fluss-rs</category>
-            <category>PyFluss</category>
-            <category>Fluss C++</category>
-            <category>Arrow</category>
+            <category>Engineering</category>
         </item>
         <item>
             <title><![CDATA[Announcing Apache Fluss (Incubating) Rust, Python, and C++ Client 0.1.0 Release]]></title>
             <link>https://fluss.apache.org/blog/fluss_rust_client_release/</link>
             <guid>https://fluss.apache.org/blog/fluss_rust_client_release/</guid>
             <pubDate>Mon, 06 Apr 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[We are excited to announce the release of fluss-rust clients 0.1.0, the first official release of the Rust, Python, and C++ clients for Apache Fluss. This 0.1.0 release represents the culmination of 210+ commits from the community, delivering a feature-rich multi-language client from the ground up.]]></description>
+            <description><![CDATA[Introducing the first Fluss Rust, Python, and C++ clients, built on a shared Rust core for native performance and consistent capabilities.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-3a23e44c21af69fe1612d19a3d959ef4.png" width="1409" height="479" class="img_ev3q"></p>
 <p>We are excited to announce the release of <a href="https://github.com/apache/fluss-rust" target="_blank" rel="noopener noreferrer" class="">fluss-rust clients</a> 0.1.0, the first official release of the <a href="https://clients.fluss.apache.org/user-guide/rust/installation" target="_blank" rel="noopener noreferrer" class="">Rust</a>, <a href="https://clients.fluss.apache.org/user-guide/python/installation" target="_blank" rel="noopener noreferrer" class="">Python</a>, and <a href="https://clients.fluss.apache.org/user-guide/cpp/installation" target="_blank" rel="noopener noreferrer" class="">C++</a> clients for Apache Fluss. This 0.1.0 release represents the culmination of 210+ commits from the community, delivering a feature-rich multi-language client from the ground up.</p>
 <p>Under the hood, all three clients share a single Rust core that handles protocol negotiation, batching, retries, and <a href="https://arrow.apache.org/" target="_blank" rel="noopener noreferrer" class="">Apache Arrow</a>-based data exchange, with thin language-specific bindings on top. This was a deliberate community decision to deliver native performance and feature parity across every language from day one.</p>
@@ -1545,19 +1538,14 @@ See the <a href="https://clients.fluss.apache.org/user-guide/rust/example/partit
 <li class="">Mailing List: <a href="https://fluss.apache.org/community/welcome/#mailing-lists" target="_blank" rel="noopener noreferrer" class="">https://fluss.apache.org/community/welcome/#mailing-lists</a></li>
 <li class="">Slack: <a href="https://apache-fluss.slack.com/" target="_blank" rel="noopener noreferrer" class="">https://apache-fluss.slack.com</a></li>
 </ul>]]></content:encoded>
-            <category>releases</category>
-            <category>Fluss Rust</category>
-            <category>fluss-rs</category>
-            <category>PyFluss</category>
-            <category>Fluss C++</category>
-            <category>Arrow</category>
+            <category>Announcement</category>
         </item>
         <item>
             <title><![CDATA[What does Apache Fluss mean in the context of AI?]]></title>
             <link>https://fluss.apache.org/blog/fluss-for-ai/</link>
             <guid>https://fluss.apache.org/blog/fluss-for-ai/</guid>
             <pubDate>Thu, 05 Mar 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Apache Fluss (Incubating) started as streaming storage for real-time analytics, built to work closely with stream processors like Apache Flink.  Its focus has always been on freshness, efficient analytical access, and continuous data, making fast-changing streams directly usable without forcing them  through batch-oriented systems or log-only pipelines.]]></description>
+            <description><![CDATA[Explore how Fluss provides fresh features, user profiles, and continuously updated context for real-time intelligent systems.]]></description>
             <content:encoded><![CDATA[<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-data-foundation-for-real-time-intelligent-systems">The Data Foundation for Real-Time Intelligent Systems<a href="https://fluss.apache.org/blog/fluss-for-ai/#the-data-foundation-for-real-time-intelligent-systems" class="hash-link" aria-label="Direct link to The Data Foundation for Real-Time Intelligent Systems" title="Direct link to The Data Foundation for Real-Time Intelligent Systems" translate="no">​</a></h3>
 <p><img decoding="async" loading="lazy" src="https://fluss.apache.org/assets/images/banner-a3fa3c1c723340acae7046f86be1de82.png" width="1024" height="1024" class="img_ev3q">
 <strong>Apache Fluss (Incubating) started as streaming storage for real-time analytics</strong>, built to work closely with stream processors like Apache Flink.
@@ -1675,13 +1663,14 @@ That framing works well for many ML pipelines, <strong>but it only captures part
 <p>At the same time, the direction of the broader industry has become increasingly clear. Intelligent systems depend on shared, real-time context that spans features, state, history, and embeddings. Feature-store-like capabilities are no longer a niche requirement—they are becoming a central building block for systems that operate continuously and adapt over time.</p>
 <p>These threads converge on a direction we are committing to: Apache Fluss as a streaming-first foundation that supports real-time analytics, feature and context access, multi-modal data, decision tracking, and explainability. All of this is built on stateless, resilient streaming applications that can evolve without destabilizing the system.</p>
 <p>That is what “AI” means in the context of Apache Fluss. Not a model platform, and not a framework, but the data and state foundation that real-time intelligent systems depend on to operate reliably, transparently, and at scale.</p>]]></content:encoded>
+            <category>Engineering</category>
         </item>
         <item>
             <title><![CDATA[Apache Fluss (Incubating) 0.9 Release Announcement]]></title>
             <link>https://fluss.apache.org/blog/releases/0.9/</link>
             <guid>https://fluss.apache.org/blog/releases/0.9/</guid>
             <pubDate>Mon, 02 Mar 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[🌊 We are excited to announce the official release of Apache Fluss (Incubating) 0.9!]]></description>
+            <description><![CDATA[Fluss 0.9 brings richer data models, zero-copy schema evolution, storage-level processing, and stronger operational capabilities.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-b4e3815d84fc459897c2d04c7e90ec37.png" width="1536" height="1024" class="img_ev3q"></p>
 <p>🌊 We are excited to announce the official release of <strong>Apache Fluss (Incubating) 0.9</strong>!</p>
 <p>This release marks a major milestone for the project. Fluss 0.9 significantly expands Fluss’s capabilities as a <strong>streaming storage system for real-time analytics, AI, and state-heavy streaming workloads</strong>, with a strong focus on:</p>
@@ -1898,14 +1887,14 @@ Following the rebalancing operation, <strong>all metrics are evenly distributed<
 </blockquote>
 <p>Apache Fluss is under active development. Be sure to stay updated on the project, give it a try and if you like it,
 don’t forget to give it some ❤️ via ⭐ on <a href="https://github.com/apache/fluss" target="_blank" rel="noopener noreferrer" class="">GitHub</a>.</p>]]></content:encoded>
-            <category>releases</category>
+            <category>Announcement</category>
         </item>
         <item>
             <title><![CDATA[A fraud detection pipeline with Streamhouse]]></title>
             <link>https://fluss.apache.org/blog/fluss_fraud_detection/</link>
             <guid>https://fluss.apache.org/blog/fluss_fraud_detection/</guid>
             <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Fraud detection is a mission-critical capability for businesses operating in financial services, e-commerce, and digital payments. Detecting suspicious transactions in real time can prevent significant losses and protect customers. This blog demonstrates how to build a streamhouse that processes bank transactions in real time, detects fraud, and serves data seamlessly across hot (sub‑second latency) and cold (minutes‑latency) layers. Real-time detection and historical analytics are combined, enabling businesses to act quickly while maintaining a complete audit trail.]]></description>
+            <description><![CDATA[Build a real-time fraud detection pipeline with Fluss, Flink, and Iceberg, combining fast transaction processing with historical analytics.]]></description>
             <content:encoded><![CDATA[<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="apache-fluss-apache-flink-and-iceberg">Apache Fluss, Apache Flink and Iceberg.<a href="https://fluss.apache.org/blog/fluss_fraud_detection/#apache-fluss-apache-flink-and-iceberg" class="hash-link" aria-label="Direct link to Apache Fluss, Apache Flink and Iceberg." title="Direct link to Apache Fluss, Apache Flink and Iceberg." translate="no">​</a></h2>
 <p>Fraud detection is a mission-critical capability for businesses operating in financial services, e-commerce, and digital payments. Detecting suspicious transactions in real time can prevent significant losses and protect customers. This blog demonstrates how to build a streamhouse that processes bank transactions in real time, detects fraud, and serves data seamlessly across hot (sub‑second latency) and cold (minutes‑latency) layers.
 Real-time detection and historical analytics are combined, enabling businesses to act quickly while maintaining a complete audit trail.</p>
@@ -2127,13 +2116,14 @@ To learn more details about the tiering service works you can read the official 
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="union-reads">Union Reads<a href="https://fluss.apache.org/blog/fluss_fraud_detection/#union-reads" class="hash-link" aria-label="Direct link to Union Reads" title="Direct link to Union Reads" translate="no">​</a></h3>
 <p>Fluss enables combined reads of real-time and historical data (Fluss tables + Iceberg), delivering true real-time analytics without duplication.
 With Flink you can query both the Fraud table in Fluss and the corresponding Iceberg Fraud table at the same time, obtaining a unified view of the records, including the latest ones that are only present in Fluss because they have not been synced yet. Moving forward, the community plans to extend this capability to support additional query engines, such as Apache Spark and StarRocks, further broadening its ecosystem compatibility and adoption.</p>]]></content:encoded>
+            <category>Guides</category>
         </item>
         <item>
             <title><![CDATA[Fluss × Iceberg (Part 1): Why Your Lakehouse Isn’t a Streamhouse Yet]]></title>
             <link>https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/</link>
             <guid>https://fluss.apache.org/blog/2025/12/02/fluss-x-iceberg-why-your-lakehouse-is-not-streamhouse-yet/</guid>
             <pubDate>Thu, 11 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[As software and data engineers, we've witnessed Apache Iceberg revolutionize analytical data lakes with ACID transactions, time travel, and schema evolution. Yet when we try to push Iceberg into real-time workloads such as sub-second streaming queries, high-frequency CDC updates, and primary key semantics, we hit fundamental architectural walls. This blog explores how Fluss × Iceberg integration works and delivers a true real-time lakehouse.]]></description>
+            <description><![CDATA[Why a Lakehouse needs a streaming layer, and how Fluss and Iceberg combine hot data with historical storage in a Streamhouse architecture.]]></description>
             <content:encoded><![CDATA[<p>As software and data engineers, we've witnessed Apache Iceberg revolutionize analytical data lakes with ACID transactions, time travel, and schema evolution. Yet when we try to push Iceberg into real-time workloads such as sub-second streaming queries, high-frequency CDC updates, and primary key semantics, we hit fundamental architectural walls. This blog explores how Fluss × Iceberg integration works and delivers a true real-time lakehouse.</p>
 <p>Apache Fluss represents a new architectural approach: the <strong>Streamhouse</strong> for real-time lakehouses. Instead of stitching together separate streaming and batch systems, the Streamhouse unifies them under a single architecture. In this model, Apache Iceberg continues to serve exactly the role it was designed for: a highly efficient, scalable cold storage layer for analytics, while Fluss fills the missing piece: a hot streaming storage layer with sub-second latency, columnar storage, and built-in primary-key semantics.</p>
 <p>After working on Fluss–Iceberg lakehouse integration and deploying this architecture at a massive scale, including Alibaba's 3 PB production deployment processing 40 GB/s, we're ready to share the architectural lessons learned. Specifically, why existing systems fall short, how Fluss and Iceberg naturally complement each other, and what this means for finally building true real-time lakehouses.</p>
@@ -2372,17 +2362,14 @@ Think of your data as having two thermal zones:</p>
 <p>We've covered <strong>what</strong> Fluss × Iceberg is and <strong>how</strong> it works the architecture eliminates dual-write complexity, delivers sub-second freshness, and unifies streaming and batch under a single table abstraction.</p>
 <p>But here's the elephant in the room: <strong>Apache Kafka dominates event streaming. Tableflow handles Kafka-to-Iceberg materialization. Why introduce another system?</strong></p>
 <p><strong>Stay tuned for Part 2 as it tackles this question head-on</strong> by comparing Fluss with existing technologies.</p>]]></content:encoded>
-            <category>Streaming Lakehouse</category>
-            <category>Apache Iceberg</category>
-            <category>Real-time Analytics</category>
-            <category>Apache Fluss</category>
+            <category>Engineering</category>
         </item>
         <item>
             <title><![CDATA[Announcing Apache Fluss (Incubating) 0.8: Streaming Lakehouse for Data + AI]]></title>
             <link>https://fluss.apache.org/blog/releases/0.8/</link>
             <guid>https://fluss.apache.org/blog/releases/0.8/</guid>
             <pubDate>Sun, 09 Nov 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[🌊 We are excited to announce the official release of Apache Fluss (Incubating) 0.8!]]></description>
+            <description><![CDATA[Fluss 0.8 expands the Streaming Lakehouse with Iceberg and Lance integration, Delta Joins, and improvements for production deployments.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Banner" src="https://fluss.apache.org/assets/images/banner-b59a681a2fb3b0412e1719abcaca7522.jpg" width="2562" height="1118" class="img_ev3q"></p>
 <p>🌊 We are excited to announce the official release of <strong>Apache Fluss (Incubating) 0.8</strong>!</p>
 <p>This is our first release under the incubator of the Apache Software Foundation, marking a significant milestone in our journey to provide a robust streaming storage platform for real-time analytics.</p>
@@ -2508,14 +2495,14 @@ However, the community is actively stabilizing the clients and plans to release 
 </blockquote>
 <p>Apache Fluss is under active development. Be sure to stay updated on the project, give it a try and if you like it,
 don’t forget to give it some ❤️ via ⭐ on <a href="https://github.com/apache/fluss" target="_blank" rel="noopener noreferrer" class="">GitHub</a>.</p>]]></content:encoded>
-            <category>releases</category>
+            <category>Announcement</category>
         </item>
         <item>
             <title><![CDATA[Primary Key Tables: Unifying Log and Cache for 🚀 Streaming]]></title>
             <link>https://fluss.apache.org/blog/pk-key-tables-log-cache-streaming/</link>
             <guid>https://fluss.apache.org/blog/pk-key-tables-log-cache-streaming/</guid>
             <pubDate>Mon, 01 Sep 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[Modern data platforms have traditionally relied on two foundational components: a log for durable, ordered event storage and a cache for low-latency access.  Common architectures include combinations such as Kafka with Redis, or Debezium feeding changes into a key-value store.  While these patterns underpin a significant portion of production infrastructure, they also introduce complexity, fragility, and operational overhead.]]></description>
+            <description><![CDATA[Inside Fluss primary-key tables: how one storage layer combines a durable log, current-state lookups, and continuous change streams.]]></description>
             <content:encoded><![CDATA[<p>Modern data platforms have traditionally relied on two foundational components: a <strong>log</strong> for durable, ordered event storage and a <strong>cache</strong> for low-latency access.
 Common architectures include combinations such as Kafka with Redis, or Debezium feeding changes into a key-value store.
 While these patterns underpin a significant portion of production infrastructure, they also introduce <strong>complexity</strong>, <strong>fragility</strong>, and <strong>operational overhead</strong>.</p>
@@ -2613,13 +2600,14 @@ and then ship the results into a <strong>separate serving</strong> system purely
 <p>The complexity of coordinating a log and a cache disappears. With Fluss, you don’t have to choose between speed and safety; you get both.</p>
 <p>In short, <strong>Fluss turns the log into your cache, and the cache into your log</strong>, which can be a major simplification for anyone building real-time systems.</p>
 <p>And before you go 😊 don’t forget to give Fluss 🌊 some ❤️ via ⭐ on <a href="https://github.com/apache/fluss" target="_blank" rel="noopener noreferrer" class="">GitHub</a></p>]]></content:encoded>
+            <category>Engineering</category>
         </item>
         <item>
             <title><![CDATA[How Taobao uses Apache Fluss (Incubating) for Real-Time Processing in Search and RecSys]]></title>
             <link>https://fluss.apache.org/blog/taobao-practice/</link>
             <guid>https://fluss.apache.org/blog/taobao-practice/</guid>
             <pubDate>Thu, 07 Aug 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[The Data Development Team of Taobao has built a new generation of real-time data warehouse based on Apache Fluss. Fluss solves the problems of redundant data transfer, difficulties in data profiling, and challenges in large scale stateful workload operations and maintenance. By combining columnar storage with real-time update capabilities, Fluss supports column pruning, key-value point lookups, Delta Join, and seamless lake–stream integration, thereby cutting I/O and compute overhead while enhancing job stability and profiling efficiency.]]></description>
+            <description><![CDATA[How Taobao uses Fluss for search and recommendation workloads, reducing resource usage and streaming state in its real-time data warehouse.]]></description>
             <content:encoded><![CDATA[<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="streaming-storage-more-suitable-for-real-time-olap">Streaming Storage More Suitable for Real-Time OLAP<a href="https://fluss.apache.org/blog/taobao-practice/#streaming-storage-more-suitable-for-real-time-olap" class="hash-link" aria-label="Direct link to Streaming Storage More Suitable for Real-Time OLAP" title="Direct link to Streaming Storage More Suitable for Real-Time OLAP" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="introduction">Introduction<a href="https://fluss.apache.org/blog/taobao-practice/#introduction" class="hash-link" aria-label="Direct link to Introduction" title="Direct link to Introduction" translate="no">​</a></h3>
 <p>The Data Development Team of Taobao has built a new <strong>generation of real-time data warehouse</strong> based on Apache Fluss.
@@ -2864,13 +2852,14 @@ To ensure accurate computation of this metric, the processing engine must perfor
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="references">References<a href="https://fluss.apache.org/blog/taobao-practice/#references" class="hash-link" aria-label="Direct link to References" title="Direct link to References" translate="no">​</a></h2>
 <p>[1] <a href="https://fluss.apache.org/" target="_blank" rel="noopener noreferrer" class="">Fluss Official Documentation</a></p>
 <p>[2] <a href="https://mp.weixin.qq.com/s?__biz=MzU3Mzg4OTMyNQ==&amp;mid=2247512207&amp;idx=1&amp;sn=e25320a020d7b20e25be8fd614e9f46b&amp;chksm=fd383ecdca4fb7dbf9a37e9c3840699ba8b1b2c57868db028f995c3bc7bcf6a0340e396d87c4&amp;scene=178&amp;cur_album_id=3764887437743669257&amp;search_click_id=#rd" target="_blank" rel="noopener noreferrer" class="">Fluss: Next-Generation Stream Storage Designed for Real-Time Analysis</a></p>]]></content:encoded>
+            <category>Case Study</category>
         </item>
         <item>
             <title><![CDATA[From Stream to Lake: Hands-On with Fluss Tiering into Paimon on Minio]]></title>
             <link>https://fluss.apache.org/blog/hands-on-fluss-lakehouse/</link>
             <guid>https://fluss.apache.org/blog/hands-on-fluss-lakehouse/</guid>
             <pubDate>Wed, 23 Jul 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[Fluss stores historical data in a lakehouse storage layer while keeping real-time data in the Fluss server. Its built-in tiering service continuously moves fresh events into the lakehouse, allowing various query engines to analyze both hot and cold data. The real magic happens with Fluss's union-read capability, which lets Flink jobs seamlessly query both the Fluss cluster and the lakehouse for truly integrated real-time processing.]]></description>
+            <description><![CDATA[Set up Fluss tiering into Paimon on MinIO and try unified queries across real-time streams and historical lakehouse data.]]></description>
             <content:encoded><![CDATA[<p>Fluss stores historical data in a lakehouse storage layer while keeping real-time data in the Fluss server. Its built-in tiering service continuously moves fresh events into the lakehouse, allowing various query engines to analyze both hot and cold data. The real magic happens with Fluss's union-read capability, which lets Flink jobs seamlessly query both the Fluss cluster and the lakehouse for truly integrated real-time processing.</p>
 <p><img decoding="async" loading="lazy" src="https://fluss.apache.org/assets/images/streamhouse-7b7f1260fc996ca89b50dbb9454584ab.png" width="3057" height="1237" class="img_ev3q"></p>
 <p>In this hands-on tutorial, we'll walk you through setting up a local Fluss lakehouse environment, running some practical data operations, and getting first-hand experience with the complete Fluss lakehouse architecture. By the end, you'll have a working environment for experimenting with Fluss's powerful data processing capabilities.</p>
@@ -3018,6 +3007,7 @@ To ensure accurate computation of this metric, the processing engine must perfor
 </ol>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="summary">Summary<a href="https://fluss.apache.org/blog/hands-on-fluss-lakehouse/#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary" translate="no">​</a></h2>
 <p>In this guide, we've explored the Fluss lakehouse architecture and set up a complete local environment with Fluss, Flink, Paimon, and Minio. We've walked through practical examples of data processing that showcase how Fluss seamlessly integrates real-time and historical data. With this setup, you now have a solid foundation for experimenting with Fluss's powerful lakehouse capabilities on your own machine.</p>]]></content:encoded>
+            <category>Guides</category>
         </item>
     </channel>
 </rss>

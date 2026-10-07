@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.1448fd84.css">
-<script src="/assets/js/runtime~main.b7faf20b.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.106b0d48.js" defer="defer"></script>
 <script src="/assets/js/main.d3e9f174.js" defer="defer"></script>
 </head>
 <body>
@@ -57,7 +57,10 @@ can use local file system as remote storage for testing purposes with the follow
 <p><strong><a class="" href="/docs/maintenance/tiered-storage/filesystems/s3/">AWS S3</a></strong> is supported by <code>fluss-fs-s3</code> and registered under the <code>s3://</code> URI scheme. S3 filesystem is included in default Fluss binary distribution, so you can use it directly without manual installation.</p>
 </li>
 <li class="">
-<p><strong><a class="" href="/docs/maintenance/tiered-storage/filesystems/azure/">Azure Blob Storage</a></strong> is supported by <code>fluss-fs-azure</code> and registered under the <code>abfs://</code>,<code>abfss://</code>,<code>wasb://</code>,<code>wasbs://</code>, URI schemes. Please make sure to <a class="" href="/docs/maintenance/tiered-storage/filesystems/azure/#install-azure-fs-plugin-manually">manually install the OBS plugin</a>.</p>
+<p><strong><a class="" href="/docs/maintenance/tiered-storage/filesystems/gs/">Google Cloud Storage</a></strong> is supported by <code>fluss-fs-gs</code> and registered under the <code>gs://</code> URI scheme. Please make sure to <a class="" href="/docs/maintenance/tiered-storage/filesystems/gs/#install-gs-fs-plugin-manually">manually install the Google Cloud Storage plugin</a>.</p>
+</li>
+<li class="">
+<p><strong><a class="" href="/docs/maintenance/tiered-storage/filesystems/azure/">Azure Blob Storage</a></strong> is supported by <code>fluss-fs-azure</code> and registered under the <code>abfs://</code>,<code>abfss://</code>,<code>wasb://</code>,<code>wasbs://</code>, URI schemes. Please make sure to <a class="" href="/docs/maintenance/tiered-storage/filesystems/azure/#install-azure-fs-plugin-manually">manually install the Azure Blob Storage plugin</a>.</p>
 </li>
 <li class="">
 <p><strong><a class="" href="/docs/maintenance/tiered-storage/filesystems/obs/">HuaweiCloud OBS</a></strong> is supported by <code>fluss-fs-obs</code> and registered under the <code>obs://</code> URI scheme. Please make sure to <a class="" href="/docs/maintenance/tiered-storage/filesystems/obs/#install-obs-plugin-manually">manually install the OBS plugin</a>.</p>

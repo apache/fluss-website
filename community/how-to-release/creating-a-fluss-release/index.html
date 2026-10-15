@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.1448fd84.css">
-<script src="/assets/js/runtime~main.6a3eab06.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.f255b19a.js" defer="defer"></script>
 <script src="/assets/js/main.9bb0c1f4.js" defer="defer"></script>
 </head>
 <body>
@@ -82,6 +82,7 @@
 <p>This ensures the milestone accurately reflects all the issues delivered in the release.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-verify-java-and-maven-version">4. Verify Java and Maven Version<a href="#4-verify-java-and-maven-version" class="hash-link" aria-label="Direct link to 4. Verify Java and Maven Version" title="Direct link to 4. Verify Java and Maven Version" translate="no">​</a></h3>
 <p>Run <code>mvn -v</code> and <code>java -version</code> on your local machine. All of the following steps require to use <strong>Maven 3.8.6</strong> and <strong>Java 11</strong>. Modify your <code>PATH</code> environment variable accordingly if needed.</p>
+<p>A <strong>JDK 17</strong> installation is also required: the Iceberg 1.12 lake plugin is compiled and tested with it as a Maven toolchain, while Maven keeps running on Java 11 (see <a class="" href="/community/dev/building/">Building Fluss</a>).</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-clone-fluss-into-a-fresh-workspace">5. Clone Fluss into a fresh workspace<a href="#5-clone-fluss-into-a-fresh-workspace" class="hash-link" aria-label="Direct link to 5. Clone Fluss into a fresh workspace" title="Direct link to 5. Clone Fluss into a fresh workspace" translate="no">​</a></h3>
 <p>Clone the Fluss repository into a fresh workspace. This is important to ensure that you are working with a clean state.</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#0A0F1C;--prism-background-color:#F8FAFC"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#0A0F1C;background-color:#F8FAFC"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#0A0F1C"><span class="token function" style="color:#7C3AED">git</span><span class="token plain"> clone git@github.com:apache/fluss.git</span><br></div></code></pre></div></div>

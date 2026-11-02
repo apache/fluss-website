@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.1448fd84.css">
-<script src="/assets/js/runtime~main.0361de2f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.0c0f3ea8.js" defer="defer"></script>
 <script src="/assets/js/main.07b277df.js" defer="defer"></script>
 </head>
 <body>
@@ -53,7 +53,7 @@
 </li>
 <li class=""><strong>Primary key (PK) table</strong> — a table with a primary key. Supports upsert, delete, and point lookups.</li>
 <li class=""><strong>Bucket</strong> — the unit of parallelism within a table (similar to Kafka partitions). Each table has one or more buckets. Readers subscribe to individual buckets.</li>
-<li class=""><strong>Partition</strong> — a way to organize data by column values (e.g. by date or region). Each partition contains its own set of buckets. Partitions must be created explicitly before writing.</li>
+<li class=""><strong>Partition</strong> — a way to organize data by column values (e.g. by date or region). Each partition contains its own set of buckets. Partitions can be created explicitly, and by default a write to a partition that doesn&#x27;t exist creates it.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="client-overview">Client Overview<a href="#client-overview" class="hash-link" aria-label="Direct link to Client Overview" title="Direct link to Client Overview" translate="no">​</a></h2>
 <table><thead><tr><th></th><th>Rust</th><th>Python</th><th>C++</th></tr></thead><tbody><tr><td><strong>Package</strong></td><td><a href="https://crates.io/crates/fluss-rs" target="_blank" rel="noopener noreferrer" class="">fluss-rs</a> on crates.io</td><td>Build from source (PyO3)</td><td>Build from source (CMake)</td></tr><tr><td><strong>Async runtime</strong></td><td>Tokio</td><td>asyncio</td><td>Synchronous (Tokio runtime managed internally)</td></tr><tr><td><strong>Data format</strong></td><td>Arrow RecordBatch / GenericRow</td><td>PyArrow / Pandas / dict</td><td>Arrow RecordBatch / GenericRow</td></tr><tr><td><strong>Log tables</strong></td><td>Read + Write</td><td>Read + Write</td><td>Read + Write</td></tr><tr><td><strong>Primary key tables</strong></td><td>Upsert + Delete + Lookup</td><td>Upsert + Delete + Lookup</td><td>Upsert + Delete + Lookup</td></tr><tr><td><strong>Partitioned tables</strong></td><td>Read + Write</td><td>Read + Write</td><td>Read + Write</td></tr></tbody></table>

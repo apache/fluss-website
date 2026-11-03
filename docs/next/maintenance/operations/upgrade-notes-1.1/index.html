@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.1448fd84.css">
-<script src="/assets/js/runtime~main.ecc92dad.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.cf1ffbb6.js" defer="defer"></script>
 <script src="/assets/js/main.07b277df.js" defer="defer"></script>
 </head>
 <body>
@@ -61,7 +61,18 @@ against the client listener.</p>
 <code>NOT_LEADER_OR_FOLLOWER</code>, is retried after an exponential backoff instead of immediately. The
 delay starts at <code>client.lookup.retry-backoff</code> (default <code>100ms</code>) and doubles up to
 <code>client.lookup.retry-backoff-max</code> (default <code>1s</code>). This stops clients from flooding TabletServers
-and logs while a bucket has no ready leader, for example during a rolling restart.</p>
+and logs while a bucket has no ready leader, for example during a rolling restart. Lookups for a
+bucket that has no leader in the client&#x27;s metadata back off the same way, per bucket and without
+counting toward <code>client.lookup.max-retries</code>. As a result, these lookups may resume later after a
+new leader is elected than before, unless the client&#x27;s metadata gets the leader earlier.
+<code>client.lookup.retry-backoff-max</code> caps only the backoff: batching (<code>client.lookup.batch-timeout</code>),
+queueing and the metadata request that finds the leader can delay the lookups further.</p>
+<p><code>client.lookup.queue-size</code> limits only the initial input queue. Lookups waiting for a leader or for
+a retry are outside this limit, so the total number of pending lookups can grow without bound.
+Adding a lookup may still block while the input queue is full, but the client no longer blocks on
+metadata requests for each lookup of a bucket without a leader, so that queue now fills up less
+often while a leader is missing. Applications that issue asynchronous lookups should bound their
+outstanding lookups, for example with the capacity of a Flink asynchronous lookup join.</p>
 <p>The first retry after a leader change now waits about 100ms. To retain the previous behavior,
 set <code>client.lookup.retry-backoff: 0</code>.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="lake-storage-changes">Lake Storage Changes<a href="#lake-storage-changes" class="hash-link" aria-label="Direct link to Lake Storage Changes" title="Direct link to Lake Storage Changes" translate="no">​</a></h2>

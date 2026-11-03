@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.1448fd84.css">
-<script src="/assets/js/runtime~main.ecc92dad.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.cf1ffbb6.js" defer="defer"></script>
 <script src="/assets/js/main.07b277df.js" defer="defer"></script>
 </head>
 <body>
@@ -75,12 +75,24 @@ exponential growth, preserves the longest active deadline when several failures 
 bucket, and remains subject to <code>client.writer.retries</code>. Setting <code>client.writer.retry-backoff</code> to <code>0</code>
 restores immediate retry behavior.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="client-lookup-retry-backoff">Client lookup retry backoff<a href="#client-lookup-retry-backoff" class="hash-link" aria-label="Direct link to Client lookup retry backoff" title="Direct link to Client lookup retry backoff" translate="no">​</a></h2>
-<table><thead><tr><th style="text-align:left">Key</th><th style="text-align:left">Default</th><th style="text-align:left">Type</th><th style="text-align:left">Description</th></tr></thead><tbody><tr><td style="text-align:left"><code>client.lookup.retry-backoff</code></td><td style="text-align:left"><code>100 ms</code></td><td style="text-align:left">Duration</td><td style="text-align:left">The initial delay before retrying a lookup that failed with a retriable error, such as <code>NOT_LEADER_OR_FOLLOWER</code>. The delay doubles with the lookup retry count and uses 20% jitter. Set to <code>0</code> to disable this backoff.</td></tr><tr><td style="text-align:left"><code>client.lookup.retry-backoff-max</code></td><td style="text-align:left"><code>1 s</code></td><td style="text-align:left">Duration</td><td style="text-align:left">The maximum retry delay. Must be between the initial backoff and <code>2147483647ms</code>.</td></tr></tbody></table>
+<table><thead><tr><th style="text-align:left">Key</th><th style="text-align:left">Default</th><th style="text-align:left">Type</th><th style="text-align:left">Description</th></tr></thead><tbody><tr><td style="text-align:left"><code>client.lookup.retry-backoff</code></td><td style="text-align:left"><code>100 ms</code></td><td style="text-align:left">Duration</td><td style="text-align:left">The initial delay before retrying a lookup that failed with a retriable error, such as <code>NOT_LEADER_OR_FOLLOWER</code>, or whose bucket has no known leader. The delay doubles with each attempt and uses 20% jitter. Set to <code>0</code> to disable this backoff.</td></tr><tr><td style="text-align:left"><code>client.lookup.retry-backoff-max</code></td><td style="text-align:left"><code>1 s</code></td><td style="text-align:left">Duration</td><td style="text-align:left">The maximum retry delay. Must be between the initial backoff and <code>2147483647ms</code>.</td></tr></tbody></table>
 <p>The retry backoff applies to each failed lookup and prefix lookup, preventing the client from
 resending lookups in a tight loop while a bucket has no ready leader, for example during a rolling
-restart of TabletServers. New lookups are not delayed by lookups that are waiting to be retried.
-The backoff remains subject to <code>client.lookup.max-retries</code>. Setting <code>client.lookup.retry-backoff</code>
-to <code>0</code> restores immediate retry behavior.</p>
+restart of TabletServers. New lookups are not delayed by lookups for other buckets that are waiting
+to be retried.
+The backoff remains subject to <code>client.lookup.max-retries</code>, except while the client&#x27;s metadata has
+no leader for the bucket. In that case the bucket backs off as a whole: new lookups for it wait for
+the same backoff, the wait ends early once the client&#x27;s metadata has a leader for the bucket, and
+the attempts don&#x27;t count toward <code>client.lookup.max-retries</code>, so lookups keep waiting through leader
+election instead of failing. Setting <code>client.lookup.retry-backoff</code> to <code>0</code> restores immediate retry
+behavior.</p>
+<p><code>client.lookup.queue-size</code> limits only the initial input queue, and adding a lookup may still block
+while that queue is full. Lookups waiting for a leader or for a retry are held outside this limit,
+so the total number of pending lookups can grow without bound. While a bucket has no leader, the
+sender moves its lookups out of the input queue without waiting on metadata requests, so an
+application that keeps issuing asynchronous lookups for it gets little backpressure from the
+client. Bound the number of outstanding lookups in the application, for example with the capacity
+of a Flink asynchronous lookup join.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="client-disk-write-protection-backoff">Client disk write protection backoff<a href="#client-disk-write-protection-backoff" class="hash-link" aria-label="Direct link to Client disk write protection backoff" title="Direct link to Client disk write protection backoff" translate="no">​</a></h2>
 <table><thead><tr><th style="text-align:left">Key</th><th style="text-align:left">Default</th><th style="text-align:left">Type</th><th style="text-align:left">Description</th></tr></thead><tbody><tr><td style="text-align:left"><code>client.writer.disk-write-locked.backoff</code></td><td style="text-align:left"><code>1 s</code></td><td style="text-align:left">Duration</td><td style="text-align:left">The initial retry backoff when disk write protection rejects a write. Applies to both Log and KV writes, independently of KV backpressure. The backoff doubles with the batch retry count and uses 20% jitter, up to client.writer.disk-write-locked.backoff-max. The value must be at least 1ms and no greater than the maximum backoff.</td></tr><tr><td style="text-align:left"><code>client.writer.disk-write-locked.backoff-max</code></td><td style="text-align:left"><code>10 s</code></td><td style="text-align:left">Duration</td><td style="text-align:left">The maximum retry backoff for a bucket whose writes are rejected by disk write protection. Must be between the initial backoff and 2147483647ms. Setting this equal to the initial backoff uses a fixed delay without jitter. Writes retry automatically after the delay, subject to client.writer.retries. Flush and graceful close also respect this delay.</td></tr></tbody></table>
 <p>Java writers back off after a TabletServer rejects a write with <code>DISK_WRITE_LOCKED</code>.

@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.1448fd84.css">
-<script src="/assets/js/runtime~main.5859df4d.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.190dc887.js" defer="defer"></script>
 <script src="/assets/js/main.07b277df.js" defer="defer"></script>
 </head>
 <body>
@@ -80,6 +80,11 @@ maps are keyed by server ID:</p>
 a load entry without a live node entry. Live servers with no replicas have explicit zero counts.
 A missing load entry means statistics are unavailable; it must not be treated as proof that a
 server has been evacuated.</p>
+<p>In a high-availability deployment, <code>getCoordinatorStandbys()</code> lists the currently live standby
+coordinators, excluding the active coordinator returned by <code>getCoordinatorServer()</code>. A standby is
+listed while it is registered with the cluster, which does not guarantee that it is ready to take
+over leadership. Coordinators have no numeric server ID, so <code>ServerNode.id()</code> is not meaningful
+for them.</p>
 <p>This API requires <code>DESCRIBE</code> permission on the cluster and refreshes metadata and retries once on
 retriable failures, including coordinator address changes. Servers that do not support it return
 <code>UnsupportedVersionException</code>. For basic discovery, <code>Admin.getServerNodes()</code> continues to return

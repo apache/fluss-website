@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.1448fd84.css">
-<script src="/assets/js/runtime~main.c37dc2e5.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a8d7495a.js" defer="defer"></script>
 <script src="/assets/js/main.2a2feaa2.js" defer="defer"></script>
 </head>
 <body>
@@ -78,16 +78,27 @@ the table.</p>
 <p>Enable the capability on an eligible table:</p>
 <div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#0A0F1C;--prism-background-color:#F8FAFC"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#0A0F1C;background-color:#F8FAFC"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#0A0F1C"><span class="token keyword" style="color:#194670">ALTER</span><span class="token plain"> </span><span class="token keyword" style="color:#194670">TABLE</span><span class="token plain"> my_partitioned_table </span><span class="token keyword" style="color:#194670">SET</span><span class="token plain"> </span><span class="token punctuation" style="color:#475569">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#0A0F1C"><span class="token plain">  </span><span class="token string" style="color:#0E7C66">&#x27;table.datalake.historical-partition.enabled&#x27;</span><span class="token plain"> </span><span class="token operator" style="color:#475569">=</span><span class="token plain"> </span><span class="token string" style="color:#0E7C66">&#x27;true&#x27;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#0A0F1C"><span class="token plain"></span><span class="token punctuation" style="color:#475569">)</span><span class="token punctuation" style="color:#475569">;</span><br></div></code></pre></div></div>
 <div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>warning</div><div class="admonitionContent_BuS1"><p>After enabling or disabling <code>table.datalake.historical-partition.enabled</code>, restart any existing
-writer and lookup jobs that require historical partition access so that their clients reload the
-updated table configuration.</p></div></div>
+writer, lookup, and Flink streaming read jobs that require historical partition access so that they
+reload the updated table configuration.</p><p>An older checkpoint may not contain consumption offsets for <code>__historical__</code>, for example if it
+was taken before historical changelog consumption was enabled. If the source discovers
+<code>__historical__</code> as a new partition after restoring such a checkpoint, it starts at the earliest
+retained log offset, even when <code>scan.startup.mode</code> is <code>latest</code>. This can replay changes already
+reflected in downstream state.</p></div></div>
 <p>When enabled, the Coordinator creates and retains an internal <code>__historical__</code> system partition:</p>
 <ul>
 <li class=""><strong>Writes:</strong> Log tables and primary-key tables route records for expired partitions through the
 system partition while preserving each record&#x27;s original partition name. The tiering service
 writes the records back to their original Paimon partitions.</li>
 <li class=""><strong>Reads:</strong> Primary-key point lookups continue to resolve rows after the original Fluss partition
-no longer exists. Historical reads currently support only primary-key point lookups.</li>
+no longer exists. <a class="" href="/docs/next/engine-flink/reads/#streaming-read">Flink streaming reads</a>
+also consume historical changelogs for both log tables and primary-key tables.</li>
 </ul>
+<div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>Partition expiration during streaming reads</div><div class="admonitionContent_BuS1"><p>If a Fluss partition expires while a streaming job is running, a later historical update can be
+emitted before an older record for the same primary key from the original partition. This can
+produce incorrect downstream materialized results or aggregations.</p><p>When the source discovers the partition removal, it stops consuming that partition&#x27;s log without
+first draining its unread records. Those records may be skipped; consuming the historical changelog
+does not recover them. These limitations apply to both <code>full</code> and changelog-only startup modes;
+complete, ordered consumption across partition expiration is not guaranteed.</p></div></div>
 <p>For primary-key tables, <code>table.datalake.historical-partition.lookup-mode</code> selects how historical
 partition lookups read Paimon when <code>table.datalake.historical-partition.enabled</code> is <code>true</code>.
 <code>SST</code>, the default, creates and caches local lookup files. <code>SCAN</code> applies primary-key filters while

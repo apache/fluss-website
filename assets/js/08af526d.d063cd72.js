@@ -1,0 +1,1 @@
+"use strict";(Array.isArray(globalThis.webpackChunkfluss_website)?globalThis.webpackChunkfluss_website:globalThis.webpackChunkfluss_website=[]).push([[30529],{41344(s){s.exports=JSON.parse('{"metadata":{"permalink":"/blog","page":1,"postsPerPage":35,"totalPages":1,"totalCount":35,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);

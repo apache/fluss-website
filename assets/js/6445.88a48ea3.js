@@ -1,0 +1,1 @@
+"use strict";(Array.isArray(globalThis.webpackChunkfluss_website)?globalThis.webpackChunkfluss_website:globalThis.webpackChunkfluss_website=[]).push([[6445],{6445(s,e,a){a.d(e,{createInfoServices:()=>b.v});var b=a(54614);a(4954)}}]);

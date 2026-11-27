@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="Open-source columnar streaming storage with sub-second freshness, primary-key tables, Flink integration, and native tiering to Iceberg and Paimon.">
 <meta name="theme-color" content="#102856">
 <script src="https://widget.kapa.ai/kapa-widget.bundle.js" async data-website-id="40ccde97-65ed-46d8-81f2-fe8a8a31f9d9" data-project-name="Apache Fluss" data-project-color="#06b6d4" data-project-logo="/img/logo/svg/colored_logo_notext.svg" data-modal-title="Ask Apache Fluss AI" data-modal-image="/img/logo/svg/colored_logo_notext.svg" data-modal-disclaimer="This is a custom LLM with access to the [Apache Fluss documentation](https://fluss.apache.org/docs/). Answers may be inaccurate — always verify against the official docs." data-button-hide="true" data-modal-override-open-selector="#navbar-ask-ai-btn" data-consent-required="true" data-user-analytics-cookie-enabled="false"></script><link rel="stylesheet" href="/assets/css/styles.1448fd84.css">
-<script src="/assets/js/runtime~main.2b45b8e6.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.22a04b0c.js" defer="defer"></script>
 <script src="/assets/js/main.d6ca4133.js" defer="defer"></script>
 </head>
 <body>
@@ -164,7 +164,7 @@ Pinned blocks can exceed the configured cache capacity, and write buffers, table
 native allocations consume additional memory. These settings are per instance, not a shared quota
 or a hard process-memory limit. The <code>rocksdbEstimatedMemoryBytes</code> gauge estimates memtable,
 table-reader and block-cache memory; it excludes other native overhead and the OS page cache.</p>
-<p>Provide sufficient TaskManager disk space under <code>client.scanner.io.tmpdir</code> for the cached buckets.
+<p>Provide sufficient TaskManager disk space under <code>client.io.tmpdir</code> for the cached buckets.
 When lookup parallelism exceeds the bucket count, a bucket may be cached by more than one subtask;
 increasing parallelism beyond the bucket count does not keep reducing each instance&#x27;s data size.
 The cache is rebuilt on task restart and removed when the task closes. INFO logs report the absolute
